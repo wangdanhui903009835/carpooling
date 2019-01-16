@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bfe64b82-9f4f-4f0a-ac85-865d4a20b156" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/build/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/assets/logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/static/.gitkeep" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web.rar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/关闭.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/在这里上车（会话框）.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/头像.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/定位.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/成支付功.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/拼车.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/拼车渐变背景.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/时间icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/暂不投诉.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/暂不投诉背景.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/灰色过渡点.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/登录页同意按钮（未选中状态）.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/登录页同意按钮（选中状态）.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/登陆渐变背景.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/矩形14.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/箭头.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/红色终点.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/终点.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/绿色定位.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/绿色起始点.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/订单.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/起点.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/返回键.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/选择（未点击状态）.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/预约.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web_切图/预约icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/carpooling.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/.babelrc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/.editorconfig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/.postcssrc.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/build/build.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/build/check-versions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/build/utils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/build/vue-loader.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/build/webpack.base.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/build/webpack.dev.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/build/webpack.prod.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/config/dev.env.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/config/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/config/prod.env.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/config/test.env.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/App.vue" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/common/common.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/components/Index.vue" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/components/Index/Index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/components/Login/Login.vue" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/components/Login/js/Login.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/css/Common.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/css/Index/Index.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/css/Login/Login.less" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/src/router/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/test/e2e/custom-assertions/elementCount.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/test/e2e/nightwatch.conf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/test/e2e/runner.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carpollingweb/test/e2e/specs/test.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/123.txt" afterPath="" />
+    </list>
+    <ignored path="carpooling.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="carpooling" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/carpollingweb/config/index.js" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/components/HelloWorld.vue" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/components/Index.vue" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/css/Index/Index.less" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/App.vue" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/components/Index/Index.js" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/main.js" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/router/index.js" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/css/Common.less" />
+        <option value="$PROJECT_DIR$/carpollingweb/index.html" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/components/Login/Login.vue" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/css/Login/Login.less" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/components/Login/js/Login.js" />
+        <option value="$PROJECT_DIR$/carpollingweb/src/common/common.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="carpooling" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="js-jscs-nodeInterpreter" value="F:\node\node.exe" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\git\carpooling\carpollingweb\src\images" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bfe64b82-9f4f-4f0a-ac85-865d4a20b156" name="Default" comment="" />
+      <created>1547608246355</created>
+      <option name="number" value="Default" />
+      <updated>1547608246355</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21127503" sideWeight="0.5" order="-1" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60238355" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/carpollingweb/config/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33025405">
+          <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/components/Index/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.0">
+          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.137931">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/css/Index/Index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0764774">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/components/Index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1529548">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2034682">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/css/Common.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.4193548">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22943221">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50119907">
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/common/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1017341">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/components/Login/js/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33872834">
+          <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/css/Login/Login.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61761296">
+          <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carpollingweb/src/components/Login/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6118192">
+          <caret line="24" column="92" selection-start-line="24" selection-start-column="84" selection-end-line="24" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

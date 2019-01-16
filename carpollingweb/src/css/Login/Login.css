@@ -1,0 +1,102 @@
+.login {
+  width: 100%;
+  height: 100%;
+  background: #F5F5F5;
+}
+.login .container {
+  padding: 1.72rem  1.08rem 0rem 1.09rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+.login .container .title {
+  font-size: .48rem;
+  padding-left: .44rem;
+}
+.login .container .detail {
+  padding-top: 1.22rem;
+  padding-left: .39rem;
+  box-sizing: border-box;
+}
+.login .container .detail .phoneNumber {
+  padding-bottom: 0.23rem;
+  border-bottom: 1px solid #939393;
+}
+.login .container .detail .phoneNumber .label {
+  font-size: 0.24rem;
+  color: #5782B7;
+  height: .46rem;
+  line-height: .46rem;
+  padding-right: .2rem;
+  position: relative;
+}
+.login .container .detail .phoneNumber .label:after {
+  position: absolute;
+  content: '';
+  right: 0rem;
+  top: 50%;
+  width: .09rem;
+  height: .09rem;
+  border-top: 2px solid #000000;
+  border-right: 2px solid #000000;
+  transform: translate(0%, -50%) rotate(45deg);
+}
+.login .container .detail .phoneNumber .phone {
+  flex: 1;
+  padding-left: .2rem;
+}
+.login .container .detail .phoneNumber .phone input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  background: #F5F5F5;
+  height: .42rem;
+}
+.login .container .detail .waringInfoDetail {
+  padding-top: 0.23rem;
+  color: #aeaeae;
+  font-size: 0.18rem;
+}
+.login .container .detail .agree {
+  padding-top: .28rem;
+  color: #000000;
+  font-size: 0.18rem;
+}
+.login .container .detail .agree .agreeItem {
+  height: .27rem;
+  line-height: .27rem;
+  position: relative;
+}
+.login .container .detail .agree .agreeItem .icon {
+  width: .24rem;
+  height: .24rem;
+  position: absolute;
+  top: 50%;
+  margin-top: -0.12rem;
+}
+.login .container .detail .agree .imageIcon {
+  min-width: .24rem;
+  padding-right: .12rem;
+}
+.login .container .detail .agree .contentsDetail {
+  color: #FF4200;
+}
+.login .container .loginBtn {
+  padding-top: .77rem;
+}
+.login .container .loginBtn .errorMsg {
+  padding-left: .39rem;
+  padding-bottom: .23rem;
+  font-size: 0.18rem;
+}
+.login .container .loginBtn .button {
+  width: 5.33rem;
+  height: .94rem;
+  line-height: .94rem;
+  color: #ffffff;
+  background: url("../../images/login_bg.png") no-repeat;
+  background-size: 5.33rem .94rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: .48rem;
+}
