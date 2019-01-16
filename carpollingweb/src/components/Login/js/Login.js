@@ -26,6 +26,7 @@ export default{
     //登录按钮
     login(){
       const that = this;
+      that.$router.push({name:'LoginVerfy',query:{phone:'that.phone'}})
       if(that.checkForm()){
         that.$http({
           url:window.config.apisServer+'/genCode',
@@ -35,7 +36,6 @@ export default{
             phoneNum:that.phone //电话号码
           }
         }).then(res=>{
-          console.log(res);
         })
       }
     },
