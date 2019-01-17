@@ -1,0 +1,91 @@
+@import "./../Common.less";
+.LoginVerfy{
+  height:100%;
+  background: #F5F5F5;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding:1.06rem .81rem 0rem .82rem;
+  .title{
+    color: #000;
+    font-size:@title_size;
+    font-weight:500;
+  }
+  .contentsTime{
+    padding-top:.71rem;
+    font-size: @min_font_size_24;
+    .phone{
+
+    }
+    .time{
+      flex:1;
+      text-align: left;
+      padding-left:.92rem;
+    }
+  }
+  .verifiyCode{
+    padding-top:.85rem;
+    .codeItem{
+      flex:1;
+      padding-bottom:.15rem;
+      border-bottom:1px solid #737373;
+      margin-right:3%;
+      input{
+        width:100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border:none;
+        outline: none;
+        background: #F5F5F5;
+        text-align: center;
+        color: #000000;
+        font-size:@title_size;
+        font-weight:500;
+        height:.46rem;
+        line-height:.46rem;
+      }
+    }
+    .codeItem:last-child{
+      margin-right: 0;
+    }
+  }
+  .againCode{
+    padding-top:.38rem;
+    text-align: right;
+    span{
+      display: inline-block;
+      height:.46rem;
+      line-height: .46rem;
+      background:rgba(212,212,212,1);
+      border-radius:.08rem;
+      font-size:@min_font_size_18;
+      color: #ffffff;
+      padding:0rem .08rem;
+    }
+  }
+  .codeValiable{
+    span{
+      background: none;
+      color: #000;
+    }
+  }
+  .btn{
+    padding-top:.37rem;
+    .errorMsg{
+      padding-bottom:.23rem;
+      font-size:@min_font_size_18;
+    }
+    .button{
+      width:5.87rem;
+      height:.94rem;
+      color: #ffffff;
+      background: url("./../../images/login_bg.png") no-repeat;
+      background-size:5.87rem .94rem;
+      line-height:.94rem;
+      text-align: center;
+      font-weight: 500;
+      font-size:@title_size;
+    }
+  }
+}

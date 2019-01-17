@@ -2,7 +2,14 @@ import {getCurrentLocation} from './../../common/common.js';
 export default{
   data(){
     return{
-
+      phone:'15528478472',//电话号码
+      userInfo:{
+        showFlag:0,
+        phone:'188****7869'
+      },
+      selectStatus:'1',//选中状态：1-拼车；2-包车；3-预约
+      startAddress:'',//开始位置
+      endAddress:'',//结束位置
     }
   },
   mounted(){
@@ -69,6 +76,21 @@ export default{
           reject(error);
         })
       })
+    },
+    //显示用户中心 1:显示；2：隐藏
+    showUserInfo(type){
+      const that = this;
+      that.userInfo.showFlag=type;
+    },
+    //获取订单详情
+    goTOrderList(){
+      const that = this;
+      that.$router.push({name:'OrderList',query:{phone:that.phone}})
+    },
+    //改变拼车方式
+    changeSelect(type){
+      const that = this;
+      that.selectStatus=type;
     }
   }
 }

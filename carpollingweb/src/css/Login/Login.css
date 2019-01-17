@@ -1,3 +1,7 @@
+.displayFlex {
+  display: flex;
+  -webkit-display: flex;
+}
 .login {
   width: 100%;
   height: 100%;
@@ -9,7 +13,7 @@
   width: 100%;
 }
 .login .container .title {
-  font-size: .48rem;
+  font-size: 0.48rem;
   padding-left: .44rem;
 }
 .login .container .detail {
@@ -98,5 +102,5 @@
   background-size: 5.33rem .94rem;
   text-align: center;
   font-weight: 500;
-  font-size: .48rem;
+  font-size: 0.48rem;
 }

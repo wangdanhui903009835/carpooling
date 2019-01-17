@@ -1,5 +1,10 @@
+.displayFlex {
+  display: flex;
+  -webkit-display: flex;
+}
 .Index {
   height: 100%;
+  /*拼车包车，预约车位信息*/
 }
 .Index .container {
   height: 100%;
@@ -14,4 +19,166 @@
 .Index .headImage img {
   width: 100%;
   height: 100%;
+}
+.Index .carpoorCharter {
+  position: absolute;
+  width: 7.1rem;
+  bottom: .22rem;
+  left: .2rem;
+  background: #ffffff;
+  box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
+  border-radius: .15rem;
+  z-index: 100;
+  padding-top: .14rem;
+  padding-left: .25rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.Index .carpoorCharter .menu .menuItem {
+  width: 1.04rem;
+  height: .42rem;
+  line-height: .42rem;
+  text-align: center;
+  border: 2px solid #e2e2e2;
+  border-radius: .21rem;
+  color: #878787;
+  font-size: 0.24rem;
+  margin-right: .73rem;
+}
+.Index .carpoorCharter .menu .appointment {
+  margin-right: .17rem;
+  flex: 1;
+  border: none;
+  border-radius: 0rem;
+  text-align: right;
+}
+.Index .carpoorCharter .menu .appointment img {
+  width: 1.17rem;
+  height: .42rem;
+}
+.Index .carpoorCharter .menu .active {
+  background: url("../../images/index_car_bg.png") no-repeat;
+  -webkit-background-size: 1.04rem .42rem;
+  background-size: 1.04rem .42rem;
+  color: #ffffff;
+}
+.Index .carpoorCharter .destination {
+  padding: .37rem 0rem .23rem 0rem;
+}
+.Index .carpoorCharter .destination .start .img,
+.Index .carpoorCharter .destination .end .img {
+  position: relative;
+  height: .69rem;
+  width: .16rem;
+}
+.Index .carpoorCharter .destination .start .img .iconImage,
+.Index .carpoorCharter .destination .end .img .iconImage {
+  width: .16rem;
+  height: .16rem;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.Index .carpoorCharter .destination .start input,
+.Index .carpoorCharter .destination .end input {
+  height: .69rem;
+  line-height: .69rem;
+  border: none;
+  outline: none;
+  display: block;
+  border-bottom: 1px solid #dbdbdb;
+  width: 5.39rem;
+  margin-left: .3rem;
+  padding-bottom: .23rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.Index .carpoorCharter .destination .end input {
+  border: none;
+  padding-top: .23rem;
+  padding-bottom: 0rem;
+}
+.Index .userInfo {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0rem;
+  left: -100%;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.2);
+}
+.Index .userInfo .contents {
+  height: 100%;
+  width: 100%;
+}
+.Index .userInfo .contents .menu {
+  height: 100%;
+  width: 65%;
+  background: #ffffff;
+}
+.Index .userInfo .contents .menu .img {
+  padding-top: .29rem;
+  text-align: center;
+}
+.Index .userInfo .contents .menu .img img {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.Index .userInfo .contents .menu .phone {
+  padding-top: .31rem;
+  color: #131313;
+  font-size: 0.24rem;
+  text-align: center;
+}
+.Index .userInfo .contents .menuList {
+  padding: .75rem 0rem 0rem .52rem;
+}
+.Index .userInfo .contents .menuList .menuItem {
+  height: .36rem;
+}
+.Index .userInfo .contents .menuList .menuItem .icon {
+  width: .32rem;
+  height: 100%;
+  padding-right: .36rem;
+}
+.Index .userInfo .contents .menuList .menuItem span {
+  display: inline-block;
+  height: 100%;
+  line-height: .36rem;
+  color: #131313;
+  font-size: 0.3rem;
+}
+.Index .userInfo .contents .transparentBlock {
+  flex: 1;
+}
+.Index .showUserInfo {
+  animation: userShow .5s;
+  animation-fill-mode: forwards;
+}
+.Index .hideUserInfo {
+  animation: userHide .5s;
+  animation-fill-mode: forwards;
+}
+.Index .amap-logo,
+.Index .amap-copyright {
+  z-index: -1;
+}
+@keyframes userShow {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0rem;
+  }
+}
+@keyframes userHide {
+  0% {
+    left: 0rem;
+  }
+  100% {
+    left: -100%;
+  }
 }

@@ -1,0 +1,119 @@
+.displayFlex {
+  display: flex;
+  -webkit-display: flex;
+}
+.OrderList {
+  width: 100%;
+  height: 100%;
+  background: #F5F5F5;
+  padding: .3rem .2rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.OrderList .orderItem {
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.19);
+  border-radius: 0.15rem;
+  margin-top: .3rem;
+}
+.OrderList .orderItem .contents {
+  padding-left: .64rem;
+  padding-right: .4rem;
+}
+.OrderList .orderItem .contents .title {
+  height: .67rem;
+  line-height: .67rem;
+  position: relative;
+}
+.OrderList .orderItem .contents .title .status {
+  color: #878787;
+  font-size: 0.24rem;
+}
+.OrderList .orderItem .contents .title .time {
+  color: #878787;
+  font-size: 0.24rem;
+  flex: 1;
+  text-align: right;
+}
+.OrderList .orderItem .contents .title:after {
+  position: absolute;
+  content: '';
+  width: 5.39rem;
+  height: 1px;
+  background: #dbdbdb;
+  left: 0rem;
+  bottom: 0rem;
+}
+.OrderList .orderItem .contents .addressName .start .startIcon,
+.OrderList .orderItem .contents .addressName .end .startIcon,
+.OrderList .orderItem .contents .addressName .number .startIcon,
+.OrderList .orderItem .contents .addressName .start .endIcon,
+.OrderList .orderItem .contents .addressName .end .endIcon,
+.OrderList .orderItem .contents .addressName .number .endIcon,
+.OrderList .orderItem .contents .addressName .start .timeIcon,
+.OrderList .orderItem .contents .addressName .end .timeIcon,
+.OrderList .orderItem .contents .addressName .number .timeIcon {
+  width: .16rem;
+  height: .16rem;
+}
+.OrderList .orderItem .contents .addressName .start span,
+.OrderList .orderItem .contents .addressName .end span,
+.OrderList .orderItem .contents .addressName .number span {
+  font-size: 0.24rem;
+  color: #000;
+  padding-left: .1rem;
+}
+.OrderList .orderItem .contents .orderCancel {
+  padding-top: .34rem;
+}
+.OrderList .orderItem .contents .orderCancel .start {
+  padding-bottom: .23rem;
+  position: relative;
+}
+.OrderList .orderItem .contents .orderCancel .start:after {
+  position: absolute;
+  content: '';
+  height: .4rem;
+  border-left: 2px dotted  gray;
+  left: 0.04rem;
+  top: .3rem;
+}
+.OrderList .orderItem .contents .orderCancel .end {
+  padding-bottom: .29rem;
+}
+.OrderList .orderItem .contents .orderGoing {
+  padding-top: .18rem;
+}
+.OrderList .orderItem .contents .orderGoing .start {
+  padding-bottom: .05rem;
+  position: relative;
+}
+.OrderList .orderItem .contents .orderGoing .start:after {
+  position: absolute;
+  content: '';
+  height: .2rem;
+  border-left: 2px dotted  gray;
+  left: 0.04rem;
+  top: .3rem;
+}
+.OrderList .orderItem .contents .orderGoing .number {
+  padding-bottom: .18rem;
+}
+.OrderList .orderItem .contents .price {
+  flex: 1;
+  text-align: right;
+  padding-top: .2rem;
+  color: #000;
+  font-size: 0.24rem;
+}
+.OrderList .orderItem .contents .price .priceTile {
+  font-weight: 400;
+}
+.OrderList .orderItem .contents .price .priceNumber {
+  padding-top: .22rem;
+}
+.OrderList .orderItem:first-child {
+  margin-top: 0rem;
+}

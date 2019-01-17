@@ -20,6 +20,11 @@ axios.interceptors.request.use(config => {
     return Promise.reject(error);
   }
 )
+/*设置标题*/
+router.beforeEach((to,from,next)=>{
+  document.title=to.meta.title;
+  next();
+})
 Vue.prototype.$http=axios;
 /* eslint-disable no-new */
 new Vue({

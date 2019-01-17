@@ -10,7 +10,6 @@ export default{
     }
   },
   mounted(){
-
   },
   methods:{
     //判断用户是否有登录信息
@@ -26,7 +25,7 @@ export default{
     //登录按钮
     login(){
       const that = this;
-      that.$router.push({name:'LoginVerfy',query:{phone:'that.phone'}})
+      that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
       if(that.checkForm()){
         that.$http({
           url:window.config.apisServer+'/genCode',
@@ -36,6 +35,7 @@ export default{
             phoneNum:that.phone //电话号码
           }
         }).then(res=>{
+          that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
         })
       }
     },

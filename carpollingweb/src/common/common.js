@@ -4,7 +4,7 @@ import axios from 'axios';
     //拼车接口
     apisServer: 'http://47.106.117.215:8888',
     //高德key值
-    AMapKey: 'c8d499635271ab4f9d449d35911e2cf1',
+    AMapKey: '4afba4f0fbf8de22a8934e4d00c8e5ad',
   }
 })();
 export  function getCurrentLocation(){

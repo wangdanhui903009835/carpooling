@@ -1,3 +1,4 @@
+@import "./../Common.less";
 .Index{
   height:100%;
   .container{
@@ -13,5 +14,171 @@
       width:100%;
       height:100%;
     }
+  }
+  /*拼车包车，预约车位信息*/
+  .carpoorCharter{
+    position: absolute;
+    width:7.1rem;
+    bottom:.22rem;
+    left:.2rem;
+    background:rgba(255,255,255,1);
+    box-shadow:0rem 0rem .16rem 0rem rgba(0, 0, 0, 0.19);
+    border-radius:.15rem;
+    z-index:100;
+    padding-top:.14rem;
+    padding-left:.25rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    .menu{
+      .menuItem{
+        width:1.04rem;
+        height:.42rem;
+        line-height: .42rem;
+        text-align: center;
+        border:2px solid rgba(226,226,226,1);
+        border-radius:.21rem;
+        color: #878787;
+        font-size:@min_font_size_24;
+        margin-right:.73rem;
+      }
+      .appointment{
+        margin-right:.17rem;
+        flex:1;
+        border:none;
+        border-radius:0rem;
+        text-align: right;
+        img{
+          width:1.17rem;
+          height:.42rem;
+        }
+      }
+      .active{
+        background: url("./../../images/index_car_bg.png") no-repeat;
+        -webkit-background-size:1.04rem .42rem;
+        background-size:1.04rem .42rem;
+        color: #ffffff;
+      }
+    }
+    .destination{
+      padding:.37rem 0rem .23rem 0rem;
+      .start,.end{
+        .img{
+          position: relative;
+          height:.69rem;
+          width:.16rem;
+          .iconImage{
+            width:.16rem;
+            height:.16rem;
+            display: block;
+            position: absolute;
+            top:50%;
+            transform: translateY(-50%);
+          }
+        }
+
+        input{
+          height:.69rem;
+          line-height:.69rem;
+          border:none;
+          outline:none;
+          display: block;
+          border-bottom:1px solid #dbdbdb;
+          width:5.39rem;
+          margin-left:.3rem;
+          padding-bottom:.23rem;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+      }
+      .end{
+        input{
+          border:none;
+          padding-top:.23rem;
+          padding-bottom:0rem;
+        }
+      }
+    }
+  }
+  .userInfo{
+    position:absolute;
+    height:100%;
+    width:100%;
+    top:0rem;
+    left:-100%;
+    z-index:200;
+    background: rgba(0,0,0,.2);
+    .contents{
+      height:100%;
+      width:100%;
+      .menu{
+        height:100%;
+        width:65%;
+        background: #ffffff;
+        .img{
+          padding-top:.29rem;
+          text-align: center;
+          img{
+            width:1.2rem;
+            height:1.2rem;
+          }
+        }
+        .phone{
+          padding-top:.31rem;
+          color: #131313;
+          font-size:@min_font_size_24;
+          text-align: center;
+        }
+      }
+      .menuList{
+        padding:.75rem 0rem 0rem .52rem;
+        .menuItem{
+          height:.36rem;
+          .icon{
+            width:.32rem;
+            height:100%;
+            padding-right:.36rem;
+          }
+          span{
+            display: inline-block;
+            height:100%;
+            line-height:.36rem;
+            color: #131313;
+            font-size:@min_font_size_30;
+          }
+        }
+      }
+      .transparentBlock{
+        flex:1;
+      }
+    }
+  }
+  .showUserInfo{
+    animation:userShow .5s;
+    animation-fill-mode: forwards;
+  }
+  .hideUserInfo{
+    animation:userHide .5s;
+    animation-fill-mode: forwards;
+  }
+  .amap-logo,.amap-copyright{
+    z-index:-1;
+  }
+}
+@keyframes userShow {
+  0%{
+    left:-100%;
+  }
+  100%{
+    left:0rem;
+  }
+}
+@keyframes userHide {
+  0%{
+    left:0rem;
+  }
+  100%{
+    left:-100%;
   }
 }
