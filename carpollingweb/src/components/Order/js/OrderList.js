@@ -89,11 +89,11 @@ export default{
         let msg='';//页面显示信息
         let orderDate = new Date(val),//订单日期
         //今天的日期
-        currentYYYYMMDD = currentDate.getFullYear()+'/'+that.getDateLength(currentDate.getMonth()+1)+'/'+that.getDateLength(currentDate.getDate()),
+        currentYYYYMMDD = currentDate.getFullYear()+'/'+that.$formatDateLength(currentDate.getMonth()+1)+'/'+that.$formatDateLength(currentDate.getDate()),
         //明天日期
-        tomorrowYYYYMMDD = tomorrowDate.getFullYear()+'/'+that.getDateLength(tomorrowDate.getMonth()+1)+'/'+that.getDateLength(tomorrowDate.getDate()),
+        tomorrowYYYYMMDD = tomorrowDate.getFullYear()+'/'+that.$formatDateLength(tomorrowDate.getMonth()+1)+'/'+that.$formatDateLength(tomorrowDate.getDate()),
         //订单日期
-        orderYYYYMMDD=orderDate.getFullYear()+'/'+that.getDateLength(orderDate.getMonth()+1)+'/'+that.getDateLength(orderDate.getDate()),
+        orderYYYYMMDD=orderDate.getFullYear()+'/'+that.$formatDateLength(orderDate.getMonth()+1)+'/'+that.$formatDateLength(orderDate.getDate()),
         //小时
         hours = orderDate.getHours(),
         //分钟
@@ -108,12 +108,5 @@ export default{
         return msg;
       }
     },
-    //日期格式统一
-    getDateLength(val){
-      if(val.toString().length!=2){
-        val='0'+val
-      }
-      return val;
-    }
   }
 }

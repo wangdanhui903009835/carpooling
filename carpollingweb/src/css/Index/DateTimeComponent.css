@@ -1,0 +1,64 @@
+.displayFlex {
+  display: flex;
+  -webkit-display: flex;
+}
+.dateTimeComponent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0rem;
+  background: rgba(0, 0, 0, 0.6);
+  animation: showSelectTime .5s ease;
+  animation-fill-mode: forwards;
+}
+.dateTimeComponent .contents {
+  width: 7.1rem;
+  background: #ffffff;
+  position: absolute;
+  bottom: 0rem;
+  min-height: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: .2rem .2rem 0rem 0rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dateTimeComponent .contents .menu {
+  height: .85rem;
+  line-height: .85rem;
+  padding: 0rem .43rem;
+  border-bottom: 1px solid #F5F5F5;
+}
+.dateTimeComponent .contents .menu .menuItem {
+  font-size: 0.3rem;
+  color: #20C4FE;
+}
+.dateTimeComponent .contents .menu .label {
+  flex: 1;
+  text-align: center;
+  color: #131313;
+}
+.dateTimeComponent .contents .pickList {
+  display: flex;
+  display: -webkit-flex;
+  width: 100%;
+}
+.dateTimeComponent .contents .pickList .picker {
+  flex: 1;
+}
+.dateTimeComponent .contents .pickList .picker .picker-items .picker-item {
+  font-size: 0.3rem;
+  color: #e2e2e2;
+}
+.dateTimeComponent .contents .pickList .picker .picker-items .picker-selected {
+  color: #131313;
+}
+@keyframes showSelectTime {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: 0rem;
+  }
+}

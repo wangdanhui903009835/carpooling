@@ -25,10 +25,19 @@
   width: 7.1rem;
   bottom: .22rem;
   left: .2rem;
+  z-index: 100;
+}
+.Index .carpoorCharter .position {
+  text-align: right;
+}
+.Index .carpoorCharter .position img {
+  width: .6rem;
+  height: .6rem;
+}
+.Index .carpoorCharter .contents {
   background: #ffffff;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
   border-radius: .15rem;
-  z-index: 100;
   padding-top: .14rem;
   padding-left: .25rem;
   -webkit-box-sizing: border-box;
@@ -40,11 +49,14 @@
   height: .42rem;
   line-height: .42rem;
   text-align: center;
-  border: 2px solid #e2e2e2;
+  border: 1px solid #e2e2e2;
   border-radius: .21rem;
   color: #878787;
   font-size: 0.24rem;
   margin-right: .73rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .Index .carpoorCharter .menu .appointment {
   margin-right: .17rem;
@@ -62,9 +74,36 @@
   -webkit-background-size: 1.04rem .42rem;
   background-size: 1.04rem .42rem;
   color: #ffffff;
+  border: none;
 }
 .Index .carpoorCharter .destination {
   padding: .37rem 0rem .23rem 0rem;
+  /*预约时间*/
+}
+.Index .carpoorCharter .destination .appointTime {
+  text-align: center;
+  padding-bottom: .45rem;
+}
+.Index .carpoorCharter .destination .appointTime span {
+  color: #000;
+  font-size: 0.24rem;
+  position: relative;
+  padding-right: .2rem;
+}
+.Index .carpoorCharter .destination .appointTime span:after {
+  position: absolute;
+  content: '';
+  right: 0rem;
+  top: 50%;
+  width: .09rem;
+  height: .09rem;
+  border-top: 1px solid #000000;
+  border-right: 1px solid #000000;
+  transform: translate(0%, -50%) rotate(45deg);
+}
+.Index .carpoorCharter .destination .start,
+.Index .carpoorCharter .destination .end {
+  position: relative;
 }
 .Index .carpoorCharter .destination .start .img,
 .Index .carpoorCharter .destination .end .img {
@@ -95,6 +134,14 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+.Index .carpoorCharter .destination .start:after {
+  position: absolute;
+  content: '';
+  height: .7rem;
+  border-left: 2px dotted  #C5C5C5;
+  left: 0.04rem;
+  top: .3rem;
 }
 .Index .carpoorCharter .destination .end input {
   border: none;
@@ -144,7 +191,7 @@
   height: 100%;
   padding-right: .36rem;
 }
-.Index .userInfo .contents .menuList .menuItem span {
+.Index .userInfo .contents .menuList .menuItem .labelName {
   display: inline-block;
   height: 100%;
   line-height: .36rem;

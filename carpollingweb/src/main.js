@@ -5,7 +5,10 @@ import App from './App'
 import router from './router'
 import axios from 'axios';
 import './css/Common.css'
+import Mint from 'mint-ui'
+import 'mint-ui/lib/style.min.css'
 import qs from 'qs'
+Vue.use(Mint);
 Vue.config.productionTip = false
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.interceptors.request.use(config => {
@@ -25,6 +28,14 @@ router.beforeEach((to,from,next)=>{
   document.title=to.meta.title;
   next();
 })
+//日期格式的统一
+Vue.prototype.$formatDateLength=function(val){
+  if(val.toString().length!=2){
+    return '0'+val;
+  }else{
+    return val
+  }
+}
 Vue.prototype.$http=axios;
 /* eslint-disable no-new */
 new Vue({

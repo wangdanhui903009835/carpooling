@@ -5,6 +5,7 @@ import axios from 'axios';
     apisServer: 'http://47.106.117.215:8888',
     //高德key值
     AMapKey: '4afba4f0fbf8de22a8934e4d00c8e5ad',
+    //AMapKey:'c8d499635271ab4f9d449d35911e2cf1'
   }
 })();
 export  function getCurrentLocation(){
@@ -70,4 +71,24 @@ export function WxSign(){
       reject({code: -1, info: '微信接口入驻失败'})
     })
   })
+}
+
+//获取当前时间前后多少天的时间
+export function getDateByNumber(dateTime, number) {
+  let myDate = '';
+  if (!dateTime) {
+    //获取今天的时间
+    myDate = new Date();
+  } else {
+    myDate = new Date(dateTime);
+  }
+  //多少天前(后)的日期
+  myDate.setDate(myDate.getDate() + number);
+  let bAYear = myDate.getFullYear(),
+    bAMonth = myDate.getMonth() + 1,
+    bADate = myDate.getDate();
+  let baDate = bAYear + '-' + ((bAMonth.toString().length > 1) ? bAMonth : '0' + bAMonth) + '-' + ((bADate.toString().length > 1) ? bADate : '0' + bADate);
+  return {
+    baDate:baDate
+  }
 }
