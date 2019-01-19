@@ -2,6 +2,11 @@
   display: flex;
   -webkit-display: flex;
 }
+.amap-logo,
+.amap-copyright,
+.amap-call {
+  display: none !important;
+}
 .dateTimeComponent {
   position: absolute;
   width: 100%;

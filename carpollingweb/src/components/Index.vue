@@ -48,6 +48,7 @@
                     <div class="phone">{{userInfo.phone}}</div>
                     <div class="menuList">
                         <div class="menuItem displayFlex" @click="goTOrderList"><img src="./../images/order.png" class="icon"><div class="labelName">订单</div></div>
+                        <div class="menuItem displayFlex" @click="goTOrderConfirm"><img src="./../images/order.png" class="icon"><div class="labelName">订单确认</div></div>
                     </div>
                 </div>
                 <div class="transparentBlock" @click="showUserInfo(2)"></div>

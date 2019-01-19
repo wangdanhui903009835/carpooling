@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import Login from '@/components/Login/Login'
 import LoginVerfy from '@/components/Login/LoginVerfy'
 import OrderList from '@/components/Order/OrderList'
+import OrderPay from '@/components/Order/OrderPay'
 Vue.use(Router)
 
 export default new Router({
@@ -36,6 +37,14 @@ export default new Router({
       path:'/Order/OrderList',
       name:'OrderList',
       component:OrderList,
+      meta:{
+        title:'行程订单'
+      }
+    },
+    {
+      path:'/Order/OrderPay',
+      name:'OrderPay',
+      component:OrderPay,
       meta:{
         title:'行程订单'
       }

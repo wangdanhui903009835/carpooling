@@ -151,6 +151,11 @@ export default{
         time:obj.time,
         defaultSelect:obj.defaultSelect
       }
+    },
+    //订单确认页面
+    goTOrderConfirm(){
+      const that = this;
+      that.$router.push({name:'OrderPay',query:{phone:that.phone}})
     }
   }
 }

@@ -36,6 +36,36 @@ Vue.prototype.$formatDateLength=function(val){
     return val
   }
 }
+//格式化日期信息
+Vue.prototype.$formateTimeToDate=function(val){
+  let currentDate = new Date();//今天日期
+  let tomorrowDate = new Date(currentDate.getTime()+24*60*60*1000);
+  val = parseInt(val,10);
+  if(val<=0 || isNaN(val)){
+    return '';
+  }else{
+    let msg='';//页面显示信息
+    let orderDate = new Date(val),//订单日期
+    //今天的日期
+      currentYYYYMMDD = currentDate.getFullYear()+'-'+this.$formatDateLength(currentDate.getMonth()+1)+'-'+this.$formatDateLength(currentDate.getDate()),
+    //明天日期
+      tomorrowYYYYMMDD = tomorrowDate.getFullYear()+'-'+this.$formatDateLength(tomorrowDate.getMonth()+1)+'-'+this.$formatDateLength(tomorrowDate.getDate()),
+    //订单日期
+      orderYYYYMMDD=orderDate.getFullYear()+'-'+this.$formatDateLength(orderDate.getMonth()+1)+'-'+this.$formatDateLength(orderDate.getDate()),
+    //小时
+      hours = orderDate.getHours(),
+    //分钟
+      minutes = orderDate.getMinutes();
+    if(currentYYYYMMDD==orderYYYYMMDD){//今天日期
+      msg='今天 '+hours+':'+minutes;
+    }else if(tomorrowYYYYMMDD==orderYYYYMMDD){//明天日期
+      msg='明天 '+hours+':'+minutes;
+    }else{
+      msg=orderYYYYMMDD+' '+hours+':'+minutes;
+    }
+    return msg;
+  }
+}
 Vue.prototype.$http=axios;
 /* eslint-disable no-new */
 new Vue({

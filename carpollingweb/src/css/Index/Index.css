@@ -2,6 +2,11 @@
   display: flex;
   -webkit-display: flex;
 }
+.amap-logo,
+.amap-copyright,
+.amap-call {
+  display: none !important;
+}
 .Index {
   height: 100%;
   /*拼车包车，预约车位信息*/

@@ -2,6 +2,11 @@
   display: flex;
   -webkit-display: flex;
 }
+.amap-logo,
+.amap-copyright,
+.amap-call {
+  display: none !important;
+}
 .LoginVerfy {
   height: 100%;
   background: #F5F5F5;

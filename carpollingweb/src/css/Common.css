@@ -2,3 +2,8 @@
   display: flex;
   -webkit-display: flex;
 }
+.amap-logo,
+.amap-copyright,
+.amap-call {
+  display: none !important;
+}
