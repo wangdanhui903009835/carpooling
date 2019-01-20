@@ -7,9 +7,10 @@
         <div class="container" id="container"></div>
         <div class="headImage" @click="showUserInfo(1)"><img src="./../images/defaultHeadImage.png"></div>
         <!--拼车、包车、预约-->
-        <div class="carpoorCharter" v-if="!showDateTimeInfo.showFlag">
+        <div class="carpoorCharter" :class="inputFoucs?'inputCarpoorCharter':''" v-if="!showDateTimeInfo.showFlag">
             <div class="position"><img src="./../images/position.png" @click="getReposition"></div>
-            <div class="contents">
+            <div class="boxItem">
+              <div class="contents">
                 <div class="menu displayFlex">
                     <div class="menuItem" :class="selectStatus==0?'active':''" @click="changeSelect(0)">拼车</div>
                     <div class="menuItem" :class="selectStatus==1?'active':''" @click="changeSelect(1)">包车</div>
@@ -28,18 +29,43 @@
                         <div class="img">
                             <img src="./../images/start_address.png" class="iconImage">
                         </div>
-                        <input type="text" v-model="addressInfo.startAddress" placeholder="请输入开始地址">
+                        <input type="text" v-model="addressInfo.startAddress" placeholder="请输入开始地址" @focus="getFocus">
                     </div>
                     <!--结束地址-->
                     <div class="end displayFlex">
                         <div class="img">
                             <img src="./../images/end_address.png" class="iconImage">
                         </div>
-                        <input type="text" v-model="addressInfo.endAddress" placeholder="你要去哪儿">
+                        <input type="text" v-model="addressInfo.endAddress" placeholder="你要去哪儿" @focus="getFocus">
                     </div>
+                    <!--错误提示信息-->
+                    <div class="errorMsg" v-if="errorInfoMsg.errorMsg">提示:{{errorInfoMsg.errorMsg}}</div>
                 </div>
             </div>
-        </div>
+            </div>
+            <div v-if="inputFoucs">
+              <!--拼车人数和备注信息-->
+              <div class="boxItem">
+                <div class="numberRemarks">
+                    <div class="item displayFlex">
+                      <span class="label">乘车人数:</span>
+                      <span class="value"><input type="text" v-model="person"/></span>
+                    </div>
+                    <div class="item displayFlex">
+                      <span class="label">备注:</span>
+                      <span class="value"><input type="text" v-model="remarks" placeholder="请输入备注信息"/></span>
+                    </div>
+                </div>
+                <!--价格发布信息-->
+                <div class="boxItem">
+                  <div class="publishButton">
+                      <div class="price">￥50</div>
+                      <div class="publish">确认发布</div>
+                  </div>
+                </div>
+            </div>
+            </div>
+      </div>
         <!--个人中心-->
         <div class="userInfo" :class="userInfo.showFlag==1?'showUserInfo':(userInfo.showFlag==2?'hideUserInfo':'')">
             <div class="contents displayFlex">

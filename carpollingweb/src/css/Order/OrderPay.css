@@ -14,21 +14,21 @@
   box-sizing: border-box;
 }
 .Orderpay .boxContents {
-  padding-top: .23rem;
+  padding-top: 0.23rem;
 }
 .Orderpay .boxContents .contents {
   width: 7.1rem;
   margin: 0 auto;
   background: #ffffff;
-  -webkit-border-radius: .15rem;
-  -moz-border-radius: .15rem;
-  border-radius: .15rem;
+  -webkit-border-radius: 0.15rem;
+  -moz-border-radius: 0.15rem;
+  border-radius: 0.15rem;
   box-sizing: border-box;
-  padding: 0rem .57rem 0rem .33rem;
+  padding: 0rem 0.57rem 0rem 0.33rem;
   box-shadow: -5px 0 3px #F6EFE7, 0px 0px 0px #f5f5f5, 0px 34px 20px #F6EFE7, 5px 0 3px #F6EFE7;
 }
 .Orderpay .boxContents .contents .destination {
-  padding-top: .1rem;
+  padding-top: 0.1rem;
 }
 .Orderpay .boxContents .contents .destination .menu {
   position: relative;
@@ -36,8 +36,8 @@
   line-height: 0.46rem;
 }
 .Orderpay .boxContents .contents .destination .menu .menuItemIcon {
-  width: .16rem;
-  height: .16rem;
+  width: 0.16rem;
+  height: 0.16rem;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -52,17 +52,17 @@
 .Orderpay .boxContents .contents .destination .menu:first-child:after {
   position: absolute;
   content: '';
-  height: .4rem;
-  border-left: 2px dotted  #C5C5C5;
+  height: 0.4rem;
+  border-left: 2px dotted #C5C5C5;
   left: 0.06rem;
-  top: .3rem;
+  top: 0.3rem;
 }
 .Orderpay .boxContents .contents .price {
   flex: 1;
   text-align: right;
   color: #000;
   font-size: 0.24rem;
-  padding-top: .1rem;
+  padding-top: 0.1rem;
 }
 .Orderpay .boxContents .contents .price .priceTile,
 .Orderpay .boxContents .contents .price .priceNumber,
@@ -74,16 +74,16 @@
   color: #FF5700;
 }
 .Orderpay .boxContents .contents .orderAction {
-  padding: .32rem 0rem .2rem .23rem;
+  padding: 0.32rem 0rem 0.2rem 0.23rem;
 }
 .Orderpay .boxContents .contents .orderAction .actionItem {
   flex: 1;
 }
 .Orderpay .boxContents .contents .orderAction .actionItem span {
-  height: .54rem;
-  line-height: .54rem;
-  border-radius: .27rem;
-  border: .03rem solid #D0CECE;
+  height: 0.54rem;
+  line-height: 0.54rem;
+  border-radius: 0.27rem;
+  border: 0.03rem solid #D0CECE;
   font-size: 0.32rem;
   width: 1.52rem;
   display: inline-block;
@@ -96,13 +96,13 @@
   text-align: right;
 }
 .Orderpay .info {
-  padding: .32rem 0rem .34rem 0rem;
+  padding: 0.32rem 0rem 0.34rem 0rem;
 }
 .Orderpay .info .label {
   width: 7.1rem;
   background: #ffffff;
-  height: .7rem;
-  line-height: .7rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
   text-align: center;
   border-radius: 0.15rem;
   font-size: 0.24rem;
@@ -128,12 +128,12 @@
 }
 .Orderpay .bottomPay .pay {
   width: 5.33rem;
-  height: .94rem;
-  line-height: .94rem;
+  height: 0.94rem;
+  line-height: 0.94rem;
   color: #ffffff;
   text-align: center;
   background: linear-gradient(128deg, #ff8e01, #ff5700);
-  border-radius: .47rem;
+  border-radius: 0.47rem;
   margin: 0 auto;
   font-size: 0.48rem;
   font-weight: 500;

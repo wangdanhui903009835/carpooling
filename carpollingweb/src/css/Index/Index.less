@@ -142,7 +142,73 @@
           padding-bottom:0rem;
         }
       }
+      .errorMsg{
+        padding: .2rem;
+        font-size: @min_font_size_18;
+      }
     }
+    .numberRemarks{
+      width: 100%;
+      background: #ffffff;
+      margin-top: 0.1rem;
+      box-shadow:0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
+      border-radius:0.2rem;
+      height: 1.4rem;
+      padding-left: 0.64rem;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      .item{
+        height: 0.7rem;
+        width: 5.39rem;
+        span{
+          display: block;
+          font-size: @min_font_size_24;
+          height: 100%;
+          line-height: 0.7rem;
+          input{
+            border: none;
+            outline: none;
+            height: 100%;
+            line-height: 0.7rem;
+            padding-left: 0.26rem;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+          }
+        }
+      }
+      .item:first-child{
+        border-bottom: 1px solid #dbdbdb;
+      }
+    }
+    .publishButton{
+      width: 100%;
+      background:rgba(255,255,255,1);
+      border-radius:0.2rem 0.2rem 0rem 0rem;
+      margin-top: 0.15rem;
+      padding-bottom:0.16rem ;
+      .price{
+        text-align: center;
+        padding:0.25rem 0rem 0.4rem 0rem;
+        color: #131313;
+        font-size: @min_font_size_36;
+      }
+      .publish{
+        height:0.94rem;
+        background:linear-gradient(128deg,rgba(255,142,1,1),rgba(255,87,0,1));
+        border-radius:47px;
+        margin: 0 auto;
+        width: 5.33rem;
+        text-align: center;
+        color: #ffffff;
+        line-height: 0.94rem;
+        font-size: @title_size;
+      }
+    }
+  }
+  .inputCarpoorCharter{
+    bottom: 0rem;
   }
   .userInfo{
     position:absolute;

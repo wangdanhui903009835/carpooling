@@ -13,7 +13,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 1.06rem .81rem 0rem .82rem;
+  padding: 1.06rem 0.81rem 0rem 0.82rem;
 }
 .LoginVerfy .title {
   color: #000;
@@ -21,20 +21,20 @@
   font-weight: 500;
 }
 .LoginVerfy .contentsTime {
-  padding-top: .71rem;
+  padding-top: 0.71rem;
   font-size: 0.24rem;
 }
 .LoginVerfy .contentsTime .time {
   flex: 1;
   text-align: left;
-  padding-left: .92rem;
+  padding-left: 0.92rem;
 }
 .LoginVerfy .verifiyCode {
-  padding-top: .85rem;
+  padding-top: 0.85rem;
 }
 .LoginVerfy .verifiyCode .codeItem {
   flex: 1;
-  padding-bottom: .15rem;
+  padding-bottom: 0.15rem;
   border-bottom: 1px solid #737373;
   margin-right: 3%;
 }
@@ -50,44 +50,44 @@
   color: #000000;
   font-size: 0.48rem;
   font-weight: 500;
-  height: .46rem;
-  line-height: .46rem;
+  height: 0.46rem;
+  line-height: 0.46rem;
 }
 .LoginVerfy .verifiyCode .codeItem:last-child {
   margin-right: 0;
 }
 .LoginVerfy .againCode {
-  padding-top: .38rem;
+  padding-top: 0.38rem;
   text-align: right;
 }
 .LoginVerfy .againCode span {
   display: inline-block;
-  height: .46rem;
-  line-height: .46rem;
+  height: 0.46rem;
+  line-height: 0.46rem;
   background: #d4d4d4;
-  border-radius: .08rem;
+  border-radius: 0.08rem;
   font-size: 0.18rem;
   color: #ffffff;
-  padding: 0rem .08rem;
+  padding: 0rem 0.08rem;
 }
 .LoginVerfy .codeValiable span {
   background: none;
   color: #000;
 }
 .LoginVerfy .btn {
-  padding-top: .37rem;
+  padding-top: 0.37rem;
 }
 .LoginVerfy .btn .errorMsg {
-  padding-bottom: .23rem;
+  padding-bottom: 0.23rem;
   font-size: 0.18rem;
 }
 .LoginVerfy .btn .button {
   width: 5.87rem;
-  height: .94rem;
+  height: 0.94rem;
   color: #ffffff;
   background: url("../../images/login_bg.png") no-repeat;
-  background-size: 5.87rem .94rem;
-  line-height: .94rem;
+  background-size: 5.87rem 0.94rem;
+  line-height: 0.94rem;
   text-align: center;
   font-weight: 500;
   font-size: 0.48rem;

@@ -14,7 +14,9 @@ export default{
       addressInfo:{
         infoObj:'',
         startAddress:'',
-        endAddress:''
+        startInfoObj:{},
+        endAddress:'',
+        endInfoObj:{}
       },
       showDateTimeInfo:{
         showFlag:false,
@@ -22,6 +24,12 @@ export default{
         time:'',//预约时间
         defaultSelect:[0,0,0],//默认选中状态
       },
+      person:0,//乘车人数
+      remarks:'',//备注
+      inputFoucs:false,
+      errorInfoMsg:{
+        errorMsg:null
+      }
     }
 
   },
@@ -68,6 +76,7 @@ export default{
           map.add([currentIconMaker]);
           //获取地址信息
           that.geocoder(latng.longitude+','+latng.latitude);
+
         }
       })
     },
@@ -156,6 +165,69 @@ export default{
     goTOrderConfirm(){
       const that = this;
       that.$router.push({name:'OrderPay',query:{phone:that.phone}})
+    },
+    //input 输入框获取焦点事件
+    getFocus(){
+      const that = this;
+      that.inputFoucs=true;
+    },
+    //通过地址获取经纬度信息
+    getAddressToLngt(address){
+      const that = this;
+      let amap = that.amap,mgeocoder;
+      return new Promise(function (resolve,reject) {
+        amap.plugin(["AMap.Geocoder"], function () {
+          mgeocoder = new AMap.Geocoder({});
+          //获取详细地址信息
+          mgeocoder.getLocation(address,function(status,result){
+            //获取地址成功
+            if (status === 'complete' && result.info === 'OK'){
+              resolve(result)
+            }else{//获取地址失败
+              reject([]);
+            }
+          });
+        });
+      })
+    }
+  },
+  watch:{
+    "addressInfo.startAddress":{
+      handler(newValue,oldValue){
+        const that = this;
+        if(!newValue){
+          that.errorInfoMsg.errorMsg=null;
+          return;
+        }
+        that.getAddressToLngt(newValue).then(res=>{
+          that.errorInfoMsg.errorMsg=null;
+          that.addressInfo.startInfoObj = res.geocodes[0];//开始地址对象
+        }).catch(error=>{
+          that.errorInfoMsg.errorMsg='你输入的地址未能在地图上找到，请输入正确的地址'
+        })
+      },
+      deep:true
+    },
+    "addressInfo.endAddress":{
+      handler(newValue,oldValue){
+        const that = this;
+        if(!newValue){
+          that.errorInfoMsg.errorMsg=null;
+          return;
+        }
+        that.getAddressToLngt(newValue).then(res=>{
+            let cityCode=res.geocodes[0].addressComponent.citycode;
+            if(cityCode!=window.config.cityCode){
+              that.errorInfoMsg.errorMsg='目的地只能设置为巴中，其他地区暂未开放，敬请期待'
+            }else{
+              that.addressInfo.endInfoObj=res.geocodes[0];//结束地址信息
+              that.errorInfoMsg.errorMsg=null;
+            }
+        }).catch(error=>{
+           that.errorInfoMsg.errorMsg='你输入的地址未能在地图上找到，请输入正确的地址'
+        })
+      },
+      deep:true
     }
   }
 }
