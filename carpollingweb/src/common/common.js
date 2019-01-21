@@ -8,6 +8,36 @@ import axios from 'axios';
     //巴中城市区域citycode的值
     cityCode:'0827',
     //AMapKey:'c8d499635271ab4f9d449d35911e2cf1'
+  };
+  window.utils={
+    projectName:'car_c',
+    storage: {
+      getter: function (key, type) {
+        if (type == 1) {
+          return JSON.parse(sessionStorage.getItem(utils.projectName + '_' + key));
+        }
+        else {
+          return JSON.parse(localStorage.getItem(utils.projectName + '_' + key));
+        }
+      },
+      setter: function (key, val, type) {
+        val = JSON.stringify(val);
+        if (type == 1) {
+          return sessionStorage.setItem(utils.projectName + '_' + key, val);
+
+        } else {
+          return localStorage.setItem(utils.projectName + '_' + key, val);
+        }
+      },
+      remove: function (key, type) {
+        if (type == 1) {
+          return sessionStorage.removeItem(utils.projectName + '_' + key);
+        }
+        else {
+          return localStorage.removeItem(utils.projectName + '_' + key);
+        }
+      }
+    }
   }
 })();
 export  function getCurrentLocation(){
@@ -23,8 +53,8 @@ export  function getCurrentLocation(){
             type:'wgs84',
             success: result => {
               let currentLocation={
-                latitude:result.latitude?result.latitude:30.64242,
-                longitude:result.longitude?result.longitude:104.04311
+                latitude:result.latitude?result.latitude:30.64059,
+                longitude:result.longitude?result.longitude:104.042159
               };
               resolve({code:200,data:currentLocation});
             },

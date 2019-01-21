@@ -36,7 +36,7 @@
         <div class="mapContainer" id="mapContainer"></div>
         <!--立即支付-->
         <div class="bottomPay">
-            <div class="pay">立即支付</div>
+            <div class="pay" @click="goPay">立即支付</div>
         </div>
         <!--订单取消信息-->
         <OrderCancel :orderCancelInfo="orderCancelInfo" :orderInfo="orderInfo" @closeCancel="closeCancel" @confirmCancel="confirmCancel" v-if="orderCancelInfo.showFlag==1"></OrderCancel>

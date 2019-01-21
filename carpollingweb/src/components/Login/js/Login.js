@@ -10,11 +10,25 @@ export default{
     }
   },
   mounted(){
+    const that = this;
+    let openId = window.utils.storage.getter('openId',1)||'54786104';
+    that.isLogin(openId);
   },
   methods:{
     //判断用户是否有登录信息
     isLogin(openid){
-
+      const that = this;
+      that.$http({
+        url:window.config.apisServer+'/phoneNum',
+        method:'Get',
+        params:{
+          openid:openid
+        }
+      }).then(res=>{
+        if(res.status==0){//已存在用户信息
+          that.$router.push({name:'Index',query:{phone:res.phoneNum}});
+        }
+      })
     },
     //协议的同意和不同意
     agreeProtocol(){

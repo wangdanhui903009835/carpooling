@@ -127,7 +127,23 @@ export default{
       that.orderComplaintsInfo.showFlag=0;
       //刷新订单状态
       that.getOrderInfo();
+    },
+    //立即支付
+    goPay(){
+      const that = this;
+      that.$router.push({name:'OrderPaySuccess'});
+      that.$http({
+        url:window.config.apisServer+'/payrecord',
+        method:'POST',
+        data:{
+          orderId:that.orderInfo.orderId,
+          payed:'yes'
+        }
+      }).then(res=>{
+        if(res=='success'){
+          that.$router.push({name:'OrderPaySuccess'})
+        }
+      }).catch(error=>{})
     }
-
   }
 }

@@ -59,8 +59,19 @@ export  default{
           errorMsg:''
         }
         clearInterval(timeInter);
-        //进入首页信息
-        that.$router.push({name:'Index'})
+        that.$http({
+          url:window.config.apisServer+'/verify',
+          method:'POST',
+          data:{
+            phoneNum:phone,
+            verifyCode:that.phoneCode.join('')
+          }
+        }).then(res=>{
+          if(res){
+            //进入首页信息
+            that.$router.push({name:'Index'})
+          }
+        })
       }
     }
   }

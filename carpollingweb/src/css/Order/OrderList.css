@@ -11,7 +11,7 @@
   width: 100%;
   height: 100%;
   background: #F5F5F5;
-  padding: 0.3rem 0.2rem;
+  padding: .3rem .2rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -21,15 +21,15 @@
   background: #ffffff;
   box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.19);
   border-radius: 0.15rem;
-  margin-top: 0.3rem;
+  margin-top: .3rem;
 }
 .OrderList .orderItem .contents {
-  padding-left: 0.64rem;
-  padding-right: 0.4rem;
+  padding-left: .64rem;
+  padding-right: .4rem;
 }
 .OrderList .orderItem .contents .title {
-  height: 0.67rem;
-  line-height: 0.67rem;
+  height: .67rem;
+  line-height: .67rem;
   position: relative;
 }
 .OrderList .orderItem .contents .title .status {
@@ -60,56 +60,56 @@
 .OrderList .orderItem .contents .addressName .start .timeIcon,
 .OrderList .orderItem .contents .addressName .end .timeIcon,
 .OrderList .orderItem .contents .addressName .number .timeIcon {
-  width: 0.16rem;
-  height: 0.16rem;
+  width: .16rem;
+  height: .16rem;
 }
 .OrderList .orderItem .contents .addressName .start span,
 .OrderList .orderItem .contents .addressName .end span,
 .OrderList .orderItem .contents .addressName .number span {
   font-size: 0.24rem;
   color: #000;
-  padding-left: 0.1rem;
+  padding-left: .1rem;
 }
 .OrderList .orderItem .contents .orderCancel {
-  padding-top: 0.34rem;
+  padding-top: .34rem;
 }
 .OrderList .orderItem .contents .orderCancel .start {
-  padding-bottom: 0.23rem;
+  padding-bottom: .23rem;
   position: relative;
 }
 .OrderList .orderItem .contents .orderCancel .start:after {
   position: absolute;
   content: '';
-  height: 0.4rem;
-  border-left: 2px dotted #C5C5C5;
+  height: .4rem;
+  border-left: 2px dotted  #C5C5C5;
   left: 0.04rem;
-  top: 0.3rem;
+  top: .3rem;
 }
 .OrderList .orderItem .contents .orderCancel .end {
-  padding-bottom: 0.29rem;
+  padding-bottom: .29rem;
 }
 .OrderList .orderItem .contents .orderGoing {
-  padding-top: 0.18rem;
+  padding-top: .18rem;
 }
 .OrderList .orderItem .contents .orderGoing .start {
-  padding-bottom: 0.05rem;
+  padding-bottom: .05rem;
   position: relative;
 }
 .OrderList .orderItem .contents .orderGoing .start:after {
   position: absolute;
   content: '';
-  height: 0.2rem;
-  border-left: 2px dotted #C5C5C5;
+  height: .2rem;
+  border-left: 2px dotted  #C5C5C5;
   left: 0.04rem;
-  top: 0.3rem;
+  top: .3rem;
 }
 .OrderList .orderItem .contents .orderGoing .number {
-  padding-bottom: 0.18rem;
+  padding-bottom: .18rem;
 }
 .OrderList .orderItem .contents .price {
   flex: 1;
   text-align: right;
-  padding-top: 0.2rem;
+  padding-top: .2rem;
   color: #000;
   font-size: 0.24rem;
 }
@@ -117,7 +117,7 @@
   font-weight: 400;
 }
 .OrderList .orderItem .contents .price .priceNumber {
-  padding-top: 0.22rem;
+  padding-top: .22rem;
 }
 .OrderList .orderItem:first-child {
   margin-top: 0rem;

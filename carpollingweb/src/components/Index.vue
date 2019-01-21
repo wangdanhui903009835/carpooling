@@ -49,7 +49,7 @@
                 <div class="numberRemarks">
                     <div class="item displayFlex">
                       <span class="label">乘车人数:</span>
-                      <span class="value"><input type="text" v-model="person"/></span>
+                      <span class="value"><input type="text" v-model="userNum"/></span>
                     </div>
                     <div class="item displayFlex">
                       <span class="label">备注:</span>
@@ -59,8 +59,8 @@
                 <!--价格发布信息-->
                 <div class="boxItem">
                   <div class="publishButton">
-                      <div class="price">￥50</div>
-                      <div class="publish">确认发布</div>
+                      <div class="price">￥{{price}}</div>
+                      <div class="publish" @click="confirmPublish">确认发布</div>
                   </div>
                 </div>
             </div>
@@ -74,7 +74,6 @@
                     <div class="phone">{{userInfo.phone}}</div>
                     <div class="menuList">
                         <div class="menuItem displayFlex" @click="goTOrderList"><img src="./../images/order.png" class="icon"><div class="labelName">订单</div></div>
-                        <div class="menuItem displayFlex" @click="goTOrderConfirm"><img src="./../images/order.png" class="icon"><div class="labelName">订单确认</div></div>
                     </div>
                 </div>
                 <div class="transparentBlock" @click="showUserInfo(2)"></div>

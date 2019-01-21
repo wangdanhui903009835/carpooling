@@ -24,12 +24,20 @@ export default{
         time:'',//预约时间
         defaultSelect:[0,0,0],//默认选中状态
       },
-      person:0,//乘车人数
+      userNum:1,//乘车人数
       remarks:'',//备注
       inputFoucs:false,
       errorInfoMsg:{
         errorMsg:null
-      }
+      },
+      //点标注信息
+      markerInfo:{
+        startMaker:null,
+        startTextMaker:null,
+        endMarker:null,
+        endTextMarker:null
+      },
+      price:0,
     }
 
   },
@@ -50,33 +58,13 @@ export default{
           var map = new AMap.Map('container',{
             resizeEnable:true,
             center:[latng.longitude,latng.latitude],
-            zoom:16,
             scrollWheel:true
           })
           that.amap = map;
-          // 创建一个 Icon
-          var currentIcon = new AMap.Icon({
-            // 图标尺寸
-            size: new AMap.Size(26, 42),
-            // 图标的取图地址
-            image: require("./../../../images/currentLocation.png"),
-            // 图标所用图片大小
-            imageSize: new AMap.Size(26, 42),
-            // 图标取图偏移量
-            imageOffset: new AMap.Pixel(0, 0)
-          });
-          //将icon传入marke位置处
-          // 将 icon 传入 marker
-          var currentIconMaker = new AMap.Marker({
-            position: new AMap.LngLat(latng.longitude,latng.latitude),
-            icon: currentIcon,
-            offset: new AMap.Pixel(-13, -30)
-          });
-          // 将 markers 添加到地图
-          map.add([currentIconMaker]);
+          //marker标记
+          that.setMarker(latng,1);
           //获取地址信息
           that.geocoder(latng.longitude+','+latng.latitude);
-
         }
       })
     },
@@ -161,11 +149,6 @@ export default{
         defaultSelect:obj.defaultSelect
       }
     },
-    //订单确认页面
-    goTOrderConfirm(){
-      const that = this;
-      that.$router.push({name:'OrderPay',query:{phone:that.phone}})
-    },
     //input 输入框获取焦点事件
     getFocus(){
       const that = this;
@@ -189,6 +172,146 @@ export default{
           });
         });
       })
+    },
+    //标注信息
+    setMarker(latng,type){
+      const that = this;
+      let amap = that.amap,
+          imgUrl = "",
+          markerInfo=that.markerInfo,
+          contents="<div class='marker-route marker-marker-bus-from'>",
+          addressInfo = that.addressInfo;
+      if(type==1){//初始化值显示
+        imgUrl = require("./../../../images/end_location.png");
+        contents+="在这里上车"+"</div>";
+        if(markerInfo.startMaker){
+          amap.remove(markerInfo.startMaker);
+          amap.remove(markerInfo.startTextMaker);
+        }
+      }else if(type==2){//开始值设置
+        imgUrl = require("./../../../images/start_location.png");
+        contents+=addressInfo.startAddress+"</div>";
+        if(markerInfo.startMaker){
+          amap.remove(markerInfo.startMaker);
+          amap.remove(markerInfo.startTextMaker);
+        }
+      }else if(type==3){//结束值设置
+        imgUrl = require("./../../../images/end_location.png");
+        contents+=addressInfo.endAddress+"</div>";
+        if(markerInfo.endMarker){
+          amap.remove(markerInfo.endMarker);
+          amap.remove(markerInfo.endTextMarker);
+        }
+      }
+      //创建标记icon
+      var currentImageIcon = new AMap.Icon({
+        // 图标尺寸
+        size: new AMap.Size(13, 21),
+        // 图标的取图地址
+        image: imgUrl,
+        // 图标所用图片大小
+        imageSize: new AMap.Size(13, 21),
+        // 图标取图偏移量
+        imageOffset: new AMap.Pixel(0, 0),
+        visible:true
+      });
+      // 将 icon 传入 marker
+      var currentIconMaker = new AMap.Marker({
+        position: new AMap.LngLat(latng.longitude,latng.latitude),
+        icon: currentImageIcon,
+        offset: new AMap.Pixel(-13, -30)
+      });
+      //设置文本标记
+      let textMarker = that.setTextMarker(latng,contents);
+      //将 markers 添加到地图
+      amap.add([currentIconMaker,textMarker]);
+      amap.setFitView();
+
+      //设置点标记的存储
+      if(type==1||type==2){
+        markerInfo.startMaker = currentIconMaker;
+        markerInfo.startTextMaker=textMarker;
+      }else if(type==3){
+        markerInfo.endMarker = currentIconMaker;
+        markerInfo.endTextMarker=textMarker;
+      }
+      //动态获取价格
+      that.getPrice();
+    },
+    //设置文本标记
+    setTextMarker(latng,contents){
+      const that = this;
+      let amap = that.amap;
+      let textMarker = new AMap.Text({
+        text:contents,
+        textAlign:'center',
+        verticalAlign:'middle',
+        position:[latng.longitude,latng.latitude],
+        offset: new AMap.Pixel(-13, -50),
+        style:{
+        "font-size":"0.24rem",
+          height:"0.66rem",
+          "line-height":"0.66rem",
+          padding:"0rem 0.6rem",
+          "text-align":"center",
+          "border-radius":"0.33rem"
+        }
+      })
+      return textMarker;
+    },
+    //获取价格
+    getPrice(){
+      const that = this;
+      let addressInfo=that.addressInfo;
+      if(!addressInfo.endAddress){
+        return
+      }else{
+        that.$http({
+          url:window.config.apisServer+'/getprice',
+          method:'POST',
+          data:{
+            start:addressInfo.startInfoObj.formattedAddress,
+            end:addressInfo.endInfoObj.formattedAddress
+          }
+        }).then(res=>{
+          that.price=res;
+        })
+      }
+    },
+    //确认发布信息
+    confirmPublish(){
+      const that = this;
+      that.$router.push({name:'OrderPay',query:{phone:that.phone}})
+      let addressInfo=that.addressInfo,showDateTimeInfo=that.showDateTimeInfo;
+      if(!addressInfo.endAddress){
+        that.errorInfoMsg.errorMsg='请输入目的地址';
+        return;
+      }
+      let params={
+        status:'0',
+        userPhonenum:that.phone,
+        userNum:that.userNum,
+        type:that.selectStatus,
+        price:that.price,
+        start:addressInfo.startInfoObj.formattedAddress,
+        destination:addressInfo.endInfoObj.formattedAddress,
+        startLocation:[addressInfo.startInfoObj.location.lng,addressInfo.startInfoObj.location.lat],
+        endLocation:[addressInfo.endInfoObj.location.lng,addressInfo.endInfoObj.location.lat],
+        payed:'yes'
+      };
+      //判断是否存在预约时间
+      if(showDateTimeInfo.time){
+        params.date=showDateTimeInfo.time;
+      }else{
+        params.date = new Date().getTime();
+      }
+      that.$http({
+        url:window.config.apisServer+'/ordering',
+        method:'POST',
+        data:params
+      }).then(res=>{
+        that.$router.push({name:'OrderPay',query:{phone:that.phone}})
+      })
     }
   },
   watch:{
@@ -200,8 +323,14 @@ export default{
           return;
         }
         that.getAddressToLngt(newValue).then(res=>{
+          let info= res.geocodes[0];
           that.errorInfoMsg.errorMsg=null;
-          that.addressInfo.startInfoObj = res.geocodes[0];//开始地址对象
+          that.addressInfo.startInfoObj = info;//开始地址对象
+          let latng={
+            longitude:info.location.lng,
+            latitude:info.location.lat
+          };
+          that.setMarker(latng,2);
         }).catch(error=>{
           that.errorInfoMsg.errorMsg='你输入的地址未能在地图上找到，请输入正确的地址'
         })
@@ -220,8 +349,14 @@ export default{
             if(cityCode!=window.config.cityCode){
               that.errorInfoMsg.errorMsg='目的地只能设置为巴中，其他地区暂未开放，敬请期待'
             }else{
-              that.addressInfo.endInfoObj=res.geocodes[0];//结束地址信息
+              let info = res.geocodes[0];
+              that.addressInfo.endInfoObj=info;//结束地址信息
               that.errorInfoMsg.errorMsg=null;
+              let latng={
+                longitude:info.location.lng,
+                latitude:info.location.lat
+              };
+              that.setMarker(latng,3);
             }
         }).catch(error=>{
            that.errorInfoMsg.errorMsg='你输入的地址未能在地图上找到，请输入正确的地址'
