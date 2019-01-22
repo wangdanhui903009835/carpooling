@@ -70,7 +70,6 @@ export default{
         url:window.config.apisServer+'/getorder',
         method:'POST',
         data:{
-          "status":0,
           userPhonenum:that.userPhonenum
         }
       }).then(res=>{

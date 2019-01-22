@@ -1,5 +1,7 @@
 import {getCurrentLocation} from './../../../common/common.js';
 import DateTimeComponent from './../DateTimeComponent.vue'
+let areaList =['成都市','巴中市','巴州区','恩阳区','平昌县','通江县','南江县'],
+    chCityCode='028',bzCityCode = '0827';
 export default{
   components:{DateTimeComponent},
   data(){
@@ -312,6 +314,48 @@ export default{
       }).then(res=>{
         that.$router.push({name:'OrderPay',query:{phone:that.phone}})
       })
+    },
+    getAreaLimit(info){
+      const that = this;
+      let level = info.level,addressComponent= info.addressComponent;
+      if(addressComponent.citycode==chCityCode){
+        //成都所有区县
+        return true
+      }else if(addressComponent.citycode==bzCityCode && level=='市'){
+        //巴中城区
+        return true
+      }else if(areaList.indexOf(addressComponent.district)>-1){
+        //巴中辖区里的部分区县可设置
+        return true;
+      }else{
+        //不在配送范围之内
+        return false;
+      }
+    },
+    //标记信息
+    watchSetterMarker(value,type){
+      const that = this;
+      that.getAddressToLngt(value).then(res=>{
+        console.log(res);
+        let info = res.geocodes[0];
+        if(that.getAreaLimit(info)){//输入的地址有效
+          that.errorInfoMsg.errorMsg=null;
+          if(type==2){
+            that.addressInfo.startInfoObj = info;//开始地址对象
+          }else if(type==3){
+            that.addressInfo.endInfoObj=info;//结束地址信息
+          }
+          let latng={
+            longitude:info.location.lng,
+            latitude:info.location.lat
+          };
+          that.setMarker(latng,type);
+       }else{
+          that.errorInfoMsg.errorMsg='起点和终点只能在成都市,巴中市,巴州区,恩阳区,平昌县,通江县,南江县这几个区域，其他区域暂未开放'
+        }
+      }).catch(error=>{
+        that.errorInfoMsg.errorMsg='起点和终点只能在成都市,巴中市,巴州区,恩阳区,平昌县,通江县,南江县这几个区域，其他区域暂未开放'
+      })
     }
   },
   watch:{
@@ -322,20 +366,10 @@ export default{
           that.errorInfoMsg.errorMsg=null;
           return;
         }
-        that.getAddressToLngt(newValue).then(res=>{
-          let info= res.geocodes[0];
-          that.errorInfoMsg.errorMsg=null;
-          that.addressInfo.startInfoObj = info;//开始地址对象
-          let latng={
-            longitude:info.location.lng,
-            latitude:info.location.lat
-          };
-          that.setMarker(latng,2);
-        }).catch(error=>{
-          that.errorInfoMsg.errorMsg='你输入的地址未能在地图上找到，请输入正确的地址'
-        })
+        that.watchSetterMarker(newValue,2);
       },
-      deep:true
+      deep:true,
+
     },
     "addressInfo.endAddress":{
       handler(newValue,oldValue){
@@ -344,23 +378,7 @@ export default{
           that.errorInfoMsg.errorMsg=null;
           return;
         }
-        that.getAddressToLngt(newValue).then(res=>{
-            let cityCode=res.geocodes[0].addressComponent.citycode;
-            if(cityCode!=window.config.cityCode){
-              that.errorInfoMsg.errorMsg='目的地只能设置为巴中，其他地区暂未开放，敬请期待'
-            }else{
-              let info = res.geocodes[0];
-              that.addressInfo.endInfoObj=info;//结束地址信息
-              that.errorInfoMsg.errorMsg=null;
-              let latng={
-                longitude:info.location.lng,
-                latitude:info.location.lat
-              };
-              that.setMarker(latng,3);
-            }
-        }).catch(error=>{
-           that.errorInfoMsg.errorMsg='你输入的地址未能在地图上找到，请输入正确的地址'
-        })
+        that.watchSetterMarker(newValue,3);
       },
       deep:true
     }

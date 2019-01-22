@@ -36,7 +36,7 @@
                         <div class="img">
                             <img src="./../images/end_address.png" class="iconImage">
                         </div>
-                        <input type="text" v-model="addressInfo.endAddress" placeholder="你要去哪儿" @focus="getFocus">
+                        <input type="text" v-model="addressInfo.endAddress" placeholder="你要去哪儿" @focus="getFocus" >
                     </div>
                     <!--错误提示信息-->
                     <div class="errorMsg" v-if="errorInfoMsg.errorMsg">提示:{{errorInfoMsg.errorMsg}}</div>
