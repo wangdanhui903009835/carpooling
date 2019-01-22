@@ -4,7 +4,7 @@
 <template>
     <div class="Index">
         <!--地图显示信息-->
-        <div class="container" id="container"></div>
+        <div class="container" :class="inputFoucs?'inputContainer':''" id="container"></div>
         <div class="headImage" @click="showUserInfo(1)"><img src="./../images/defaultHeadImage.png"></div>
         <!--拼车、包车、预约-->
         <div class="carpoorCharter" :class="inputFoucs?'inputCarpoorCharter':''" v-if="!showDateTimeInfo.showFlag">

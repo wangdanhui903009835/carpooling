@@ -14,6 +14,9 @@
 .Index .container {
   height: 100%;
 }
+.Index .inputContainer {
+  height: 8rem;
+}
 .Index .headImage {
   position: fixed;
   top: 0.18rem;
