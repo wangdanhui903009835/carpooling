@@ -59,7 +59,8 @@
                 <!--价格发布信息-->
                 <div class="boxItem">
                   <div class="publishButton">
-                      <div class="price">￥{{price}}</div>
+                      <div class="price" v-if="price>=0">￥{{price}}</div>
+                      <div class="price" v-else>抱歉，暂不支持该区域信息</div>
                       <div class="publish" @click="confirmPublish">确认发布</div>
                   </div>
                 </div>

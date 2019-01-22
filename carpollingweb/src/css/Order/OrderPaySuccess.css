@@ -1,0 +1,66 @@
+.displayFlex {
+  display: flex;
+  -webkit-display: flex;
+}
+.amap-logo,
+.amap-copyright,
+.amap-call {
+  display: none !important;
+}
+.orderPaySuccess {
+  width: 100%;
+  height: 100%;
+  background: #F5F5F5;
+  padding-top: 0.31rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.orderPaySuccess .contents {
+  width: 100%;
+  background: #ffffff;
+  height: 100%;
+  padding-top: 1.44rem;
+  box-sizing: border-box;
+}
+.orderPaySuccess .contents .payIcon {
+  text-align: center;
+}
+.orderPaySuccess .contents .payIcon img {
+  width: 2rem;
+  height: 2rem;
+}
+.orderPaySuccess .contents .info {
+  text-align: center;
+  padding-top: .47rem;
+  color: #131313;
+  font-size: 0.36rem;
+}
+.orderPaySuccess .contents .button {
+  padding-top: 1rem;
+}
+.orderPaySuccess .contents .button .buttonItem {
+  flex: 1;
+  padding-left: .4rem;
+}
+.orderPaySuccess .contents .button .buttonItem span {
+  font-size: 0.3rem;
+  display: inline-block;
+  text-align: center;
+  border-radius: .1rem;
+  width: 2.18rem;
+  height: .58rem;
+  line-height: .58rem;
+}
+.orderPaySuccess .contents .button .buttonItem:first-child {
+  text-align: right;
+  padding-right: .4rem;
+}
+.orderPaySuccess .contents .button .buttonItem:first-child span {
+  border: .03rem solid #ff5700;
+  color: #a8a8a8;
+}
+.orderPaySuccess .contents .button .buttonItem:last-child span {
+  background: #ff5700;
+  color: #ffffff;
+}

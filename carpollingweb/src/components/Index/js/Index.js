@@ -60,7 +60,8 @@ export default{
           var map = new AMap.Map('container',{
             resizeEnable:true,
             center:[latng.longitude,latng.latitude],
-            scrollWheel:true
+            scrollWheel:true,
+            zoom:13
           })
           that.amap = map;
           //marker标记
@@ -276,7 +277,7 @@ export default{
             end:addressInfo.endInfoObj.formattedAddress
           }
         }).then(res=>{
-          that.price=res;
+            that.price=res;
         })
       }
     },
@@ -336,7 +337,6 @@ export default{
     watchSetterMarker(value,type){
       const that = this;
       that.getAddressToLngt(value).then(res=>{
-        console.log(res);
         let info = res.geocodes[0];
         if(that.getAreaLimit(info)){//输入的地址有效
           that.errorInfoMsg.errorMsg=null;
@@ -356,17 +356,21 @@ export default{
       }).catch(error=>{
         that.errorInfoMsg.errorMsg='起点和终点只能在成都市,巴中市,巴州区,恩阳区,平昌县,通江县,南江县这几个区域，其他区域暂未开放'
       })
-    }
+    },
   },
   watch:{
     "addressInfo.startAddress":{
       handler(newValue,oldValue){
         const that = this;
-        if(!newValue){
-          that.errorInfoMsg.errorMsg=null;
-          return;
-        }
-        that.watchSetterMarker(newValue,2);
+        let timer = null;
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+          if(!newValue){
+            that.errorInfoMsg.errorMsg=null;
+            return;
+          }
+          that.watchSetterMarker(newValue,2);
+        },500);
       },
       deep:true,
 
@@ -374,11 +378,15 @@ export default{
     "addressInfo.endAddress":{
       handler(newValue,oldValue){
         const that = this;
-        if(!newValue){
-          that.errorInfoMsg.errorMsg=null;
-          return;
-        }
-        that.watchSetterMarker(newValue,3);
+        let timer = null;
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+          if(!newValue){
+            that.errorInfoMsg.errorMsg=null;
+            return;
+          }
+          that.watchSetterMarker(newValue,3);
+        },500);
       },
       deep:true
     }
