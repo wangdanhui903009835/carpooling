@@ -10,19 +10,18 @@ import 'mint-ui/lib/style.min.css'
 import qs from 'qs'
 Vue.use(Mint);
 Vue.config.productionTip = false
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.interceptors.request.use(config => {
-    //post 提交时，应该params改为data
-    if (config.method == "post") {
-      config.data = config.data ? config.data : qs.stringify(config.params)
-      config.params = null;
-      /*config.headers['Content-Type'] = 'application/x-www-form-urlencoded';*/
-    }
-    return config
-  },(error) => {
-    return Promise.reject(error);
-  }
-)
+axios.defaults.headers.post['Content-Type'] = 'text/plain';
+//axios.interceptors.request.use(config => {
+//    //post 提交时，应该params改为data
+//    if (config.method == "post") {
+//      config.data = config.data ? config.data : qs.stringify(config.params)
+//      config.params = null;
+//    }
+//    return config
+//  },(error) => {
+//    return Promise.reject(error);
+//  }
+//)
 /*设置标题*/
 router.beforeEach((to,from,next)=>{
   document.title=to.meta.title;

@@ -47,7 +47,6 @@ export default{
     const that = this;
     //初始化数据信息
     that.init();
-    //获取当前位置信息
   },
   methods:{
     //init数据信息
@@ -61,7 +60,6 @@ export default{
             resizeEnable:true,
             center:[latng.longitude,latng.latitude],
             scrollWheel:true,
-            zoom:13
           })
           that.amap = map;
           //marker标记
@@ -84,7 +82,7 @@ export default{
             let addressInfo = result.regeocode;
             that.addressInfo={
               infoObj:addressInfo,
-              startAddress:addressInfo.addressComponent.neighborhood,
+              startAddress:addressInfo.addressComponent.city,
               endAddress:''
             }
           }else{//获取地址失败
@@ -265,19 +263,19 @@ export default{
     //获取价格
     getPrice(){
       const that = this;
-      let addressInfo=that.addressInfo;
+      let addressInfo=that.addressInfo,
+          url = window.config.apisServer+'/getprice',
+          params = {
+            start:'成都',
+            end:'恩阳区'
+          };
       if(!addressInfo.endAddress){
         return
       }else{
-        that.$http({
-          url:window.config.apisServer+'/getprice',
-          method:'POST',
-          data:{
-            start:addressInfo.startInfoObj.formattedAddress,
-            end:addressInfo.endInfoObj.formattedAddress
-          }
-        }).then(res=>{
+        that.$http.post(window.config.apisServer+'/getprice',JSON.stringify(params)).then(res=>{
             that.price=res;
+        }).catch(error=>{
+           console.log(error);
         })
       }
     },

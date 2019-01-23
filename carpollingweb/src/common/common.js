@@ -2,7 +2,7 @@ import axios from 'axios';
 (function(){
   window.config={
     //拼车接口
-    apisServer: 'http://47.106.117.215:8888',
+    apisServer: 'https://47.106.117.215:8888',
     //高德key值
     AMapKey: '4afba4f0fbf8de22a8934e4d00c8e5ad',
     //巴中城市区域citycode的值
@@ -42,8 +42,8 @@ import axios from 'axios';
 })();
 export  function getCurrentLocation(){
   let defaultCurrentLocation = {
-    latitude:30.64242,
-    longitude:104.04311
+    latitude:30.572269,
+    longitude:104.066541
   };
   return new Promise(function(resolve,reject){
     if(isWeiXin()){//判断是微信浏览器
@@ -53,8 +53,8 @@ export  function getCurrentLocation(){
             type:'wgs84',
             success: result => {
               let currentLocation={
-                latitude:result.latitude?result.latitude:30.64059,
-                longitude:result.longitude?result.longitude:104.042159
+                latitude:result.latitude?result.latitude:defaultCurrentLocation.latitude,
+                longitude:result.longitude?result.longitude:defaultCurrentLocation.longitude
               };
               resolve({code:200,data:currentLocation});
             },
