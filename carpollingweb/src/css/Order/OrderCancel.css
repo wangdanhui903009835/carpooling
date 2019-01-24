@@ -7,6 +7,9 @@
 .amap-call {
   display: none !important;
 }
+.mint-toast-text {
+  font-size: 0.24rem;
+}
 .orderCancel {
   position: fixed;
   width: 100%;

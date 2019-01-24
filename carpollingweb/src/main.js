@@ -11,17 +11,17 @@ import qs from 'qs'
 Vue.use(Mint);
 Vue.config.productionTip = false
 axios.defaults.headers.post['Content-Type'] = 'text/plain';
-//axios.interceptors.request.use(config => {
-//    //post 提交时，应该params改为data
-//    if (config.method == "post") {
-//      config.data = config.data ? config.data : qs.stringify(config.params)
-//      config.params = null;
-//    }
-//    return config
-//  },(error) => {
-//    return Promise.reject(error);
-//  }
-//)
+axios.interceptors.request.use(config => {
+    //post 提交时，应该params改为data
+    if (config.method == "post") {
+      config.data = config.data ? config.data : qs.stringify(config.params)
+      config.params = null;
+    }
+    return config
+  },(error) => {
+    return Promise.reject(error);
+  }
+)
 /*设置标题*/
 router.beforeEach((to,from,next)=>{
   document.title=to.meta.title;
@@ -56,16 +56,30 @@ Vue.prototype.$formateTimeToDate=function(val){
     //分钟
       minutes = orderDate.getMinutes();
     if(currentYYYYMMDD==orderYYYYMMDD){//今天日期
-      msg='今天 '+hours+':'+minutes;
+      msg='今天 '+hours+':'+this.$formatDateLength(minutes);
     }else if(tomorrowYYYYMMDD==orderYYYYMMDD){//明天日期
-      msg='明天 '+hours+':'+minutes;
+      msg='明天 '+hours+':'+this.$formatDateLength(minutes);
     }else{
-      msg=orderYYYYMMDD+' '+hours+':'+minutes;
+      msg=orderYYYYMMDD+' '+hours+':'+this.$formatDateLength(minutes);
     }
     return msg;
   }
 }
 Vue.prototype.$http=axios;
+Vue.prototype.$message={
+  successMessage:function(contents){
+    Mint.Toast({
+      message:contents,
+      position:'top'
+    })
+  },
+  errorMessage:function(contents){
+    Mint.Toast({
+      message:contents,
+      position:'top'
+    })
+  }
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

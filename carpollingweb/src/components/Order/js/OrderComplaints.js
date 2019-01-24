@@ -31,14 +31,16 @@ export default{
             complaint:that.complaintsReason
           }
         }).then(res=>{
-          if(res=='success'){
+          if(res.status==200 && res.data=='success'){
             //投诉成功
             that.complaintsReason='';
             that.$emit('confirmComplaints');
           }else{
             //投诉失败
-            that.errorMsg='对不起，投诉失败'
+            that.$message.errorMessage('订单投诉失败');
           }
+        }).catch(error=>{
+          that.$message.errorMessage('订单投诉失败');
         })
       }
     }

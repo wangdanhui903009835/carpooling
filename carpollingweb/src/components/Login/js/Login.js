@@ -11,8 +11,8 @@ export default{
   },
   mounted(){
     const that = this;
-    let openId = window.utils.storage.getter('openId',1)||'54786104';
-    that.isLogin(openId);
+    //let openId = window.utils.storage.getter('openId',1)||'54786104';
+    //that.isLogin(openId);
   },
   methods:{
     //判断用户是否有登录信息
@@ -39,7 +39,6 @@ export default{
     //登录按钮
     login(){
       const that = this;
-      that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
       if(that.checkForm()){
         that.$http({
           url:window.config.apisServer+'/genCode',
@@ -49,7 +48,14 @@ export default{
             phoneNum:that.phone //电话号码
           }
         }).then(res=>{
-          that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
+          if(res.status==200 && res.data=='true'){//验证码发送成功
+            that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
+          }else{//验证码发送失败
+            that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
+            that.$message.errorMessage('验证码发送失败，请稍后重试');
+          }
+        }).catch(error=>{
+
         })
       }
     },

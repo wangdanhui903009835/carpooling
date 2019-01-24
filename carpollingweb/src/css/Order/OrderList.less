@@ -52,6 +52,9 @@
             padding-left:.1rem;
           }
         }
+        .number{
+          padding-bottom:.17rem;
+        }
       }
       .orderCancel{
         padding-top:.34rem;
@@ -106,5 +109,21 @@
   }
   .orderItem:first-child{
     margin-top:0rem;
+  }
+  .noData{
+    width:100%;
+    height:100%;
+    .noDataContents{
+      text-align: center;
+      position: fixed;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+      img{
+        width:1rem;
+        height:1rem;
+        padding-bottom:.2rem;
+      }
+    }
   }
 }

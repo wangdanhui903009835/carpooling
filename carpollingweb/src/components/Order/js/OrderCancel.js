@@ -51,11 +51,13 @@ export default{
             cancelReason:cancelReason
           }
         }).then(res=>{
-          if(res=='success'){
+          if(res.status==200 && res.data=='success'){
             that.$emit('confirmCancel')
           }else{
-            that.errorMsg='取消订单失败';
+            that.$message.errorMessage('订单取消失败');
           }
+        }).catch(error=>{
+            that.$message.errorMessage('订单取消失败');
         })
       }
     }

@@ -11,22 +11,7 @@ export default{
       orderComplaintsInfo:{
         showFlag:0,//0-隐藏，1-显示
       },//订单投诉信息
-      orderInfo:{
-        orderId: "1547559550695_1552847474",
-        status: 2,
-        userPhonenum: "1552847474",
-        userNum: 3,
-        date: "1547559550695",
-        type: 0,
-        price: 140.5,
-        start: "巴中",
-        destination: "成都",
-        describe: "携带狗狗",
-        startLocation:[104.04311,30.64242],
-        endLocation:[105.04311,30.64242],
-        location: [42.045, 75.654],
-        payed: "no"
-      },
+      orderInfo:{},
       amap:{},
     }
   },
@@ -48,7 +33,6 @@ export default{
     });
   },
   methods:{
-
     //获取订单行程信息
     getOrderInfo(){
       const that = this;
@@ -61,8 +45,14 @@ export default{
             status:0
           }
         }).then(res=>{
-          that.orderInfo = res;
-          resolve(res)
+          if(res.status==200){//订单数据获取成功
+            let orderInfo = res.data[0];
+            that.orderInfo = orderInfo;
+            resolve(res)
+          }else{
+            reject(null)
+          }
+
         }).catch(error=>{
           reject(error)
         })
@@ -77,7 +67,7 @@ export default{
         var driving = new AMap.Driving({
           policy: AMap.DrivingPolicy.LEAST_TIME,
           map: amap,
-          panel: 'mapContainer'
+          panel: 'mapContainer',
         });
         let startLocation =that.orderInfo.startLocation,
             endLocation = that.orderInfo.endLocation;
@@ -131,7 +121,6 @@ export default{
     //立即支付
     goPay(){
       const that = this;
-      that.$router.push({name:'OrderPaySuccess'});
       that.$http({
         url:window.config.apisServer+'/payrecord',
         method:'POST',
@@ -140,10 +129,17 @@ export default{
           payed:'yes'
         }
       }).then(res=>{
-        if(res=='success'){
-          that.$router.push({name:'OrderPaySuccess'})
+        if(res.status==200 && res.data=='success'){
+          that.$message.successMessage('支付成功');
+          setTimeout(function(){
+            that.$router.push({name:'OrderPaySuccess'})
+          },3000)
+        }else{
+          that.$message.errorMessage('支付失败');
         }
-      }).catch(error=>{})
+      }).catch(error=>{
+          that.$message.errorMessage('支付失败');
+      })
     }
   }
 }

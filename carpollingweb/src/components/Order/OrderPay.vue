@@ -18,7 +18,7 @@
                         </div>
                         <div class="price">
                             <div class="priceTile">费用合计</div>
-                            <div class="priceNumber">￥{{orderInfo.price}}</div>
+                            <div class="priceNumber">￥{{orderInfo.price}}元</div>
                             <div class="payStatus">等待支付</div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ export default{
   components:{DateTimeComponent},
   data(){
     return{
-      phone:'15528478472',//电话号码
+      phone:'',//电话号码
       userInfo:{
         showFlag:0,
         phone:'188****7869'
@@ -45,6 +45,8 @@ export default{
   },
   mounted(){
     const that = this;
+    //获取电话号码
+    that.phone = window.utils.storage.getter('userPhone',1);
     //初始化数据信息
     that.init();
   },
@@ -266,23 +268,28 @@ export default{
       let addressInfo=that.addressInfo,
           url = window.config.apisServer+'/getprice',
           params = {
-            start:'成都',
-            end:'恩阳区'
+            start:addressInfo.startAddress,
+            end:addressInfo.endAddress
           };
       if(!addressInfo.endAddress){
         return
       }else{
-        that.$http.post(window.config.apisServer+'/getprice',JSON.stringify(params)).then(res=>{
-            that.price=res;
+        that.$http({
+          url:url,
+          method:'POST',
+          data:params
+        }).then(res=>{
+          if(res.status==200){//请求成功
+            that.price = res.data;
+          }
         }).catch(error=>{
-           console.log(error);
+
         })
       }
     },
     //确认发布信息
     confirmPublish(){
       const that = this;
-      that.$router.push({name:'OrderPay',query:{phone:that.phone}})
       let addressInfo=that.addressInfo,showDateTimeInfo=that.showDateTimeInfo;
       if(!addressInfo.endAddress){
         that.errorInfoMsg.errorMsg='请输入目的地址';
@@ -294,24 +301,35 @@ export default{
         userNum:that.userNum,
         type:that.selectStatus,
         price:that.price,
-        start:addressInfo.startInfoObj.formattedAddress,
-        destination:addressInfo.endInfoObj.formattedAddress,
+        start:addressInfo.startAddress,
+        destination:addressInfo.endAddress,
+        describe:that.remarks,
         startLocation:[addressInfo.startInfoObj.location.lng,addressInfo.startInfoObj.location.lat],
         endLocation:[addressInfo.endInfoObj.location.lng,addressInfo.endInfoObj.location.lat],
-        payed:'yes'
+        payed:'no',
+        payType:0,//0-线下支付，1-微信支付,默认设置线下支付，线上支付还未开通
+        date:new Date().getTime()
       };
-      //判断是否存在预约时间
+      //判断是否存在预约时间,预约上线
       if(showDateTimeInfo.time){
-        params.date=showDateTimeInfo.time;
+        params.seatTime=showDateTimeInfo.time;
+        params.seatTye=1;//0-实时，1-预约
       }else{
-        params.date = new Date().getTime();
+        params.seatTime=null;
+        params.seatTye = 0;//0-实时，1-预约
       }
       that.$http({
         url:window.config.apisServer+'/ordering',
         method:'POST',
         data:params
       }).then(res=>{
-        that.$router.push({name:'OrderPay',query:{phone:that.phone}})
+        if(res.status==200 && res.data=='success'){//订单发布成功
+          that.$router.push({name:'OrderPay',query:{phone:that.phone}})
+        }else{
+          that.$message.errorMessage('订单发布失败');
+        }
+      }).catch(error=>{
+
       })
     },
     getAreaLimit(info){

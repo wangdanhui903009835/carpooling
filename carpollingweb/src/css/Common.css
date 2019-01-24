@@ -7,3 +7,6 @@
 .amap-call {
   display: none !important;
 }
+.mint-toast-text {
+  font-size: 0.24rem;
+}
