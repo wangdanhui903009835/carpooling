@@ -76,6 +76,7 @@ export  default{
           errorMsg:''
         }
         clearInterval(timeInter);
+        window.utils.storage.setter('userPhone',phone,1);
         that.$http({
           url:window.config.apisServer+'/verify',
           method:'POST',
@@ -84,7 +85,7 @@ export  default{
             verifyCode:that.phoneCode.join('')
           }
         }).then(res=>{
-          if(res.status==200 && res.data=='true'){//验证成功
+          if(res.status==200 && res.data){//验证成功
             window.utils.storage.setter('userPhone',phone,1);
             //进入首页信息
             that.$router.push({name:'Index'})

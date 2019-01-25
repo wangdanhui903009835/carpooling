@@ -27,7 +27,7 @@ export default{
           url:window.config.apisServer+'/complaint',
           method:'POST',
           data:{
-            orderId:that.orderInfo.orderId,
+            orderCode:that.orderInfo.orderCode,
             complaint:that.complaintsReason
           }
         }).then(res=>{

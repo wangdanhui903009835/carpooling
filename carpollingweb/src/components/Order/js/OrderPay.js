@@ -11,25 +11,28 @@ export default{
       orderComplaintsInfo:{
         showFlag:0,//0-隐藏，1-显示
       },//订单投诉信息
-      orderInfo:{},
+      orderInfo:{
+        isExist:false,//不存在订单信息
+      },
       amap:{},
     }
   },
   mounted(){
     const that = this;
-    that.phone = that.$route.query.phone;
-    that.amap = new AMap.Map('mapContainer',{
-      resizeEnable:true,
-      scrollWheel:true,
-      zoom:13
-    });
-    //测试信息
-    that.getInitAmap();
+    that.phone = window.utils.storage.getter('userPhone','1');
     //获取订单信息
     that.getOrderInfo().then(res=>{
-      //初始化地图信息
-      that.getInitAmap();
+      if(res.isExist){//存在订单信息
+        that.amap = new AMap.Map('mapContainer',{
+          resizeEnable:true,
+          scrollWheel:true,
+          zoom:13
+        });
+         //初始化地图信息
+        that.getInitAmap();
+      }
     }).catch(error=>{
+      console.log(error);
     });
   },
   methods:{
@@ -45,14 +48,14 @@ export default{
             status:0
           }
         }).then(res=>{
-          if(res.status==200){//订单数据获取成功
+          if(res.status==200 && res.data.length>0){//订单数据获取成功
             let orderInfo = res.data[0];
+            orderInfo.isExist=true
             that.orderInfo = orderInfo;
-            resolve(res)
+            resolve(orderInfo)
           }else{
             reject(null)
           }
-
         }).catch(error=>{
           reject(error)
         })
@@ -103,8 +106,8 @@ export default{
     confirmCancel(){
       const that = this;
       that.orderCancelInfo.showFlag=0;
-      //刷新订单状态
-      that.getOrderInfo();
+      //页面跳转到订单列表页面
+      that.$router.push({name:'OrderList'});
     },
     //关闭投诉信息
     cancelComplaint(){
@@ -125,7 +128,7 @@ export default{
         url:window.config.apisServer+'/payrecord',
         method:'POST',
         data:{
-          orderId:that.orderInfo.orderId,
+          orderCode:that.orderInfo.orderCode,
           payed:'yes'
         }
       }).then(res=>{

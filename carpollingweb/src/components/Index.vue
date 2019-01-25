@@ -5,7 +5,8 @@
     <div class="Index">
         <!--地图显示信息-->
         <div class="container" :class="inputFoucs?'inputContainer':''" id="container"></div>
-        <div class="headImage" @click="showUserInfo(1)"><img src="./../images/defaultHeadImage.png"></div>
+        <div class="headImage" @click="showUserInfo(1)"><img src="./../images/defaultHeadImage.png">
+        </div>
         <!--拼车、包车、预约-->
         <div class="carpoorCharter" :class="inputFoucs?'inputCarpoorCharter':''" v-if="!showDateTimeInfo.showFlag">
             <div class="position"><img src="./../images/position.png" @click="getReposition"></div>
@@ -39,7 +40,7 @@
                         <input type="text" v-model="addressInfo.endAddress" placeholder="你要去哪儿" @focus="getFocus" >
                     </div>
                     <!--错误提示信息-->
-                    <div class="errorMsg" v-if="errorInfoMsg.errorMsg">提示:{{errorInfoMsg.errorMsg}}</div>
+                    <div class="errorMsg" v-if="inputFoucs">提示:{{errorInfoMsg.errorMsg}}</div>
                 </div>
             </div>
             </div>
@@ -66,9 +67,10 @@
                 </div>
             </div>
             </div>
+
       </div>
         <!--个人中心-->
-        <div class="userInfo" :class="userInfo.showFlag==1?'showUserInfo':(userInfo.showFlag==2?'hideUserInfo':'')">
+        <div class="userInfo" :class="userInfo.showFlag==1?'showUserInfo':''">
             <div class="contents displayFlex">
                 <div class="menu">
                     <div class="img"><img src="./../images/defaultHeadImage.png"></div>

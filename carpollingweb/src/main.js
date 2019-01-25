@@ -66,6 +66,7 @@ Vue.prototype.$formateTimeToDate=function(val){
   }
 }
 Vue.prototype.$http=axios;
+//消息提示框
 Vue.prototype.$message={
   successMessage:function(contents){
     Mint.Toast({
@@ -78,6 +79,15 @@ Vue.prototype.$message={
       message:contents,
       position:'top'
     })
+  }
+}
+//消息弹出框
+Vue.prototype.$initLoading={
+  open:function(){
+    Mint.Indicator.open();
+  },
+  close:function(){
+    Mint.Indicator.close();
   }
 }
 /* eslint-disable no-new */

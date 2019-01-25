@@ -1,6 +1,6 @@
 import {getCurrentLocation} from './../../../common/common.js';
 import DateTimeComponent from './../DateTimeComponent.vue'
-let areaList =['成都市','巴中市','巴州区','恩阳区','平昌县','通江县','南江县'],
+let areaList =['成都','巴中','巴州区','恩阳区','平昌县','通江县','南江县'],
     chCityCode='028',bzCityCode = '0827';
 export default{
   components:{DateTimeComponent},
@@ -9,9 +9,9 @@ export default{
       phone:'',//电话号码
       userInfo:{
         showFlag:0,
-        phone:'188****7869'
+        phone:'',
       },
-      selectStatus:'0',//选中状态：0-拼车；1-包车；3-预约
+      selectStatus:'0',//选中状态：0-拼车；1-包车；
       amap:{},//高德地图信息
       addressInfo:{
         infoObj:'',
@@ -30,7 +30,7 @@ export default{
       remarks:'',//备注
       inputFoucs:false,
       errorInfoMsg:{
-        errorMsg:null
+        errorMsg:'起点和终点只能在成都,巴州区,恩阳区,平昌县,通江县,南江县这几个区域，其他区域暂未开放'
       },
       //点标注信息
       markerInfo:{
@@ -45,8 +45,11 @@ export default{
   },
   mounted(){
     const that = this;
+    let phone = window.utils.storage.getter('userPhone',1);
     //获取电话号码
-    that.phone = window.utils.storage.getter('userPhone',1);
+    that.phone = phone;
+    //设置电话号码隐藏
+    that.userInfo.phone = phone.substr(0,3)+'****'+phone.substr(7,4);
     //初始化数据信息
     that.init();
   },
@@ -69,7 +72,8 @@ export default{
           //获取地址信息
           that.geocoder(latng.longitude+','+latng.latitude);
         }
-      })
+      }).catch(error=>{
+      });
     },
     //获取地理位置信息
     geocoder(location){
@@ -84,7 +88,7 @@ export default{
             let addressInfo = result.regeocode;
             that.addressInfo={
               infoObj:addressInfo,
-              startAddress:addressInfo.addressComponent.city,
+              startAddress:addressInfo.addressComponent.city.replace('市',''),
               endAddress:''
             }
           }else{//获取地址失败
@@ -283,7 +287,6 @@ export default{
             that.price = res.data;
           }
         }).catch(error=>{
-
         })
       }
     },
@@ -291,15 +294,23 @@ export default{
     confirmPublish(){
       const that = this;
       let addressInfo=that.addressInfo,showDateTimeInfo=that.showDateTimeInfo;
+      if(!addressInfo.startAddress){
+        that.$message.errorMessage('请输入开始地址');
+      }
       if(!addressInfo.endAddress){
-        that.errorInfoMsg.errorMsg='请输入目的地址';
+        that.$message.errorMessage('请输入目的地址');
+        return;
+      }
+      //预约信息
+      if(showDateTimeInfo.appointFlag==1 && !showDateTimeInfo.time){
+        that.$message.errorMessage('请选择预约时间');
         return;
       }
       let params={
         status:'0',
         userPhonenum:that.phone,
         userNum:that.userNum,
-        type:that.selectStatus,
+        orderType:that.selectStatus,
         price:that.price,
         start:addressInfo.startAddress,
         destination:addressInfo.endAddress,
@@ -318,6 +329,9 @@ export default{
         params.seatTime=null;
         params.seatTye = 0;//0-实时，1-预约
       }
+      if(Number.isNaN(parseFloat(params.price))){
+        return;
+      }
       that.$http({
         url:window.config.apisServer+'/ordering',
         method:'POST',
@@ -335,27 +349,31 @@ export default{
     getAreaLimit(info){
       const that = this;
       let level = info.level,addressComponent= info.addressComponent;
+      let contents={
+        addressName:'',
+        flag:false
+      };
       if(addressComponent.citycode==chCityCode){
         //成都所有区县
-        return true
+        contents.flag=true;
+        return contents
       }else if(addressComponent.citycode==bzCityCode && level=='市'){
-        //巴中城区
-        return true
+        contents.flag=true;
+        return contents
       }else if(areaList.indexOf(addressComponent.district)>-1){
-        //巴中辖区里的部分区县可设置
-        return true;
+        contents.flag=true;
+        return contents;
       }else{
         //不在配送范围之内
-        return false;
+        return contents;
       }
     },
     //标记信息
     watchSetterMarker(value,type){
       const that = this;
       that.getAddressToLngt(value).then(res=>{
-        let info = res.geocodes[0];
-        if(that.getAreaLimit(info)){//输入的地址有效
-          that.errorInfoMsg.errorMsg=null;
+        let info = res.geocodes[0],areaLimitContents = that.getAreaLimit(info);
+        if(areaLimitContents.flag){//输入的地址有效
           if(type==2){
             that.addressInfo.startInfoObj = info;//开始地址对象
           }else if(type==3){
@@ -367,10 +385,11 @@ export default{
           };
           that.setMarker(latng,type);
        }else{
-          that.errorInfoMsg.errorMsg='起点和终点只能在成都市,巴中市,巴州区,恩阳区,平昌县,通江县,南江县这几个区域，其他区域暂未开放'
+          that.price='--';
         }
       }).catch(error=>{
-        that.errorInfoMsg.errorMsg='起点和终点只能在成都市,巴中市,巴州区,恩阳区,平昌县,通江县,南江县这几个区域，其他区域暂未开放'
+        that.price='--';
+
       })
     },
   },
@@ -382,7 +401,7 @@ export default{
         clearTimeout(timer);
         timer = setTimeout(function(){
           if(!newValue){
-            that.errorInfoMsg.errorMsg=null;
+            that.price=0;
             return;
           }
           that.watchSetterMarker(newValue,2);
@@ -398,7 +417,7 @@ export default{
         clearTimeout(timer);
         timer = setTimeout(function(){
           if(!newValue){
-            that.errorInfoMsg.errorMsg=null;
+            that.price=0;
             return;
           }
           that.watchSetterMarker(newValue,3);

@@ -96,6 +96,7 @@
 }
 .OrderList .orderItem .contents .orderGoing {
   padding-top: .18rem;
+  padding-bottom: .18rem;
 }
 .OrderList .orderItem .contents .orderGoing .start {
   padding-bottom: .05rem;

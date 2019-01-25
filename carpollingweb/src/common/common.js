@@ -2,7 +2,8 @@ import axios from 'axios';
 (function(){
   window.config={
     //拼车接口
-    apisServer: 'https://47.106.117.215:8888',
+    //apisServer: 'https://47.106.117.215:8888',
+    apisServer:'https://www.bashuxing.cn:8888',
     //高德key值
     AMapKey: '4afba4f0fbf8de22a8934e4d00c8e5ad',
     //巴中城市区域citycode的值
@@ -47,25 +48,26 @@ export  function getCurrentLocation(){
   };
   return new Promise(function(resolve,reject){
     if(isWeiXin()){//判断是微信浏览器
-      WxSign().then(res=>{
-        wx.ready(function(){
-          wx.getLocation({
-            type:'wgs84',
-            success: result => {
-              let currentLocation={
-                latitude:result.latitude?result.latitude:defaultCurrentLocation.latitude,
-                longitude:result.longitude?result.longitude:defaultCurrentLocation.longitude
-              };
-              resolve({code:200,data:currentLocation});
-            },
-            fail:error=>{
-              resolve({code:200,data:defaultCurrentLocation});
-            }
-          })
-        })
-      }).catch(err=>{
-        resolve({code:200,data:defaultCurrentLocation})
-      })
+      resolve({code:200,data:defaultCurrentLocation});
+      //WxSign().then(res=>{
+      //  wx.ready(function(){
+      //    wx.getLocation({
+      //      type:'wgs84',
+      //      success: result => {
+      //        let currentLocation={
+      //          latitude:result.latitude?result.latitude:defaultCurrentLocation.latitude,
+      //          longitude:result.longitude?result.longitude:defaultCurrentLocation.longitude
+      //        };
+      //        resolve({code:200,data:currentLocation});
+      //      },
+      //      fail:error=>{
+      //        resolve({code:200,data:defaultCurrentLocation});
+      //      }
+      //    })
+      //  })
+      //}).catch(err=>{
+      //  resolve({code:200,data:defaultCurrentLocation})
+      //})
     }else{//不是微信浏览器
       resolve({code:200,data:defaultCurrentLocation});
     }

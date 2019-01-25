@@ -3,13 +3,11 @@
 </style>
 <template>
     <div class="OrderList">
-        <div class="orderItem" v-for="(item,index) in orderList" v-if="orderList.length>0">
+        <div class="orderItem" v-for="(item,index) in orderList" v-if="orderList.length>0" @click="goToDetail">
             <div class="contents">
                 <div class="title displayFlex">
                     <div class="status">
-                       <span v-if="item.status==0">未取消</span>
-                       <span v-if="item.status==1">已取消</span>
-                       <span v-if="item.status==2">已完成</span>
+                       <span>{{getStatus(item.status)}}</span>
                     </div>
                     <div class="time">{{formateDate(item.date)}}</div>
                 </div>
@@ -26,12 +24,6 @@
                         <div class="priceNumber">￥{{item.price}}</div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="noData" v-if="orderList.length==0">
-            <div class="noDataContents">
-                <img src="./../../images/no_data.png">
-                <div class="title">抱歉，暂无订单数据</div>
             </div>
         </div>
     </div>

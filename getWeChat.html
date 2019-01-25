@@ -8,10 +8,17 @@
 </head>
 <body>
 <script>
+    let appid = 'wxf568d5ec00953f5a',//appid
+            httpUrl='https://www.bashuxing.cn/getWeChat.html',
+            httpIndex="https://www.bashuxing.cn";
     let utils = {
-        apisServer: 'https://api.fjjh.shop/fjjh',
+        apisServer: 'https://www.bashuxing.cn:8888',
         /*获取url的值*/
         getUrlName: function (name) {
+            //当前地址信息
+            console.log('location地址信息');
+            console.log(location.href);
+            console.log(JSON.stringify(location));
             return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [, ""])[1].replace(/\+/g, '%20')) || null;
         },
         /*获取storage*/
@@ -45,10 +52,14 @@
         },
         int: function (code) {
             const that=this
+            //打印json数据信息
+            console.log('微信code信息');
+            console.log(JSON.stringify(code));
+            //ajax 获取用户openid信息
             let ajax = new XMLHttpRequest();
             //步骤二:设置请求的url参数,参数一是请求的类型,参数二是请求的url,可以带参数,动态的传递参数starName到服务端
             ajax.open('get', that.apisServer+'/user/getWXUserInfo?code=' + code);
-             //步骤三:发送请求
+            //步骤三:发送请求
             ajax.send();
              //步骤四:注册事件 onreadystatechange 状态改变就会调用
             ajax.onreadystatechange = function () {
@@ -57,33 +68,20 @@
                     let res =JSON.parse(ajax.responseText)
                     if(res.success){
                         that.storage.setter('WeChatInfo',res.data,1);
-                        window.location.href=that.storage.getter('formUrl',1)
+                       // window.location.href=that.storage.getter('formUrl',1)
+                        window.location.href=httpIndex;
                     }
                 }
             }
         }
     }
-    let isPageHide = false;
-    window.addEventListener('pageshow', function () {
-        if (isPageHide) {
-            window.location.reload();
-        }
-    });
-    window.addEventListener('pagehide', function () {
-        isPageHide = true;
-    });
-    let appid = 'wxf568d5ec00953f5a',//appid
-      httpUrl='https://wap.fjjh.shop/getWeChat.html',
-      httpIndex="https://wap.fjjh.shop";
-
     let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+appid+'&redirect_uri='+httpUrl+'&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'
-    let code = utils.getUrlName('code')
+    let code = utils.getUrlName('code');
+    console.log('code数据'+'-----------'+code);
     if (code) {
         if(utils.storage.getter('WeChatInfo',1)){
             if(history.length<1){
                 window.location.href=httpIndex;
-            }else{
-                history.go(-3)
             }
         }else {
             utils.int(code)
