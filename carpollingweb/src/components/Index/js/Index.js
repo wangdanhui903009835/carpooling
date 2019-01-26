@@ -1,7 +1,7 @@
-import {getCurrentLocation} from './../../../common/common.js';
 import DateTimeComponent from './../DateTimeComponent.vue'
 let areaList =['成都','巴中','巴州区','恩阳区','平昌县','通江县','南江县'],
     chCityCode='028',bzCityCode = '0827';
+let count = 0;
 export default{
   components:{DateTimeComponent},
   data(){
@@ -45,7 +45,7 @@ export default{
   },
   mounted(){
     const that = this;
-    let phone = window.utils.storage.getter('userPhone',1);
+    let phone = window.utils.storage.getter('userPhone',1)||'18208193702';
     //获取电话号码
     that.phone = phone;
     //设置电话号码隐藏
@@ -54,13 +54,27 @@ export default{
     that.init();
   },
   methods:{
-    //init数据信息
     init(){
       const that = this;
-      //获取当前经纬度信息
-      getCurrentLocation().then(res=>{
-        if(res.code==200){//获取经纬度成功
-          let latng = res.data;
+      let latng = {
+        latitude:30.572269,
+        longitude:104.066541
+      };
+      AMap.plugin('AMap.Geolocation', function() {
+        var geolocation = new AMap.Geolocation({
+          enableHighAccuracy: true,//是否使用高精度定位，默认:true
+          timeout: 10000,          //超过10秒后停止定位，默认：5s
+          buttonPosition:'RB',    //定位按钮的停靠位置
+          buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+          zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+        });
+        geolocation.getCurrentPosition(function(status,result){
+          console.log(result);
+          if(status=='complete'){
+            latng.latitude = result.position.lat;
+            latng.longitude = result.position.lng;
+          }
+          //设置地图显示信息
           var map = new AMap.Map('container',{
             resizeEnable:true,
             center:[latng.longitude,latng.latitude],
@@ -71,8 +85,7 @@ export default{
           that.setMarker(latng,1);
           //获取地址信息
           that.geocoder(latng.longitude+','+latng.latitude);
-        }
-      }).catch(error=>{
+        });
       });
     },
     //获取地理位置信息
@@ -157,9 +170,11 @@ export default{
       }
     },
     //input 输入框获取焦点事件
-    getFocus(){
+    getFocus(index){
       const that = this;
       that.inputFoucs=true;
+      that.watchSetterMarker(that.addressInfo.startAddress,2);
+      count++;
     },
     //通过地址获取经纬度信息
     getAddressToLngt(address){
@@ -337,8 +352,8 @@ export default{
         method:'POST',
         data:params
       }).then(res=>{
-        if(res.status==200 && res.data=='success'){//订单发布成功
-          that.$router.push({name:'OrderPay',query:{phone:that.phone,fromPage:'order'}})
+        if(res.status==200 && res.data!='failed'){
+          that.$router.push({name:'OrderPay',query:{orderCode:res.data}});
         }else{
           that.$message.errorMessage('订单发布失败');
         }
@@ -397,6 +412,9 @@ export default{
     "addressInfo.startAddress":{
       handler(newValue,oldValue){
         const that = this;
+        if(count==0){
+          return;
+        }
         let timer = null;
         clearTimeout(timer);
         timer = setTimeout(function(){

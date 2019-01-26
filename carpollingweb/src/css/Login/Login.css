@@ -80,11 +80,11 @@
   position: relative;
 }
 .login .container .detail .agree .agreeItem .icon {
-  width: .24rem;
-  height: .24rem;
+  width: 12px;
+  height: 12px;
   position: absolute;
   top: 50%;
-  margin-top: -0.12rem;
+  margin-top: -6px;
 }
 .login .container .detail .agree .imageIcon {
   min-width: .24rem;

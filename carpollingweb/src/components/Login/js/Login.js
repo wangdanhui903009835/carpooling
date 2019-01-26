@@ -12,22 +12,15 @@ export default{
   mounted(){
     const that = this;
     //let openId = window.utils.storage.getter('openId',1)||'54786104';
-    that.isLogin();
+
   },
   methods:{
     //判断用户是否有登录信息
     isLogin(){
       const that = this;
-      let WeChatInfo = window.utils.storage.getter('WeChatInfo',1),
-          openid = '';
-      if(WeChatInfo){
-        openid = WeChatInfo.openid;
-      }
-      if(!openid){
-        return;
-      }
+      window.utils.storage.setter('userPhone',that.phone,1);
       that.$http({
-        url:window.config.apisServer+'/phoneNum/'+openid,
+        url:window.config.apisServer+'/phoneNum/'+that.phone,
         method:'Get',
         params:{}
       }).then(res=>{
@@ -46,6 +39,7 @@ export default{
     login(){
       const that = this;
       if(that.checkForm()){
+        that.isLogin();
         that.$http({
           url:window.config.apisServer+'/genCode',
           method:'POST',

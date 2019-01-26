@@ -8,15 +8,18 @@
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
+            let url ="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxacdf899d08a60cb6&secret=cf8ed6913d99c7d19548e3fdef96f8d0";
             $.ajax({
-                url:'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxacdf899d08a60cb6&secret=cf8ed6913d99c7d19548e3fdef96f8d0',
+                url:url,
                 type:"get",
                 dataType:"jsonp",
                 async: true,
                 success: function (result) {
+                    console.log(1);
                     console.log(result);
                 },
                 error: function (result) {
+                    console.log(2);
                     console.log(result);
                 }
             });

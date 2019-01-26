@@ -22,11 +22,9 @@ export default{
     const that = this;
     //参数数据的获取
     that.phone = window.utils.storage.getter('userPhone','1');
-    that.pageFrom = that.$route.query.fromPage;
     that.orderCode = that.$route.query.orderCode;
     //获取订单信息
     that.getOrderInfo().then(res=>{
-      console.log(res);
       that.amap = new AMap.Map('mapContainer',{
         resizeEnable:true,
         scrollWheel:true,
@@ -42,18 +40,10 @@ export default{
     //获取订单行程信息
     getOrderInfo(){
       const that = this;
-      let url = '',params={},pageFrom=that.pageFrom;
-      if(pageFrom=='order'){//从订单页面跳转过来
-        url = window.config.apisServer+'/getorder';
-        params={
-          userPhonenum:that.phone,
-          status:0
-        };
-      }else{//从列表页面跳转过来
-        url = window.config.apisServer+'/getorderbyordercode';
-        params={
-          orderCode:that.orderCode
-        }
+      let url = '',params={};
+      url = window.config.apisServer+'/getorderbyordercode';
+      params={
+        orderCode:that.orderCode
       }
       return new Promise(function(resolve,reject){
         that.$http({
@@ -62,14 +52,8 @@ export default{
           data:params
         }).then(res=>{
           if(res.status==200){//订单数据获取成功
-            let orderInfo = {};
-            if(that.pageFrom=='order'){
-              orderInfo = res.data[0];
-            }else{
-              orderInfo=res.data;
-            }
+            let orderInfo=res.data;
             that.orderInfo = orderInfo;
-            console.log(orderInfo);
             resolve(orderInfo)
           }else{
             reject(null)

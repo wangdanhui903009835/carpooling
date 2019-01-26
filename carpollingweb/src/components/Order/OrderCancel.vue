@@ -2,7 +2,7 @@
     @import "./../../css/Order/OrderCancel.css";
 </style>
 <template>
-    <div class="orderCancel">
+    <div class="orderCancel" v-if="orderCancelInfo.showFlag==1">
         <div class="contents">
            <!--取消关闭-->
            <div class="closeCancel displayFlex">

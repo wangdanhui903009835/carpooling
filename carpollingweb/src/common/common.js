@@ -1,9 +1,10 @@
 import axios from 'axios';
+import Mint from 'mint-ui'
 (function(){
   window.config={
     //拼车接口
     //apisServer: 'https://47.106.117.215:8888',
-    apisServer:'https://www.bashuxing.cn:8888',
+    apisServer:'https://www.bashuxing.cn',
     //高德key值
     AMapKey: '4afba4f0fbf8de22a8934e4d00c8e5ad',
     //巴中城市区域citycode的值
@@ -47,30 +48,26 @@ export  function getCurrentLocation(){
     longitude:104.066541
   };
   return new Promise(function(resolve,reject){
-    if(isWeiXin()){//判断是微信浏览器
-      resolve({code:200,data:defaultCurrentLocation});
-      //WxSign().then(res=>{
-      //  wx.ready(function(){
-      //    wx.getLocation({
-      //      type:'wgs84',
-      //      success: result => {
-      //        let currentLocation={
-      //          latitude:result.latitude?result.latitude:defaultCurrentLocation.latitude,
-      //          longitude:result.longitude?result.longitude:defaultCurrentLocation.longitude
-      //        };
-      //        resolve({code:200,data:currentLocation});
-      //      },
-      //      fail:error=>{
-      //        resolve({code:200,data:defaultCurrentLocation});
-      //      }
-      //    })
-      //  })
-      //}).catch(err=>{
-      //  resolve({code:200,data:defaultCurrentLocation})
-      //})
-    }else{//不是微信浏览器
-      resolve({code:200,data:defaultCurrentLocation});
-    }
+    var map = new AMap.Map('container', {
+      resizeEnable: true
+    });
+    AMap.plugin('AMap.Geolocation', function() {
+      var geolocation = new AMap.Geolocation({
+        enableHighAccuracy: true,//是否使用高精度定位，默认:true
+        timeout: 10000,          //超过10秒后停止定位，默认：5s
+        buttonPosition:'RB',    //定位按钮的停靠位置
+        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+        zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+
+      });
+      map.addControl(geolocation);
+      geolocation.getCurrentPosition(function(status,result){
+        if(status=='complete'){
+        }else{
+          resolve(defaultCurrentLocation);
+        }
+      });
+    });
   })
 }
 //判断是否是微信浏览器
