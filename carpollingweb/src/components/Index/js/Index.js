@@ -338,7 +338,7 @@ export default{
         data:params
       }).then(res=>{
         if(res.status==200 && res.data=='success'){//订单发布成功
-          that.$router.push({name:'OrderPay',query:{phone:that.phone}})
+          that.$router.push({name:'OrderPay',query:{phone:that.phone,fromPage:'order'}})
         }else{
           that.$message.errorMessage('订单发布失败');
         }

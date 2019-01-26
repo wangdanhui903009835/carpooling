@@ -3,7 +3,7 @@
 </style>
 <template>
     <div class="OrderList">
-        <div class="orderItem" v-for="(item,index) in orderList" v-if="orderList.length>0" @click="goToDetail">
+        <div class="orderItem" v-for="(item,index) in orderList" v-if="orderList.length>0" @click="goToDetail(item.orderCode)">
             <div class="contents">
                 <div class="title displayFlex">
                     <div class="status">

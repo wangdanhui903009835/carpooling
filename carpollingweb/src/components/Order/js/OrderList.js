@@ -53,7 +53,7 @@ export default{
     //查看订单详情
     goToDetail(index){
       const that = this;
-      that.$router.push({name:'OrderPay'});
+      that.$router.push({name:'OrderPay',query:{orderCode:index,fromPage:'list'}});
     }
   }
 }

@@ -67,7 +67,6 @@
                 </div>
             </div>
             </div>
-
       </div>
         <!--个人中心-->
         <div class="userInfo" :class="userInfo.showFlag==1?'showUserInfo':''">

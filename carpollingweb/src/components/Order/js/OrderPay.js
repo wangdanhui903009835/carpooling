@@ -4,6 +4,8 @@ export default{
   components:{OrderCancel,OrderComplaints},
   data(){
     return{
+      pageFrom:'',
+      orderCode:'',
       phone:'',
       orderCancelInfo:{
         showFlag:0,//0-隐藏，1-显示
@@ -12,25 +14,26 @@ export default{
         showFlag:0,//0-隐藏，1-显示
       },//订单投诉信息
       orderInfo:{
-        isExist:false,//不存在订单信息
       },
       amap:{},
     }
   },
   mounted(){
     const that = this;
+    //参数数据的获取
     that.phone = window.utils.storage.getter('userPhone','1');
+    that.pageFrom = that.$route.query.fromPage;
+    that.orderCode = that.$route.query.orderCode;
     //获取订单信息
     that.getOrderInfo().then(res=>{
-      if(res.isExist){//存在订单信息
-        that.amap = new AMap.Map('mapContainer',{
-          resizeEnable:true,
-          scrollWheel:true,
-          zoom:13
-        });
-         //初始化地图信息
-        that.getInitAmap();
-      }
+      console.log(res);
+      that.amap = new AMap.Map('mapContainer',{
+        resizeEnable:true,
+        scrollWheel:true,
+        zoom:13
+      });
+       //初始化地图信息
+      that.getInitAmap();
     }).catch(error=>{
       console.log(error);
     });
@@ -39,19 +42,34 @@ export default{
     //获取订单行程信息
     getOrderInfo(){
       const that = this;
+      let url = '',params={},pageFrom=that.pageFrom;
+      if(pageFrom=='order'){//从订单页面跳转过来
+        url = window.config.apisServer+'/getorder';
+        params={
+          userPhonenum:that.phone,
+          status:0
+        };
+      }else{//从列表页面跳转过来
+        url = window.config.apisServer+'/getorderbyordercode';
+        params={
+          orderCode:that.orderCode
+        }
+      }
       return new Promise(function(resolve,reject){
         that.$http({
-          url:window.config.apisServer+'/getorder',
+          url:url,
           method:'POST',
-          data:{
-            userPhonenum:that.phone,
-            status:0
-          }
+          data:params
         }).then(res=>{
-          if(res.status==200 && res.data.length>0){//订单数据获取成功
-            let orderInfo = res.data[0];
-            orderInfo.isExist=true
+          if(res.status==200){//订单数据获取成功
+            let orderInfo = {};
+            if(that.pageFrom=='order'){
+              orderInfo = res.data[0];
+            }else{
+              orderInfo=res.data;
+            }
             that.orderInfo = orderInfo;
+            console.log(orderInfo);
             resolve(orderInfo)
           }else{
             reject(null)

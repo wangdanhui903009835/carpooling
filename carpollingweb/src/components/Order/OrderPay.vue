@@ -4,7 +4,7 @@
 </style>
 <template>
     <div class="Orderpay">
-        <div v-if="orderInfo.isExist">
+        <div>
             <!--订单信息--->
             <div class="boxContents">
                 <div class="contents">

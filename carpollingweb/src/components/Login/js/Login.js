@@ -12,20 +12,26 @@ export default{
   mounted(){
     const that = this;
     //let openId = window.utils.storage.getter('openId',1)||'54786104';
-    //that.isLogin(openId);
+    that.isLogin();
   },
   methods:{
     //判断用户是否有登录信息
-    isLogin(openid){
+    isLogin(){
       const that = this;
+      let WeChatInfo = window.utils.storage.getter('WeChatInfo',1),
+          openid = '';
+      if(WeChatInfo){
+        openid = WeChatInfo.openid;
+      }
+      if(!openid){
+        return;
+      }
       that.$http({
-        url:window.config.apisServer+'/phoneNum',
+        url:window.config.apisServer+'/phoneNum/'+openid,
         method:'Get',
-        params:{
-          openid:openid
-        }
+        params:{}
       }).then(res=>{
-        if(res.status==0){//已存在用户信息
+        if(res.status==200 && res.data.phoneNum=='true'){//已存在用户信息
           that.$router.push({name:'Index',query:{phone:res.phoneNum}});
         }
       })
