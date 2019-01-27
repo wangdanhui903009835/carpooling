@@ -30,14 +30,14 @@
                         <div class="img">
                             <img src="./../images/start_address.png" class="iconImage">
                         </div>
-                        <input type="text" v-model="addressInfo.startAddress" placeholder="请输入开始地址" @focus="getFocus(1)">
+                        <input type="text" v-model="addressInfo.startAddress.text" placeholder="请输入开始地址" @focus="getFocus(1)">
                     </div>
                     <!--结束地址-->
                     <div class="end displayFlex">
                         <div class="img">
                             <img src="./../images/end_address.png" class="iconImage">
                         </div>
-                        <input type="text" v-model="addressInfo.endAddress" placeholder="你要去哪儿" @focus="getFocus(2)" >
+                        <input type="text" v-model="addressInfo.endAddress.text" placeholder="你要去哪儿" @focus="getFocus(2)" >
                     </div>
                     <!--错误提示信息-->
                     <div class="errorMsg" v-if="inputFoucs">提示:{{errorInfoMsg.errorMsg}}</div>

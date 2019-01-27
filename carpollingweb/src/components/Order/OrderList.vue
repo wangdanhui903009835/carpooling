@@ -3,7 +3,7 @@
 </style>
 <template>
     <div class="OrderList">
-        <div class="orderItem" v-for="(item,index) in orderList" v-if="orderList.length>0" @click="goToDetail(item.orderCode)">
+        <div class="orderItem" v-for="(item,index) in orderList" v-if="orderList.length>0" @click="goToDetail(index)">
             <div class="contents">
                 <div class="title displayFlex">
                     <div class="status">
@@ -12,7 +12,7 @@
                     <div class="time">{{formateDate(item.date)}}</div>
                 </div>
                 <div class="addressName displayFlex">
-                    <div :class="item.status==0?'orderCancel':'orderGoing'">
+                    <div :class="item.status==0?'orderItemCancel':'orderGoing'">
                         <div class="start"><img src="./../../images/start_address.png" class="startIcon"><span>{{item.start}}</span></div>
                         <div class="end"><img src="./../../images/end_address.png" class="endIcon"><span>{{item.destination}}</span></div>
                         <div class="number" v-if="item.status==0"><img src="./../../images/time_icon.png" class="timeIcon">

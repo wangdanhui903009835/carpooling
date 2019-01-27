@@ -53,7 +53,13 @@ export default{
     //查看订单详情
     goToDetail(index){
       const that = this;
-      that.$router.push({name:'OrderPay',query:{orderCode:index,fromPage:'list'}});
+      let item = that.orderList[index];
+      if(item.status==7){
+        that.$message.errorMessage('订单已取消');
+        return;
+      }else{
+        that.$router.push({name:'OrderPay',query:{orderCode:item.orderCode}});
+      }
     }
   }
 }

@@ -69,16 +69,22 @@ Vue.prototype.$http=axios;
 //消息提示框
 Vue.prototype.$message={
   successMessage:function(contents){
-    Mint.Toast({
+    let instance = Mint.Toast({
       message:contents,
       position:'top'
     })
+    setTimeout(function () {
+      instance.close();
+    },2000)
   },
   errorMessage:function(contents){
-    Mint.Toast({
+    let instance = Mint.Toast({
       message:contents,
       position:'top'
     })
+    setTimeout(function () {
+      instance.close();
+    },2000)
   }
 }
 //消息弹出框

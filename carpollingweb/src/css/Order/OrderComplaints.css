@@ -26,11 +26,11 @@
   transform: translateX(-50%);
 }
 .OrderComplaints .contents .closeCancel {
-  height: .82rem;
+  height: 0.82rem;
   background: #ffffff;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
   border-radius: 0.15rem;
-  padding: .2rem .5rem;
+  padding: 0.2rem 0.5rem;
   box-sizing: border-box;
 }
 .OrderComplaints .contents .closeCancel .item {
@@ -39,14 +39,14 @@
 }
 .OrderComplaints .contents .closeCancel .item span {
   width: 1.17rem;
-  height: .42rem;
+  height: 0.42rem;
   background: #ffffff;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
   border-radius: 0.21rem;
   display: inline-block;
   color: #878787;
   font-size: 0.24rem;
-  line-height: .42rem;
+  line-height: 0.42rem;
   text-align: center;
 }
 .OrderComplaints .contents .closeCancel .item:last-child {
@@ -54,7 +54,7 @@
 }
 .OrderComplaints .contents .complaintsReason {
   width: 100%;
-  margin-top: .16rem;
+  margin-top: 0.16rem;
   background: #ffffff;
   box-shadow: 0px 0px 0.16rem 0px rgba(0, 0, 0, 0.19);
   border-radius: 0.15rem;
@@ -75,7 +75,7 @@
 }
 .OrderComplaints .contents .confirmButton {
   width: 100%;
-  margin-top: .16rem;
+  margin-top: 0.16rem;
   background: #ffffff;
   min-height: 1.24rem;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);

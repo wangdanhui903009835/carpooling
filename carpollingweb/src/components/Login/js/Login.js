@@ -6,28 +6,36 @@ export default{
       errorInfo:{
         showErrorFlag:false,
         errorMsg:'请输入手机号码'
-      }
+      },
+      code:'',
+      time:'获取验证码'
     }
   },
   mounted(){
     const that = this;
     //let openId = window.utils.storage.getter('openId',1)||'54786104';
-
   },
   methods:{
     //判断用户是否有登录信息
     isLogin(){
       const that = this;
       window.utils.storage.setter('userPhone',that.phone,1);
-      that.$http({
-        url:window.config.apisServer+'/phoneNum/'+that.phone,
-        method:'Get',
-        params:{}
-      }).then(res=>{
-        if(res.status==200 && res.data.phoneNum=='true'){//已存在用户信息
-          that.$router.push({name:'Index',query:{phone:res.phoneNum}});
-        }
+      return new Promise(function (resolve,reject) {
+        that.$http({
+          url:window.config.apisServer+'/phoneNum/'+that.phone,
+          method:'Get',
+          params:{}
+        }).then(res=>{
+          if(res.status==200 && res.data.phoneNum){//已存在用户信息
+            resolve(true)
+          }else{
+            resolve(false)
+          }
+        }).catch(error=>{
+          resolve(false)
+        })
       })
+
     },
     //协议的同意和不同意
     agreeProtocol(){
@@ -39,23 +47,28 @@ export default{
     login(){
       const that = this;
       if(that.checkForm()){
-        that.isLogin();
-        that.$http({
-          url:window.config.apisServer+'/genCode',
-          method:'POST',
-          data:{
-            nationCode:'86',//固定区号86
-            phoneNum:that.phone //电话号码
-          }
-        }).then(res=>{
-          if(res.status==200 && res.data=='true'){//验证码发送成功
-            that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
-          }else{//验证码发送失败
-            that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
-            that.$message.errorMessage('验证码发送失败，请稍后重试');
-          }
-        }).catch(error=>{
+        that.isLogin().then(res=>{
+          if(res){
+            that.$router.push({name:'Index',query:{phone:res.phoneNum}});
+          }else{
+            that.$http({
+              url:window.config.apisServer+'/genCode',
+              method:'POST',
+              data:{
+                nationCode:'86',//固定区号86
+                phoneNum:that.phone //电话号码
+              }
+            }).then(res=>{
+              if(res.status==200 && res.data=='true'){//验证码发送成功
+                that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
+              }else{//验证码发送失败
+                that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
+                that.$message.errorMessage('验证码发送失败，请稍后重试');
+              }
+            }).catch(error=>{
 
+            })
+          }
         })
       }
     },

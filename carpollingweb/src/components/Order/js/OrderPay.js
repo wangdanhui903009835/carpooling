@@ -109,7 +109,7 @@ export default{
       const that = this;
       that.orderCancelInfo.showFlag=0;
       //页面跳转到订单列表页面
-      that.$router.push({name:'OrderList'});
+      that.$router.push({name:'Index'});
     },
     //关闭投诉信息
     cancelComplaint(){

@@ -35,7 +35,7 @@
 }
 .orderPaySuccess .contents .info {
   text-align: center;
-  padding-top: .47rem;
+  padding-top: 0.47rem;
   color: #131313;
   font-size: 0.36rem;
 }
@@ -44,23 +44,23 @@
 }
 .orderPaySuccess .contents .button .buttonItem {
   flex: 1;
-  padding-left: .4rem;
+  padding-left: 0.4rem;
 }
 .orderPaySuccess .contents .button .buttonItem span {
   font-size: 0.3rem;
   display: inline-block;
   text-align: center;
-  border-radius: .1rem;
+  border-radius: 0.1rem;
   width: 2.18rem;
-  height: .58rem;
-  line-height: .58rem;
+  height: 0.58rem;
+  line-height: 0.58rem;
 }
 .orderPaySuccess .contents .button .buttonItem:first-child {
   text-align: right;
-  padding-right: .4rem;
+  padding-right: 0.4rem;
 }
 .orderPaySuccess .contents .button .buttonItem:first-child span {
-  border: .03rem solid #ff5700;
+  border: 0.03rem solid #ff5700;
   color: #a8a8a8;
 }
 .orderPaySuccess .contents .button .buttonItem:last-child span {
