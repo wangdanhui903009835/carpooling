@@ -18,13 +18,6 @@ export default{
       },
       selectStatus:'0',//选中状态：0-拼车；1-包车；
       amap:{},//高德地图信息
-      addressInfo1:{
-        infoObj:'',
-        startAddress:'',
-        startInfoObj:{},
-        endAddress:'',
-        endInfoObj:{}
-      },
       addressInfo:{
         startAddress:{
           text:'',
@@ -169,7 +162,19 @@ export default{
     //重新定位
     getReposition(){
       const that = this;
-      that.addressInfo={}
+      that.addressInfo={
+        startAddress:{
+          text:'',
+            location:{},
+          getPriceText:'',
+            formateAddress:'',//结构化地址
+        },
+        endAddress:{
+          text:'',
+            location:{},
+          getPriceText:''
+        }
+      },
       //获取定位信息
       that.init();
     },

@@ -94,6 +94,9 @@ export default{
         }
         if(minutes>50){
           list.shift();
+          for(var i in list){
+            list[i].index = list[i].index>0?list[i].index-1:0
+          }
         }
       }else{//明天，后天的时间选择，全天24小时
         for(var i = 0;i<24;i++){
@@ -184,8 +187,6 @@ export default{
           time=that.dateList[0].values[selectDateTimeCode[0]].time;
           text='现在';
       }else{
-        console.log(selectDateTimeCode)
-        console.log(that.minutesList[0].values[selectDateTimeCode[2]]);
         let date = that.dateList[0].values[selectDateTimeCode[0]].value,
             hours=that.hoursList[0].values[selectDateTimeCode[1]].value,
             minutes = that.minutesList[0].values[selectDateTimeCode[2]].value,
