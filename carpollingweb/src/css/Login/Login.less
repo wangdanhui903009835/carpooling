@@ -20,19 +20,20 @@
         .phoneItem{
           height:@phoneItemHeight;
           border-bottom:1px solid #939393;
+          line-height: @phoneItemHeight;
           .textLable{
             width:1.5rem;
             font-size:@min_font_size_30;
-            line-height: @phoneItemHeight;
             padding-left:.2rem;
             box-sizing: border-box;
+            height:@phoneItemHeight;
           }
           input{
             display: block;
             width:3.5rem;
             border:none;
             outline: none;
-            line-height: @phoneItemHeight;
+            font-size:@min_font_size_30;
             padding-left:.2rem;
             background: transparent;
           }
@@ -40,8 +41,8 @@
             flex:1;
             font-size:@min_font_size_24;
             text-align: center;
-            line-height: @phoneItemHeight;
             color: #FF4200;
+            height:@phoneItemHeight;
           }
         }
       }

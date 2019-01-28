@@ -34,20 +34,21 @@
 .login .container .detail .phoneNumber .phoneItem {
   height: 1rem;
   border-bottom: 1px solid #939393;
+  line-height: 1rem;
 }
 .login .container .detail .phoneNumber .phoneItem .textLable {
   width: 1.5rem;
   font-size: 0.3rem;
-  line-height: 1rem;
   padding-left: .2rem;
   box-sizing: border-box;
+  height: 1rem;
 }
 .login .container .detail .phoneNumber .phoneItem input {
   display: block;
   width: 3.5rem;
   border: none;
   outline: none;
-  line-height: 1rem;
+  font-size: 0.3rem;
   padding-left: .2rem;
   background: transparent;
 }
@@ -55,8 +56,8 @@
   flex: 1;
   font-size: 0.24rem;
   text-align: center;
-  line-height: 1rem;
   color: #FF4200;
+  height: 1rem;
 }
 .login .container .detail .waringInfoDetail {
   padding-top: 0.23rem;

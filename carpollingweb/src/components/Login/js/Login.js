@@ -94,6 +94,10 @@ export default{
         that.$message.errorMessage('请输入电话号码');
         return;
       }
+      if(that.agreeSelectStatue==0){
+        that.$message.errorMessage('请先同意服务标准以及违约责任约定协议');
+        return false;
+      }
       that.isLogin().then(res=>{
         if(res){
           that.$router.push({name:'Index',query:{phone:phone}});
@@ -141,7 +145,7 @@ export default{
           return false;
         }
       }
-      if(agreeSelectStatue==0){
+      if(that.agreeSelectStatue==0){
         that.$message.errorMessage('请先同意服务标准以及违约责任约定协议');
         return false;
       }
