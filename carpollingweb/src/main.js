@@ -56,11 +56,11 @@ Vue.prototype.$formateTimeToDate=function(val){
     //分钟
       minutes = orderDate.getMinutes();
     if(currentYYYYMMDD==orderYYYYMMDD){//今天日期
-      msg='今天 '+hours+':'+this.$formatDateLength(minutes);
+      msg='今天 '+this.$formatDateLength(hours)+':'+this.$formatDateLength(minutes);
     }else if(tomorrowYYYYMMDD==orderYYYYMMDD){//明天日期
-      msg='明天 '+hours+':'+this.$formatDateLength(minutes);
+      msg='明天 '+this.$formatDateLength(hours)+':'+this.$formatDateLength(minutes);
     }else{
-      msg=orderYYYYMMDD+' '+hours+':'+this.$formatDateLength(minutes);
+      msg=orderYYYYMMDD+' '+this.$formatDateLength(hours)+':'+this.$formatDateLength(minutes);
     }
     return msg;
   }

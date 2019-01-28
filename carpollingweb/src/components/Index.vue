@@ -23,7 +23,7 @@
                 <div class="destination">
                     <!--预约时间-->
                     <div class="appointTime" v-if="showDateTimeInfo.appointFlag==1">
-                        <span class="time" @click="showSelectTime">预约时间</span>
+                        <span class="time" @click="showSelectTime">{{showTimeText}}</span>
                     </div>
                     <!--开始地址-->
                     <div class="start displayFlex">

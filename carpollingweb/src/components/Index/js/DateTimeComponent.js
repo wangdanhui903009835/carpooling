@@ -57,7 +57,7 @@ export default{
          index:2,
          value:getDateByNumber(null,1).baDate,
          time:new Date(getDateByNumber(null,1).baDate).getTime(),
-        name:'明天'
+         name:'明天'
       },
       item_after_tomorrow={
         index:3,
@@ -174,18 +174,25 @@ export default{
       const that = this;
       let selectDateTimeCode=that.selectDateTimeCode,
           time={};
+      let text = '';
       if(selectDateTimeCode[0]==0){//现在
           time=that.dateList[0].values[selectDateTimeCode[0]].time;
+          text='现在';
       }else{
         let date = that.dateList[0].values[selectDateTimeCode[0]].value,
             hours=that.hoursList[0].values[selectDateTimeCode[1]].value,
-            minutes = that.minutesList[0].values[selectDateTimeCode[2]].value;
-        time = new Date(date+' '+hours+':'+minutes).getTime();
+            minutes = that.minutesList[0].values[selectDateTimeCode[2]].value,
+            year = date.split('-')[0],
+            month = date.split('-')[1]-1,
+            day = date.split('-')[2];
+        time = new Date(year,month,day,hours,minutes,0).getTime();
+        text = that.dateList[0].values[selectDateTimeCode[0]].name+that.$formatDateLength(hours)+'时'+that.$formatDateLength(minutes)+'分';
       }
       let objInfo = {
         time:time,
-        defaultSelect:selectDateTimeCode
-      }
+        defaultSelect:selectDateTimeCode,
+        text:text
+      };
       that.$emit('confirmShow',objInfo)
     }
   }

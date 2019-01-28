@@ -1,12 +1,9 @@
+let timeInter=null;
 export default{
   data(){
     return{
       phone:'',
       agreeSelectStatue:1,//1-同意agree协议；0-不统一agree协议
-      errorInfo:{
-        showErrorFlag:false,
-        errorMsg:'请输入手机号码'
-      },
       code:'',
       time:'获取验证码'
     }
@@ -43,8 +40,8 @@ export default{
       let agreeSelectStatue=that.agreeSelectStatue;
       that.agreeSelectStatue=(agreeSelectStatue==1)?0:1;
     },
-    //登录按钮
-    login(){
+    //获取验证码
+    getCode(){
       const that = this;
       if(that.checkForm()){
         that.isLogin().then(res=>{
@@ -59,10 +56,11 @@ export default{
                 phoneNum:that.phone //电话号码
               }
             }).then(res=>{
+              that.time='60s';
               if(res.status==200 && res.data=='true'){//验证码发送成功
-                that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
+                that.$message.errorMessage('验证码发送成功，请注意查收');
+                that.cutDownTime();
               }else{//验证码发送失败
-                that.$router.push({name:'LoginVerfy',query:{phone:that.phone}})
                 that.$message.errorMessage('验证码发送失败，请稍后重试');
               }
             }).catch(error=>{
@@ -72,35 +70,81 @@ export default{
         })
       }
     },
+    //倒计时显示
+    cutDownTime(){
+      const that = this;
+      let time = that.time;
+      time=time.replace('s','');
+      timeInter=setInterval(function(){
+        time--;
+        that.time=time+'s';
+        if(time==0){
+          clearInterval(timeInter);
+          time='重新获取';
+          that.time = time;
+        }
+      },1000)
+    },
+    //登录信息
+    login(){
+      const that = this;
+      let phone = that.phone,
+          phoneCode = that.code;
+      if(!phone){
+        that.$message.errorMessage('请输入电话号码');
+        return;
+      }
+      that.isLogin().then(res=>{
+        if(res){
+          that.$router.push({name:'Index',query:{phone:phone}});
+        }else{
+          if(!phoneCode){
+            that.$message.errorMessage('请输入验证码');
+            return;
+          }
+          clearInterval(timeInter);
+          window.utils.storage.setter('userPhone',phone,1);
+          that.$http({
+            url:window.config.apisServer+'/verify',
+            method:'POST',
+            data:{
+              phoneNum:phone,
+              verifyCode:that.code
+            }
+          }).then(res=>{
+            if(res.status==200 && res.data){//验证成功
+              window.utils.storage.setter('userPhone',phone,1);
+              //进入首页信息
+              that.$router.push({name:'Index'})
+            }else{
+              that.$message.errorMessage('验证码或手机号码输入错误');
+            }
+          }).catch(error=>{
+            that.$message.errorMessage('验证码或手机号码输入错误');
+          })
+        }
+      })
+
+    },
     checkForm(){
       const that = this;
       let phone=that.phone,
           agreeSelectStatue = that.agreeSelectStatue;
       if(!phone){
-        that.errorInfo={
-          showErrorFlag:true,
-          errorMsg:'手机号码不能为空'
-        };
+        that.$message.errorMessage('手机号码不能为空');
         return false;
       }
       if(phone){
         let myreg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/;
         if(!myreg.test(phone)){
-          that.errorInfo={
-            showErrorFlag:true,
-            errorMsg:'请输入正确的手机号码'
-          };
+          that.$message.errorMessage('请输入正确的手机号码');
           return false;
         }
       }
       if(agreeSelectStatue==0){
-        that.errorInfo={
-          showErrorFlag:true,
-          errorMsg:'请先同意服务标准以及违约责任约定协议'
-        };
+        that.$message.errorMessage('请先同意服务标准以及违约责任约定协议');
         return false;
       }
-      that.errorInfo.showErrorFlag=false;
       return true;
     }
   }

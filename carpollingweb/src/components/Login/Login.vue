@@ -6,9 +6,16 @@
         <div class="container">
             <div class="title">巴蜀行</div>
             <div class="detail">
-                <div class="phoneNumber displayFlex">
-                    <div class="label">+86</div>
-                    <div class="phone"><input type="text" v-model="phone" placeholder="请输入手机号" :maxlength="11"/></div>
+                <div class="phoneNumber">
+                    <div class="phoneItem phone  displayFlex">
+                        <div class="textLable">手机号码</div>
+                        <input type="text" v-model="phone" placeholder="请输入手机号" :maxlength="11"/>
+                        <div class="code" @click="getCode"><label>{{time}}</label></div>
+                    </div>
+                    <div class="phoneItem code  displayFlex">
+                        <div class="textLable">验证码</div>
+                        <input type="text" placeholder="请输入验证码" v-model="code">
+                    </div>
                 </div>
                 <div class="waringInfoDetail">未注册的手机号验证后自动创建巴蜀行账户</div>
                 <div class="waringInfoDetail">为了方便联系请输入您常用的手机号码</div>
@@ -22,8 +29,7 @@
                 </div>
             </div>
             <div class="loginBtn">
-                <div class="errorMsg" v-if="errorInfo.showErrorFlag">提示:{{errorInfo.errorMsg}}</div>
-                <div class="button" @click="login">获取验证码</div>
+                <div class="button" @click="login">登录</div>
             </div>
         </div>
     </div>

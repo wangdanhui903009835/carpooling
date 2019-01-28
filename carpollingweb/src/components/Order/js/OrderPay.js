@@ -108,8 +108,11 @@ export default{
     confirmCancel(){
       const that = this;
       that.orderCancelInfo.showFlag=0;
-      //页面跳转到订单列表页面
-      that.$router.push({name:'Index'});
+      that.$message.successMessage('订单取消成功，等待司机取消订单');
+      setTimeout(function(){
+        //页面跳转到订单列表页面
+        that.$router.push({name:'OrderList',query:{pageForm:'orderCancel'}});
+      },3000)
     },
     //关闭投诉信息
     cancelComplaint(){

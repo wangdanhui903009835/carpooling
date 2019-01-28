@@ -14,7 +14,7 @@
                                 <div class="menu"><img src="./../../images/start_address.png" class="menuItemIcon"><span class="label">{{orderInfo.start}}</span></div>
                                 <div class="menu"><img src="./../../images/end_address.png" class="menuItemIcon"><span class="label">{{orderInfo.destination}}</span></div>
                                 <div class="menu"><img src="./../../images/time_icon.png" class="menuItemIcon">
-                                    <span class="label" v-if="orderInfo.seatTime">{{formateDate(orderInfo.seatTime)}}&nbsp;{{orderInfo.userNum}}人拼车</span>
+                                    <span class="label" v-if="orderInfo.seatTime">{{formateDate(orderInfo.seatTime)}}&nbsp;{{orderInfo.userNum}}人乘车</span>
                                     <span class="label" v-else="orderInfo.date">{{formateDate(orderInfo.date)}} &nbsp;{{orderInfo.userNum}}人拼车</span>
                                 </div>
                             </div>

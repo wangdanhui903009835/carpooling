@@ -11,6 +11,13 @@ export default{
     that.$indicator.open();
     that.userPhonenum = window.utils.storage.getter('userPhone',1);
     that.init();
+    //判断页面是否从取消订单页面跳转过来
+    let orderCancel = that.$route.query.pageForm;
+    if(orderCancel){//10秒速之后再次刷新页面
+      setTimeout(function(){
+        that.init();
+      },10000)
+    }
   },
   methods:{
     //获取订单信息

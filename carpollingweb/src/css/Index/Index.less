@@ -23,7 +23,8 @@
     position: absolute;
     width:7.1rem;
     bottom:.22rem;
-    left:.2rem;
+    left:50%;
+    transform: translateX(-50%);
     z-index:100;
     .position{
       text-align: right;
@@ -164,6 +165,10 @@
       .item{
         height: 0.7rem;
         width: 5.39rem;
+        padding-bottom:3px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
         span{
           display: block;
           font-size: @min_font_size_24;

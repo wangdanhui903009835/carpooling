@@ -44,6 +44,7 @@ export default{
         time:'',//预约时间
         defaultSelect:[0,0,0],//默认选中状态
       },
+      showTimeText:'预约时间',
       userNum:1,//乘车人数
       remarks:'',//备注
       inputFoucs:false,
@@ -141,23 +142,23 @@ export default{
         formattedAddress = formattedAddress.substring(addressComponent.city.length,formattedAddress.length);
       }
       //区域存在
-      if(addressComponent.district){
+      if(addressComponent.district && formattedAddress.length>addressComponent.district.length){
         formattedAddress=formattedAddress.substring(addressComponent.district.length,formattedAddress.length);
       }
-      if(addressComponent.township){
+      if(addressComponent.township && formattedAddress.length>addressComponent.township.length){
         formattedAddress=formattedAddress.substring(addressComponent.township.length,formattedAddress.length);
       }
-      if(addressComponent.street){
+      if(addressComponent.street && formattedAddress.length>addressComponent.street.length){
         formattedAddress=formattedAddress.substring(addressComponent.street.length,formattedAddress.length);
       }
-      if(addressComponent.streetNumber){
+      if(addressComponent.streetNumber && formattedAddress.length>addressComponent.streetNumber.length){
         formattedAddress=formattedAddress.substring(addressComponent.streetNumber.length,formattedAddress.length);
       };
       //获取价格输入地址
       let code = result.adcode||addressComponent.citycode;
       if(areaListMap.has(code)){
         contents.getPriceText=areaListMap.get(code)
-      }else if(addressComponent.citycode=='028'){
+      }else if(addressComponent.citycode=='028'){//成都区
         contents.getPriceText=areaListMap.get('028')
       }else{
         contents.getPriceText='--';
@@ -192,6 +193,7 @@ export default{
       const that = this;
       that.showDateTimeInfo.appointFlag=(that.showDateTimeInfo.appointFlag==0)?1:0;
       that.showDateTimeInfo.time = '';
+      that.showTimeText='预约时间';
     },
     //选择弹出层样式
     showSelectTime(){
@@ -209,6 +211,7 @@ export default{
         time:'',
         defaultSelect:[0,0,0]
       }
+      that.showTimeText='预约时间';
     },
     //确定日期选择
     confirmShow(obj){
@@ -218,7 +221,9 @@ export default{
         appointFlag:1,
         time:obj.time,
         defaultSelect:obj.defaultSelect
-      }
+      };
+      //设置显示日期
+      that.showTimeText=obj.text;
     },
     //input 输入框获取焦点事件
     getFocus(index){
@@ -362,10 +367,10 @@ export default{
     confirmPublish(){
       const that = this;
       let addressInfo=that.addressInfo,showDateTimeInfo=that.showDateTimeInfo;
-      if(!addressInfo.startAddress){
+      if(!addressInfo.startAddress.text){
         that.$message.errorMessage('请输入开始地址');
       }
-      if(!addressInfo.endAddress){
+      if(!addressInfo.endAddress.text){
         that.$message.errorMessage('请输入目的地址');
         return;
       }
@@ -398,6 +403,7 @@ export default{
         params.seatTye = 0;//0-实时，1-预约
       }
       if(Number.isNaN(parseFloat(params.price))){
+        that.$message.errorMessage('请选择的区域不在运输范围之内');
         return;
       }
       that.$http({
@@ -411,7 +417,7 @@ export default{
           that.$message.errorMessage('订单发布失败');
         }
       }).catch(error=>{
-
+        that.$message.errorMessage('订单发布失败');
       })
     },
     //标记信息
