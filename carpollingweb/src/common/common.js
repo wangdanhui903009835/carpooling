@@ -3,8 +3,9 @@ import Mint from 'mint-ui'
 (function(){
   window.config={
     //拼车接口
-    //apisServer: 'https://47.106.117.215:8888',
-    apisServer:'https://www.bashuxing.cn',
+    apisServer: 'https://47.106.117.215:443',
+    //apisServer:'https://www.bashuxing.cn',
+    //apisServer:'http://bsx.faguikeji.com',
     //高德key值
     AMapKey: '4afba4f0fbf8de22a8934e4d00c8e5ad',
     //巴中城市区域citycode的值

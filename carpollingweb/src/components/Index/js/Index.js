@@ -1,11 +1,11 @@
 import DateTimeComponent from './../DateTimeComponent.vue'
-let areaListMap = new Map().set('028','成都')
+let areaListMap = new Map().set('028','成都市')
   .set('0827','巴州区')
-  .set('511902', '巴州区')
-  .set('511903','恩阳区')
-  .set('511923','平昌县')
-  .set('511921','通江县')
-  .set('511922','南江县');
+  .set('511902', '巴中市巴州区')
+  .set('511903','巴中市恩阳区')
+  .set('511923','巴中市平昌县')
+  .set('511921','巴中市通江县')
+  .set('511922','巴中市南江县');
 export default{
   components:{DateTimeComponent},
   data(){
@@ -28,7 +28,7 @@ export default{
         endAddress:{
           text:'',
           location:{},
-          getPriceText:''
+          getPriceText:'',
         }
       },
       showDateTimeInfo:{
@@ -390,8 +390,8 @@ export default{
         userNum:that.userNum,
         orderType:that.selectStatus,
         price:that.price,
-        start:addressInfo.startAddress.text,
-        destination:addressInfo.endAddress.text,
+        start:addressInfo.startAddress.getPriceText,
+        destination:addressInfo.endAddress.getPriceText,
         describe:that.remarks,
         startLocation:[addressInfo.startAddress.location.longitude,addressInfo.startAddress.location.latitude],
         endLocation:[addressInfo.endAddress.location.longitude,addressInfo.endAddress.location.latitude],
