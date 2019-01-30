@@ -8,7 +8,7 @@
   display: none !important;
 }
 .mint-toast-text {
-  font-size: 0.24rem;
+  font-size: 0.3rem;
 }
 .login {
   width: 100%;
@@ -54,7 +54,7 @@
 }
 .login .container .detail .phoneNumber .phoneItem .code {
   flex: 1;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
   text-align: center;
   color: #FF4200;
   height: 1rem;
@@ -63,12 +63,12 @@
   padding-top: 0.23rem;
   padding-left: 1.48rem;
   color: #aeaeae;
-  font-size: 0.18rem;
+  font-size: 0.24rem;
 }
 .login .container .detail .agree {
   padding-top: 0.28rem;
   color: #000000;
-  font-size: 0.18rem;
+  font-size: 0.24rem;
   padding-left: 1.48rem;
 }
 .login .container .detail .agree .agreeItem {
@@ -97,7 +97,7 @@
 .login .container .loginBtn .errorMsg {
   padding-left: 0.39rem;
   padding-bottom: 0.23rem;
-  font-size: 0.18rem;
+  font-size: 0.24rem;
 }
 .login .container .loginBtn .button {
   width: 5.33rem;

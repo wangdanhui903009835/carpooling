@@ -1,4 +1,5 @@
 import DateTimeComponent from './../DateTimeComponent.vue'
+import SelecNumber from './../SelecNumber'
 let areaListMap = new Map().set('028','成都市')
   .set('0827','巴州区')
   .set('511902', '巴中市巴州区')
@@ -7,7 +8,7 @@ let areaListMap = new Map().set('028','成都市')
   .set('511921','巴中市通江县')
   .set('511922','巴中市南江县');
 export default{
-  components:{DateTimeComponent},
+  components:{DateTimeComponent,SelecNumber},
   data(){
     return{
       count:0,
@@ -38,7 +39,6 @@ export default{
         defaultSelect:[0,0,0],//默认选中状态
       },
       showTimeText:'预约时间',
-      userNum:1,//乘车人数
       remarks:'',//备注
       inputFoucs:false,
       errorInfoMsg:{
@@ -52,17 +52,28 @@ export default{
         endTextMarker:null
       },
       price:0,
+      showSelectNumber:{
+        showFlag:false,
+        number:1
+      }
     }
 
   },
   mounted(){
     const that = this;
-    let phone = window.utils.storage.getter('userPhone',1)||'18208193702';
+    let phone = window.utils.storage.getter('userPhone',1);
     //获取电话号码
+    that.phone=phone;
     //设置电话号码隐藏
     that.userInfo.phone = phone.substr(0,3)+'****'+phone.substr(7,4);
-    //初始化数据信息
-    that.init();
+    that.getOrderStatus0().then(res=>{
+      if(res.flag){//存在未完成的订单
+        that.$router.push({name:'OrderPay',query:{orderCode:res.orderCode}});
+      }else{
+        //初始化数据信息
+        that.init();
+      }
+    })
   },
   methods:{
     init(){
@@ -124,28 +135,33 @@ export default{
     getShowText(result){
       let contents={};
       let formattedAddress=result.formattedAddress,addressComponent=result.addressComponent;
+      let contentText = "";
+      if(addressComponent.streetNumber){
+        contentText=addressComponent.streetNumber;
+      }
+      if(addressComponent.street){
+        contentText = addressComponent.street+contentText;
+      }
+      if(!addressComponent.streetNumber && addressComponent.street && addressComponent.township){
+        contentText = addressComponent.township+addressComponent.street;
+      }
+      if(!addressComponent.streetNumber && !addressComponent.street && addressComponent.township && addressComponent.district){
+        contentText = addressComponent.district+addressComponent.township
+      }
+      if(!addressComponent.streetNumber &&
+         !addressComponent.street &&
+         !addressComponent.township &&
+         addressComponent.district && addressComponent.city){
+        contentText = addressComponent.city+addressComponent.district
+      }
+      if(!addressComponent.streetNumber &&
+        !addressComponent.street &&
+        !addressComponent.township &&
+        !addressComponent.district && addressComponent.city){
+        contentText = addressComponent.city
+      }
+      contents.text = contentText;//页面获取地址
       contents.formateAddress = formattedAddress;//结构化地址设置
-      //省份存在
-      if(addressComponent.province){
-        formattedAddress = formattedAddress.substring(addressComponent.province.length,formattedAddress.length);
-      }
-      //城市存在
-      if(addressComponent.city){
-        formattedAddress = formattedAddress.substring(addressComponent.city.length,formattedAddress.length);
-      }
-      //区域存在
-      if(addressComponent.district && formattedAddress.length>addressComponent.district.length){
-        formattedAddress=formattedAddress.substring(addressComponent.district.length,formattedAddress.length);
-      }
-      if(addressComponent.township && formattedAddress.length>addressComponent.township.length){
-        formattedAddress=formattedAddress.substring(addressComponent.township.length,formattedAddress.length);
-      }
-      if(addressComponent.street && formattedAddress.length>addressComponent.street.length){
-        formattedAddress=formattedAddress.substring(addressComponent.street.length,formattedAddress.length);
-      }
-      if(addressComponent.streetNumber && formattedAddress.length>addressComponent.streetNumber.length){
-        formattedAddress=formattedAddress.substring(addressComponent.streetNumber.length,formattedAddress.length);
-      };
       //获取价格输入地址
       let code = result.adcode||addressComponent.citycode;
       if(areaListMap.has(code)){
@@ -155,7 +171,7 @@ export default{
       }else{
         contents.getPriceText='--';
       }
-      contents.text = formattedAddress;
+
       return contents;
     },
     //重新定位
@@ -173,7 +189,8 @@ export default{
             location:{},
           getPriceText:''
         }
-      },
+      };
+      that.count=0;
       //获取定位信息
       that.init();
     },
@@ -367,6 +384,57 @@ export default{
         })
       }
     },
+    //获取未支付的订单
+    getOrderStatus0(){
+      const that = this;
+      return new Promise(function (resolve,reject) {
+        that.$http({
+          url:window.config.apisServer+'/getorder',
+          method:'POST',
+          data:{
+            userPhonenum:that.phone,
+            status:0
+          }
+        }).then(res=>{
+          if(res.status==200&&res.data.length>0){
+            let contents={
+              flag:true,
+              orderCode:res.data[0].orderCode
+            }
+            resolve(contents);
+          }else{
+            let contents={
+              flag:false,
+              orderCode:''
+            }
+            resolve(contents);
+          }
+        }).catch(error=>{
+          console.log(error);
+          let contents={
+            flag:false,
+            orderCode:''
+          }
+          resolve(contents);
+        })
+      })
+    },
+    //显示下拉人数的选择框
+    selectNumber(){
+      const that = this;
+      that.showSelectNumber.showFlag=true;
+    },
+    //取消人数选择
+    cancelShowSelect(){
+      const that = this;
+      that.showSelectNumber.showFlag=false;
+    },
+    //选择下拉人数确定
+    confirmShowSelec(number){
+      const that = this;
+      that.showSelectNumber.showFlag=false;
+      that.showSelectNumber.number = number;
+    },
     //确认发布信息
     confirmPublish(){
       const that = this;
@@ -386,7 +454,7 @@ export default{
       let params={
         status:'0',
         userPhonenum:that.phone,
-        userNum:that.userNum,
+        userNum:that.showSelectNumber.number,
         orderType:that.selectStatus,
         price:that.price,
         start:addressInfo.startAddress.getPriceText,
@@ -403,7 +471,7 @@ export default{
         params.seatTime=showDateTimeInfo.time;
         params.seatTye=1;//0-实时，1-预约
       }else{
-        params.seatTime=null;
+        params.seatTime=new Date().getTime();
         params.seatTye = 0;//0-实时，1-预约
       }
       if(Number.isNaN(parseFloat(params.price))){
@@ -418,7 +486,14 @@ export default{
         if(res.status==200 && res.data!='failed'){
           that.$router.push({name:'OrderPay',query:{orderCode:res.data}});
         }else{
-          that.$message.errorMessage('订单发布失败');
+          that.getOrderStatus0().then(res=>{
+            if(res.flag){
+              that.$message.errorMessage('你有未完成的订单，请先取消之前的订单');
+            }else{
+              that.$message.errorMessage('订单发布失败');
+            }
+          })
+
         }
       }).catch(error=>{
         that.$message.errorMessage('订单发布失败');

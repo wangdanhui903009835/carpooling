@@ -8,7 +8,7 @@
   display: none !important;
 }
 .mint-toast-text {
-  font-size: 0.24rem;
+  font-size: 0.3rem;
 }
 .Index {
   height: 100%;
@@ -64,7 +64,7 @@
   border: 1px solid #e2e2e2;
   border-radius: 0.21rem;
   color: #878787;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
   margin-right: 0.73rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -98,7 +98,7 @@
 }
 .Index .carpoorCharter .destination .appointTime span {
   color: #000;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
   position: relative;
   padding-right: 0.2rem;
 }
@@ -140,12 +140,28 @@
   outline: none;
   display: block;
   border-bottom: 1px solid #dbdbdb;
-  width: 5.39rem;
+  flex: 1;
   margin-left: 0.3rem;
   padding-bottom: 0.23rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  font-size: 0.3rem;
+}
+.Index .carpoorCharter .destination .start .repeatPosition,
+.Index .carpoorCharter .destination .end .repeatPosition {
+  padding-right: 0.3rem;
+  position: relative;
+}
+.Index .carpoorCharter .destination .start .repeatPosition .positionImg,
+.Index .carpoorCharter .destination .end .repeatPosition .positionImg {
+  width: 0.35rem;
+  height: 0.35rem;
+  padding-right: 0.1rem;
+}
+.Index .carpoorCharter .destination .start .repeatPosition .positionLable,
+.Index .carpoorCharter .destination .end .repeatPosition .positionLable {
+  font-size: 0.24rem;
 }
 .Index .carpoorCharter .destination .start:after {
   position: absolute;
@@ -159,10 +175,11 @@
   border: none;
   padding-top: 0.23rem;
   padding-bottom: 0rem;
+  font-size: 0.3rem;
 }
 .Index .carpoorCharter .destination .errorMsg {
   padding: 0.2rem;
-  font-size: 0.18rem;
+  font-size: 0.24rem;
 }
 .Index .carpoorCharter .numberRemarks {
   width: 100%;
@@ -186,7 +203,7 @@
 }
 .Index .carpoorCharter .numberRemarks .item span {
   display: block;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
   height: 100%;
   line-height: 0.7rem;
 }
@@ -199,6 +216,9 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+.Index .carpoorCharter .numberRemarks .item .valueNumber {
+  flex: 1;
 }
 .Index .carpoorCharter .numberRemarks .item:first-child {
   border-bottom: 1px solid #dbdbdb;
@@ -259,7 +279,7 @@
 .Index .userInfo .contents .menu .phone {
   padding-top: 0.31rem;
   color: #131313;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
   text-align: center;
 }
 .Index .userInfo .contents .menuList {

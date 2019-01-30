@@ -8,7 +8,7 @@
   display: none !important;
 }
 .mint-toast-text {
-  font-size: 0.24rem;
+  font-size: 0.3rem;
 }
 .LoginVerfy {
   height: 100%;
@@ -25,7 +25,7 @@
 }
 .LoginVerfy .contentsTime {
   padding-top: 0.71rem;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
 }
 .LoginVerfy .contentsTime .time {
   flex: 1;
@@ -69,7 +69,7 @@
   line-height: 0.46rem;
   background: #d4d4d4;
   border-radius: 0.08rem;
-  font-size: 0.18rem;
+  font-size: 0.24rem;
   color: #ffffff;
   padding: 0rem 0.08rem;
 }
@@ -82,7 +82,7 @@
 }
 .LoginVerfy .btn .errorMsg {
   padding-bottom: 0.23rem;
-  font-size: 0.18rem;
+  font-size: 0.24rem;
 }
 .LoginVerfy .btn .button {
   width: 5.87rem;

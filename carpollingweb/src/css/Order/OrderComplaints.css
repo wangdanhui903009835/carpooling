@@ -8,7 +8,7 @@
   display: none !important;
 }
 .mint-toast-text {
-  font-size: 0.24rem;
+  font-size: 0.3rem;
 }
 .OrderComplaints {
   position: fixed;
@@ -45,7 +45,7 @@
   border-radius: 0.21rem;
   display: inline-block;
   color: #878787;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
   line-height: 0.42rem;
   text-align: center;
 }
@@ -60,7 +60,7 @@
   border-radius: 0.15rem;
   padding: 0.27rem 0.4rem;
   box-sizing: border-box;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
 }
 .OrderComplaints .contents .complaintsReason textarea {
   width: 100%;
@@ -71,7 +71,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   outline: none;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
 }
 .OrderComplaints .contents .confirmButton {
   width: 100%;
@@ -88,7 +88,7 @@
 }
 .OrderComplaints .contents .confirmButton .errorMsg {
   padding-bottom: 0.15rem;
-  font-size: 0.24rem;
+  font-size: 0.3rem;
 }
 .OrderComplaints .contents .confirmButton .btn {
   width: 3.74rem;

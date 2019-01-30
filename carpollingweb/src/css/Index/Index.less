@@ -123,12 +123,25 @@
           outline:none;
           display: block;
           border-bottom:1px solid #dbdbdb;
-          width:5.39rem;
+          flex: 1;
           margin-left:.3rem;
           padding-bottom:.23rem;
           -webkit-box-sizing: border-box;
           -moz-box-sizing: border-box;
           box-sizing: border-box;
+          font-size: @min_font_size_24;
+        }
+        .repeatPosition{
+          padding-right:0.3rem;
+          position: relative;
+          .positionImg{
+            width: .35rem;
+            height: .35rem;
+            padding-right: .1rem;
+          }
+          .positionLable{
+            font-size: @min_font_size_18;
+          }
         }
       }
       .start:after{
@@ -144,6 +157,7 @@
           border:none;
           padding-top:.23rem;
           padding-bottom:0rem;
+          font-size: @min_font_size_24;
         }
       }
       .errorMsg{
@@ -184,6 +198,9 @@
             -moz-box-sizing: border-box;
             box-sizing: border-box;
           }
+        }
+        .valueNumber{
+          flex: 1;
         }
       }
       .item:first-child{

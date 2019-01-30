@@ -9,7 +9,6 @@
         </div>
         <!--拼车、包车、预约-->
         <div class="carpoorCharter" :class="inputFoucs?'inputCarpoorCharter':''" v-if="!showDateTimeInfo.showFlag">
-            <div class="position"><img src="./../images/position.png" @click="getReposition"></div>
             <div class="boxItem">
               <div class="contents">
                 <div class="menu displayFlex">
@@ -31,6 +30,10 @@
                             <img src="./../images/start_address.png" class="iconImage">
                         </div>
                         <input type="text" v-model="addressInfo.startAddress.text" placeholder="请输入开始地址" @focus="getFocus(1)">
+                        <div class="repeatPosition displayFlex">
+                          <img class="positionImg" src="./../images/position.png" @click="getReposition">
+                          <div class="positionLable" @click="getReposition">定位</div>
+                        </div>
                     </div>
                     <!--结束地址-->
                     <div class="end displayFlex">
@@ -50,7 +53,8 @@
                 <div class="numberRemarks">
                     <div class="item displayFlex">
                       <span class="label">乘车人数:</span>
-                      <span class="value"><input type="text" v-model="userNum"/></span>
+                      <!--<span class="value"><input type="text" v-model="userNum"/></span>-->
+                      <span class="value valueNumber" @click="selectNumber">&nbsp;&nbsp;{{showSelectNumber.number}}</span>
                     </div>
                     <div class="item displayFlex">
                       <span class="label">备注:</span>
@@ -61,7 +65,7 @@
                 <div class="boxItem">
                   <div class="publishButton">
                       <div class="price" v-if="price>=0">￥{{price}}</div>
-                      <div class="price" v-else>抱歉，暂不支持该区域信息</div>
+                      <div class="price" v-else>抱歉，请按提示信息输入</div>
                       <div class="publish" @click="confirmPublish">确认发布</div>
                   </div>
                 </div>
@@ -83,6 +87,8 @@
         </div>
         <!--预约时间组件信息-->
         <DateTimeComponent :objInfo="showDateTimeInfo" v-if="showDateTimeInfo.showFlag" @cancelShow="cancelShow" @confirmShow="confirmShow"></DateTimeComponent>
+        <!--菜单选择--->
+        <SelecNumber :objInfo="showSelectNumber" v-if="showSelectNumber.showFlag" @cancelShowSelect="cancelShowSelect" @confirmShowSelec="confirmShowSelec"></SelecNumber>
     </div>
 </template>
 <script>
