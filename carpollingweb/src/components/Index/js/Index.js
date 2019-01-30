@@ -59,7 +59,6 @@ export default{
     const that = this;
     let phone = window.utils.storage.getter('userPhone',1)||'18208193702';
     //获取电话号码
-    that.phone = phone;
     //设置电话号码隐藏
     that.userInfo.phone = phone.substr(0,3)+'****'+phone.substr(7,4);
     //初始化数据信息

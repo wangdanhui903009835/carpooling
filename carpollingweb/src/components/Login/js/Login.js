@@ -43,6 +43,10 @@ export default{
     //获取验证码
     getCode(){
       const that = this;
+      if(parseInt(that.time.replace('s',''))>0){
+        that.$message.errorMessage('请稍后重试');
+        return;
+      }
       if(that.checkForm()){
         that.isLogin().then(res=>{
           if(res){

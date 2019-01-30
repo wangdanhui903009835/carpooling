@@ -138,10 +138,7 @@ export default{
         }
       }).then(res=>{
         if(res.status==200 && res.data=='success'){
-          that.$message.successMessage('支付成功');
-          setTimeout(function(){
-            that.$router.push({name:'OrderPaySuccess'})
-          },3000)
+          that.$router.push({name:'OrderPaySuccess'});
         }else{
           that.$message.errorMessage('支付失败');
         }
