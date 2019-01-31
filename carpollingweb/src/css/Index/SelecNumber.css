@@ -16,7 +16,7 @@
   height: 100%;
   left: 0rem;
   background: rgba(0, 0, 0, 0.6);
-  animation: showSelectTime .5s ease;
+  animation: showSelectTime 0.5s ease;
   animation-fill-mode: forwards;
   z-index: 100;
 }
@@ -28,15 +28,15 @@
   min-height: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: .2rem .2rem 0rem 0rem;
+  border-radius: 0.2rem 0.2rem 0rem 0rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .selectNumber .contents .menu {
-  height: .85rem;
-  line-height: .85rem;
-  padding: 0rem .43rem;
+  height: 0.85rem;
+  line-height: 0.85rem;
+  padding: 0rem 0.43rem;
   border-bottom: 1px solid #F5F5F5;
 }
 .selectNumber .contents .menu .menuItem {
@@ -49,23 +49,23 @@
   color: #131313;
 }
 .selectNumber .contents .list {
-  padding: 0rem .43rem;
+  padding: 0rem 0.43rem;
 }
 .selectNumber .contents .list .listItem {
   border-bottom: 1px solid #F5F5F5;
 }
 .selectNumber .contents .list .listItem .number {
   flex: 1;
-  height: .8rem;
-  line-height: .8rem;
+  height: 0.8rem;
+  line-height: 0.8rem;
   font-size: 0.36rem;
 }
 .selectNumber .contents .list .listItem .img {
-  padding-top: .1rem;
+  padding-top: 0.1rem;
 }
 .selectNumber .contents .list .listItem .img img {
-  width: .6rem;
-  height: .6rem;
+  width: 0.6rem;
+  height: 0.6rem;
 }
 .selectNumber .contents .list .active {
   color: #20C4FE;

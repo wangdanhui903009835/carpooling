@@ -31,7 +31,6 @@ export default new Router({
       name:'Index',
       component:Index,
       meta: {
-        keepAlive: true,
         title:'巴蜀行',
       }
     },

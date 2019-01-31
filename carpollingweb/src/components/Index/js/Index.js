@@ -30,9 +30,6 @@ export default{
           text:'',
           location:{},
           getPriceText:'',
-        },
-        initAddress:{//首次定位缓存信息
-          location:{},
         }
       },
       showDateTimeInfo:{
@@ -85,35 +82,47 @@ export default{
         latitude:30.572269,
         longitude:104.066541
       };
-      AMap.plugin('AMap.Geolocation', function() {
-        var geolocation = new AMap.Geolocation({
-          enableHighAccuracy: true,//是否使用高精度定位，默认:true
-          timeout: 2000,          //超过10秒后停止定位，默认：5s
-          buttonPosition:'RB',    //定位按钮的停靠位置
-          buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-          zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+      let sessionInitAddress = window.utils.storage.getter('initAddress',1);
+      if(sessionInitAddress){
+        that.addressInfo.startAddress=sessionInitAddress;
+        let latng=sessionInitAddress.location
+        //设置地图显示信息
+        var map = new AMap.Map('container',{
+          resizeEnable:true,
+          center:[latng.longitude,latng.latitude],
+          scrollWheel:true,
+        })
+        that.amap = map;
+        //marker标记
+        that.setMarker(latng,1);
+      }else{
+        AMap.plugin('AMap.Geolocation', function() {
+          var geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 2000,          //超过10秒后停止定位，默认：5s
+            buttonPosition:'RB',    //定位按钮的停靠位置
+            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
+          });
+          geolocation.getCurrentPosition(function(status,result){
+            if(status=='complete'){
+              latng.latitude = result.position.lat;
+              latng.longitude = result.position.lng;
+            }
+            //设置地图显示信息
+            var map = new AMap.Map('container',{
+              resizeEnable:true,
+              center:[latng.longitude,latng.latitude],
+              scrollWheel:true,
+            })
+            that.amap = map;
+            //marker标记
+            that.setMarker(latng,1);
+            //获取地址信息
+            that.geocoder(latng.longitude+','+latng.latitude);
+          });
         });
-        geolocation.getCurrentPosition(function(status,result){
-          if(status=='complete'){
-            latng.latitude = result.position.lat;
-            latng.longitude = result.position.lng;
-          }
-          //设置地图显示信息
-          var map = new AMap.Map('container',{
-            resizeEnable:true,
-            center:[latng.longitude,latng.latitude],
-            scrollWheel:true,
-          })
-          that.amap = map;
-          //设置首次加载地图
-          that.addressInfo.initAddress.location.longitude=latng.longitude;
-          that.addressInfo.initAddress.location.latitude=latng.latitude;
-          //marker标记
-          that.setMarker(latng,1);
-          //获取地址信息
-          that.geocoder(latng.longitude+','+latng.latitude);
-        });
-      });
+      }
     },
     //获取地理位置信息
     geocoder(location){
@@ -131,6 +140,10 @@ export default{
             that.addressInfo.startAddress.text=contents.text;
             that.addressInfo.startAddress.getPriceText = contents.getPriceText;
             that.addressInfo.startAddress.formateAddress= contents.formateAddress;
+            that.addressInfo.startAddress.location.longitude=location.split(',')[0];
+            that.addressInfo.startAddress.location.latitude=location.split(',')[1];
+            //缓存初始化地址定位信息
+            window.utils.storage.setter('initAddress',that.addressInfo.startAddress,1);
           }else{//获取地址失败
             console.log('根据经纬度获取地址失败');
           }
@@ -195,9 +208,6 @@ export default{
             location:{},
           getPriceText:''
         },
-        initAddress:{//首次定位缓存信息
-          location:{},
-        }
       };
       that.count=0;
       //获取定位信息
@@ -337,7 +347,6 @@ export default{
       //将 markers 添加到地图
       amap.add([currentIconMaker,textMarker]);
       amap.setFitView();
-
       //设置点标记的存储
       if(type==1||type==2){
         markerInfo.startMaker = currentIconMaker;
@@ -576,48 +585,6 @@ export default{
     },
     '$route'(to,from){
       const that = this;
-      that.count=0;
-      //设置个人中心隐藏
-      that.userInfo.showFlag=0;
-      that.selectStatus=0;
-      that.showDateTimeInfo={
-        showFlag:false,
-          appointFlag:0,//0-未预约，1：预约
-          time:'',//预约时间
-          defaultSelect:[0,0,0],//默认选中状态
-      },
-      that.showTimeText='预约时间';
-      that.remarks='';//备注
-      that.inputFoucs=false;
-      that.price=0;
-      that.showSelectNumber={
-        showFlag:false,
-          number:1
-      }
-      //默认设置初始化地址
-      that.addressInfo.endAddress={
-          text:'',
-          location:{},
-          getPriceText:'',
-      }
-      //点标注信息
-      let amap = that.amap,markerInfo=that.markerInfo;
-      if(markerInfo.endMarker){
-        amap.remove(markerInfo.endMarker);
-      }
-      if(markerInfo.endTextMarker){
-        amap.remove(markerInfo.endTextMarker);
-      }
-      if(markerInfo.startMaker){
-        amap.remove(markerInfo.startMaker)
-      }
-      if(markerInfo.startTextMaker){
-        amap.remove(markerInfo.startTextMaker);
-      }
-      //设置标记
-      let latng=that.addressInfo.initAddress.location;
-      //marker标记
-      that.setMarker(latng,1);
     }
   }
 }
