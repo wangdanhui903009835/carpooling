@@ -52,7 +52,7 @@
         border:1px solid rgba(226,226,226,1);
         border-radius:.21rem;
         color: #878787;
-        font-size:@min_font_size_24;
+        font-size:@min_font_size_32;
         margin-right:.73rem;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -85,7 +85,7 @@
         padding-bottom:.45rem;
         span{
           color: #000;
-          font-size:@min_font_size_24;
+          font-size:@min_font_size_32;
           position: relative;
           padding-right:.2rem;
         }
@@ -129,18 +129,21 @@
           -webkit-box-sizing: border-box;
           -moz-box-sizing: border-box;
           box-sizing: border-box;
-          font-size: @min_font_size_24;
+          font-size: @min_font_size_32;
         }
         .repeatPosition{
           padding-right:0.3rem;
+          padding-left:.4rem;
           position: relative;
           .positionImg{
-            width: .35rem;
-            height: .35rem;
-            padding-right: .1rem;
+            position: absolute;
+            width: 0.4rem;
+            height: 0.4rem;
+            left:0rem;
+            bottom:.23rem;
           }
           .positionLable{
-            font-size: @min_font_size_18;
+            font-size: @min_font_size_32;
           }
         }
       }
@@ -157,12 +160,12 @@
           border:none;
           padding-top:.23rem;
           padding-bottom:0rem;
-          font-size: @min_font_size_24;
+          font-size: @min_font_size_32;
         }
       }
       .errorMsg{
         padding: .2rem;
-        font-size: @min_font_size_18;
+        font-size: @min_font_size_30;
       }
     }
     .numberRemarks{
@@ -183,20 +186,18 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
+        line-height: .7rem;
         span{
           display: block;
-          font-size: @min_font_size_24;
-          height: 100%;
-          line-height: 0.7rem;
+          font-size: @min_font_size_32;
           input{
             border: none;
             outline: none;
-            height: 100%;
-            line-height: 0.7rem;
             padding-left: 0.26rem;
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             box-sizing: border-box;
+            font-size:inherit;
           }
         }
         .valueNumber{
@@ -279,7 +280,7 @@
             height:100%;
             line-height:.36rem;
             color: #131313;
-            font-size:@min_font_size_30;
+            font-size:@min_font_size_32;
           }
         }
       }

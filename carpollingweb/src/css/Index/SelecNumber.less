@@ -1,5 +1,5 @@
 @import "./../Common.less";
-.dateTimeComponent{
+.selectNumber{
   position: absolute;
   width:100%;
   height:100%;
@@ -7,6 +7,7 @@
   background: rgba(0,0,0,.6);
   animation:showSelectTime .5s ease;
   animation-fill-mode: forwards;
+  z-index: 100;
   .contents{
     width:7.1rem;
     background: #ffffff;
@@ -34,30 +35,35 @@
         color: #131313;
       }
     }
-    .pickList{
-      display: flex;
-      display: -webkit-flex;
-      width:100%;
-      .picker{
-        flex:1;
-        .picker-items{
-          .picker-item{
-            font-size:@min_font_size_36;
-            color: #e2e2e2;
-          }
-          .picker-selected{
-            color: #131313;
+    .list{
+      padding: 0rem .43rem;
+      .listItem{
+        border-bottom: 1px solid #F5F5F5;
+        .number{
+          flex:1;
+          height:.8rem;
+          line-height:.8rem;
+          font-size:@min_font_size_36;
+        }
+        .img{
+          padding-top:.1rem;
+          img{
+            width:.6rem;
+            height:.6rem;
           }
         }
+      }
+      .active{
+        color: #20C4FE;
       }
     }
   }
 }
 @keyframes showSelectTime {
- 0%{
-   top:100%;
- }
- 100%{
-   top:0rem;
- }
+  0%{
+    top:100%;
+  }
+  100%{
+    top:0rem;
+  }
 }

@@ -30,8 +30,9 @@ export default new Router({
       path:'/Index',
       name:'Index',
       component:Index,
-      meta:{
-        title:'巴蜀行'
+      meta: {
+        keepAlive: true,
+        title:'巴蜀行',
       }
     },
     {

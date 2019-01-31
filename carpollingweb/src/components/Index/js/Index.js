@@ -30,6 +30,9 @@ export default{
           text:'',
           location:{},
           getPriceText:'',
+        },
+        initAddress:{//首次定位缓存信息
+          location:{},
         }
       },
       showDateTimeInfo:{
@@ -102,6 +105,9 @@ export default{
             scrollWheel:true,
           })
           that.amap = map;
+          //设置首次加载地图
+          that.addressInfo.initAddress.location.longitude=latng.longitude;
+          that.addressInfo.initAddress.location.latitude=latng.latitude;
           //marker标记
           that.setMarker(latng,1);
           //获取地址信息
@@ -188,12 +194,16 @@ export default{
           text:'',
             location:{},
           getPriceText:''
+        },
+        initAddress:{//首次定位缓存信息
+          location:{},
         }
       };
       that.count=0;
       //获取定位信息
       that.init();
     },
+
     //显示用户中心 1:显示；2：隐藏
     showUserInfo(type){
       const that = this;
@@ -348,9 +358,9 @@ export default{
         textAlign:'center',
         verticalAlign:'middle',
         position:[latng.longitude,latng.latitude],
-        offset: new AMap.Pixel(-13, -50),
+        offset: new AMap.Pixel(-13, -60),
         style:{
-        "font-size":"0.24rem",
+        "font-size":"0.26rem",
           height:"0.66rem",
           "line-height":"0.66rem",
           padding:"0rem 0.6rem",
@@ -563,6 +573,52 @@ export default{
         },500);
       },
       deep:true
+    },
+    '$route'(to,from){
+      const that = this;
+      that.count=0;
+      //设置个人中心隐藏
+      that.userInfo.showFlag=0;
+      that.selectStatus=0;
+      that.showDateTimeInfo={
+        showFlag:false,
+          appointFlag:0,//0-未预约，1：预约
+          time:'',//预约时间
+          defaultSelect:[0,0,0],//默认选中状态
+      },
+      that.showTimeText='预约时间';
+      that.remarks='';//备注
+      that.inputFoucs=false;
+      that.price=0;
+      that.showSelectNumber={
+        showFlag:false,
+          number:1
+      }
+      //默认设置初始化地址
+      that.addressInfo.endAddress={
+          text:'',
+          location:{},
+          getPriceText:'',
+      }
+      //点标注信息
+      let amap = that.amap,markerInfo=that.markerInfo;
+      if(markerInfo.endMarker){
+        amap.remove(markerInfo.endMarker);
+      }
+      if(markerInfo.endTextMarker){
+        amap.remove(markerInfo.endTextMarker);
+      }
+      if(markerInfo.startMaker){
+        amap.remove(markerInfo.startMaker)
+      }
+      if(markerInfo.startTextMaker){
+        amap.remove(markerInfo.startTextMaker);
+      }
+      //设置标记
+      let latng=that.addressInfo.initAddress.location;
+      console.log(latng);
+      //marker标记
+      that.setMarker(latng,1);
     }
   }
 }

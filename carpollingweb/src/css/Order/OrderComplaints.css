@@ -26,11 +26,11 @@
   transform: translateX(-50%);
 }
 .OrderComplaints .contents .closeCancel {
-  height: 0.82rem;
+  height: .82rem;
   background: #ffffff;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
   border-radius: 0.15rem;
-  padding: 0.2rem 0.5rem;
+  padding: .2rem .5rem;
   box-sizing: border-box;
 }
 .OrderComplaints .contents .closeCancel .item {
@@ -38,15 +38,15 @@
   text-align: left;
 }
 .OrderComplaints .contents .closeCancel .item span {
-  width: 1.17rem;
-  height: 0.42rem;
+  padding: 0rem .2rem;
+  height: .42rem;
   background: #ffffff;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
   border-radius: 0.21rem;
   display: inline-block;
   color: #878787;
   font-size: 0.3rem;
-  line-height: 0.42rem;
+  line-height: .42rem;
   text-align: center;
 }
 .OrderComplaints .contents .closeCancel .item:last-child {
@@ -54,7 +54,7 @@
 }
 .OrderComplaints .contents .complaintsReason {
   width: 100%;
-  margin-top: 0.16rem;
+  margin-top: .16rem;
   background: #ffffff;
   box-shadow: 0px 0px 0.16rem 0px rgba(0, 0, 0, 0.19);
   border-radius: 0.15rem;
@@ -71,11 +71,11 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   outline: none;
-  font-size: 0.3rem;
+  font-size: inherit;
 }
 .OrderComplaints .contents .confirmButton {
   width: 100%;
-  margin-top: 0.16rem;
+  margin-top: .16rem;
   background: #ffffff;
   min-height: 1.24rem;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
@@ -88,7 +88,7 @@
 }
 .OrderComplaints .contents .confirmButton .errorMsg {
   padding-bottom: 0.15rem;
-  font-size: 0.3rem;
+  font-size: 0.32rem;
 }
 .OrderComplaints .contents .confirmButton .btn {
   width: 3.74rem;
