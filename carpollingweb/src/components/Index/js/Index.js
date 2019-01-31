@@ -616,7 +616,6 @@ export default{
       }
       //设置标记
       let latng=that.addressInfo.initAddress.location;
-      console.log(latng);
       //marker标记
       that.setMarker(latng,1);
     }
