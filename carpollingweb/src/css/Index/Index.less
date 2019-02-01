@@ -187,21 +187,23 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         line-height: .7rem;
-        span{
-          display: block;
-          font-size: @min_font_size_32;
+        font-size: @min_font_size_32;
+        .label{
+          font-size:inherit;
+        }
+        .value{
+          font-size:inherit;
+          flex:1;
           input{
             border: none;
             outline: none;
             padding-left: 0.26rem;
+            font-size:18px;
+            width:100%;
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             box-sizing: border-box;
-            font-size:inherit;
           }
-        }
-        .valueNumber{
-          flex: 1;
         }
       }
       .item:first-child{

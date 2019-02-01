@@ -6,7 +6,7 @@
         <div class="contents">
             <div class="menu displayFlex">
                 <div class="menuItem" @click="cancelShow">取消</div>
-                <div class="menuItem label">选择用车时间</div>
+                <div class="menuItem label">选择乘车人数</div>
                 <div class="menuItem" @click="confirm">确定</div>
             </div>
             <div class="list">

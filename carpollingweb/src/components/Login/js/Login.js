@@ -16,7 +16,6 @@ export default{
     //判断用户是否有登录信息
     isLogin(){
       const that = this;
-      window.utils.storage.setter('userPhone',that.phone,1);
       return new Promise(function (resolve,reject) {
         that.$http({
           url:window.config.apisServer+'/phoneNum/'+that.phone,
@@ -24,6 +23,7 @@ export default{
           params:{}
         }).then(res=>{
           if(res.status==200 && res.data.phoneNum){//已存在用户信息
+            window.utils.storage.setter('userPhone',res.data.phoneNum,1);
             resolve(true)
           }else{
             resolve(false)
@@ -52,6 +52,7 @@ export default{
           if(res){
             that.$router.push({name:'Index',query:{phone:res.phoneNum}});
           }else{
+            //调用验证码接口
             that.$http({
               url:window.config.apisServer+'/genCode',
               method:'POST',
@@ -102,36 +103,31 @@ export default{
         that.$message.errorMessage('请先同意服务标准以及违约责任约定协议');
         return false;
       }
-      that.isLogin().then(res=>{
-        if(res){
-          that.$router.push({name:'Index',query:{phone:phone}});
-        }else{
-          if(!phoneCode){
-            that.$message.errorMessage('请输入验证码');
-            return;
-          }
-          clearInterval(timeInter);
-          window.utils.storage.setter('userPhone',phone,1);
-          that.$http({
-            url:window.config.apisServer+'/verify',
-            method:'POST',
-            data:{
-              phoneNum:phone,
-              verifyCode:that.code
-            }
-          }).then(res=>{
-            if(res.status==200 && res.data){//验证成功
-              window.utils.storage.setter('userPhone',phone,1);
-              //进入首页信息
-              that.$router.push({name:'Index'})
-            }else{
-              that.$message.errorMessage('验证码或手机号码输入错误');
-            }
-          }).catch(error=>{
-            that.$message.errorMessage('验证码或手机号码输入错误');
-          })
+      if(!phoneCode){
+        that.$message.errorMessage('请输入验证码');
+        return;
+      }
+      clearInterval(timeInter);
+      that.$http({
+        url:window.config.apisServer+'/verify',
+        method:'POST',
+        data:{
+          phoneNum:phone,
+          verifyCode:that.code
         }
+      }).then(res=>{
+        if(res.status==200 && res.data){//验证成功
+          window.utils.storage.setter('userPhone',phone,1);
+          //进入首页信息
+          that.$router.push({name:'Index'})
+        }else{
+          that.$message.errorMessage('验证码或手机号码输入错误');
+        }
+      }).catch(error=>{
+        that.$message.errorMessage('验证码或手机号码输入错误');
       })
+
+
 
     },
     checkForm(){
