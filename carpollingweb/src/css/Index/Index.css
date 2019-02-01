@@ -34,7 +34,7 @@
 .Index .carpoorCharter {
   position: absolute;
   width: 7.1rem;
-  bottom: 0.22rem;
+  bottom: .22rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
@@ -43,35 +43,35 @@
   text-align: right;
 }
 .Index .carpoorCharter .position img {
-  width: 0.6rem;
-  height: 0.6rem;
+  width: .6rem;
+  height: .6rem;
 }
 .Index .carpoorCharter .contents {
   background: #ffffff;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
-  border-radius: 0.15rem;
-  padding-top: 0.14rem;
-  padding-left: 0.25rem;
+  border-radius: .15rem;
+  padding-top: .14rem;
+  padding-left: .25rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .Index .carpoorCharter .menu .menuItem {
   width: 1.04rem;
-  height: 0.42rem;
-  line-height: 0.42rem;
+  height: .42rem;
+  line-height: .42rem;
   text-align: center;
   border: 1px solid #e2e2e2;
-  border-radius: 0.21rem;
+  border-radius: .21rem;
   color: #878787;
   font-size: 0.32rem;
-  margin-right: 0.73rem;
+  margin-right: .73rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .Index .carpoorCharter .menu .appointment {
-  margin-right: 0.17rem;
+  margin-right: .17rem;
   flex: 1;
   border: none;
   border-radius: 0rem;
@@ -79,36 +79,36 @@
 }
 .Index .carpoorCharter .menu .appointment img {
   width: 1.17rem;
-  height: 0.42rem;
+  height: .42rem;
 }
 .Index .carpoorCharter .menu .active {
   background: url("../../images/index_car_bg.png") no-repeat;
-  -webkit-background-size: 1.04rem 0.42rem;
-  background-size: 1.04rem 0.42rem;
+  -webkit-background-size: 1.04rem .42rem;
+  background-size: 1.04rem .42rem;
   color: #ffffff;
   border: none;
 }
 .Index .carpoorCharter .destination {
-  padding: 0.37rem 0rem 0.23rem 0rem;
+  padding: .37rem 0rem .23rem 0rem;
   /*预约时间*/
 }
 .Index .carpoorCharter .destination .appointTime {
   text-align: center;
-  padding-bottom: 0.45rem;
+  padding-bottom: .45rem;
 }
 .Index .carpoorCharter .destination .appointTime span {
   color: #000;
   font-size: 0.32rem;
   position: relative;
-  padding-right: 0.2rem;
+  padding-right: .2rem;
 }
 .Index .carpoorCharter .destination .appointTime span:after {
   position: absolute;
   content: '';
   right: 0rem;
   top: 50%;
-  width: 0.09rem;
-  height: 0.09rem;
+  width: .09rem;
+  height: .09rem;
   border-top: 1px solid #000000;
   border-right: 1px solid #000000;
   transform: translate(0%, -50%) rotate(45deg);
@@ -120,13 +120,13 @@
 .Index .carpoorCharter .destination .start .img,
 .Index .carpoorCharter .destination .end .img {
   position: relative;
-  height: 0.69rem;
-  width: 0.16rem;
+  height: .69rem;
+  width: .16rem;
 }
 .Index .carpoorCharter .destination .start .img .iconImage,
 .Index .carpoorCharter .destination .end .img .iconImage {
-  width: 0.16rem;
-  height: 0.16rem;
+  width: .16rem;
+  height: .16rem;
   display: block;
   position: absolute;
   top: 50%;
@@ -134,15 +134,15 @@
 }
 .Index .carpoorCharter .destination .start input,
 .Index .carpoorCharter .destination .end input {
-  height: 0.69rem;
-  line-height: 0.69rem;
+  height: .69rem;
+  line-height: .69rem;
   border: none;
   outline: none;
   display: block;
   border-bottom: 1px solid #dbdbdb;
   flex: 1;
-  margin-left: 0.3rem;
-  padding-bottom: 0.23rem;
+  margin-left: .3rem;
+  padding-bottom: .23rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -151,7 +151,7 @@
 .Index .carpoorCharter .destination .start .repeatPosition,
 .Index .carpoorCharter .destination .end .repeatPosition {
   padding-right: 0.3rem;
-  padding-left: 0.4rem;
+  padding-left: .4rem;
   position: relative;
 }
 .Index .carpoorCharter .destination .start .repeatPosition .positionImg,
@@ -160,7 +160,7 @@
   width: 0.4rem;
   height: 0.4rem;
   left: 0rem;
-  bottom: 0.23rem;
+  bottom: .23rem;
 }
 .Index .carpoorCharter .destination .start .repeatPosition .positionLable,
 .Index .carpoorCharter .destination .end .repeatPosition .positionLable {
@@ -169,19 +169,23 @@
 .Index .carpoorCharter .destination .start:after {
   position: absolute;
   content: '';
-  height: 0.6rem;
-  border-left: 2px dotted #C5C5C5;
+  height: .6rem;
+  border-left: 2px dotted  #C5C5C5;
   left: 0.05rem;
-  top: 0.32rem;
+  top: .32rem;
 }
 .Index .carpoorCharter .destination .end input {
   border: none;
-  padding-top: 0.23rem;
+  padding-top: .23rem;
   padding-bottom: 0rem;
   font-size: 0.32rem;
 }
 .Index .carpoorCharter .destination .errorMsg {
+<<<<<<< HEAD
   padding: 0.2rem 0.46rem;
+=======
+  padding: .2rem;
+>>>>>>> a21979d0f71eb07164bd7289a0370ad08c6705fc
   font-size: 0.3rem;
 }
 .Index .carpoorCharter .numberRemarks {
@@ -203,6 +207,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+<<<<<<< HEAD
   line-height: 0.7rem;
 }
 .Index .carpoorCharter .numberRemarks .item div {
@@ -210,16 +215,34 @@
   font-size: 0.32rem;
 }
 .Index .carpoorCharter .numberRemarks .item div input {
+=======
+  line-height: .7rem;
+  font-size: 0.32rem;
+}
+.Index .carpoorCharter .numberRemarks .item .label {
+  font-size: inherit;
+}
+.Index .carpoorCharter .numberRemarks .item .value {
+  font-size: inherit;
+  flex: 1;
+}
+.Index .carpoorCharter .numberRemarks .item .value input {
+>>>>>>> a21979d0f71eb07164bd7289a0370ad08c6705fc
   border: none;
   outline: none;
   padding-left: 0.26rem;
+  font-size: 18px;
+  width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+<<<<<<< HEAD
   font-size: inherit;
 }
 .Index .carpoorCharter .numberRemarks .item .value {
   flex: 1;
+=======
+>>>>>>> a21979d0f71eb07164bd7289a0370ad08c6705fc
 }
 .Index .carpoorCharter .numberRemarks .item:first-child {
   border-bottom: 1px solid #dbdbdb;
@@ -229,7 +252,7 @@
   background: #ffffff;
   border-radius: 0.2rem 0.2rem 0rem 0rem;
   margin-top: 0.15rem;
-  padding-bottom: 0.16rem;
+  padding-bottom: 0.16rem ;
 }
 .Index .carpoorCharter .publishButton .price {
   text-align: center;
@@ -270,7 +293,7 @@
   background: #ffffff;
 }
 .Index .userInfo .contents .menu .img {
-  padding-top: 0.29rem;
+  padding-top: .29rem;
   text-align: center;
 }
 .Index .userInfo .contents .menu .img img {
@@ -278,26 +301,26 @@
   height: 1.2rem;
 }
 .Index .userInfo .contents .menu .phone {
-  padding-top: 0.31rem;
+  padding-top: .31rem;
   color: #131313;
   font-size: 0.3rem;
   text-align: center;
 }
 .Index .userInfo .contents .menuList {
-  padding: 0.75rem 0rem 0rem 0.52rem;
+  padding: .75rem 0rem 0rem .52rem;
 }
 .Index .userInfo .contents .menuList .menuItem {
-  height: 0.36rem;
+  height: .36rem;
 }
 .Index .userInfo .contents .menuList .menuItem .icon {
-  width: 0.32rem;
+  width: .32rem;
   height: 100%;
-  padding-right: 0.36rem;
+  padding-right: .36rem;
 }
 .Index .userInfo .contents .menuList .menuItem .labelName {
   display: inline-block;
   height: 100%;
-  line-height: 0.36rem;
+  line-height: .36rem;
   color: #131313;
   font-size: 0.32rem;
 }
@@ -305,11 +328,11 @@
   flex: 1;
 }
 .Index .showUserInfo {
-  animation: userShow 0.5s;
+  animation: userShow .5s;
   animation-fill-mode: forwards;
 }
 .Index .hideUserInfo {
-  animation: userHide 0.5s;
+  animation: userHide .5s;
   animation-fill-mode: forwards;
 }
 .Index .amap-logo,

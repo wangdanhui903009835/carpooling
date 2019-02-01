@@ -15,7 +15,11 @@ axios.interceptors.request.use(config => {
     //添加token
     let token = window.utils.storage.getter('token',1);
     if(token!=null){
+<<<<<<< HEAD
       config.headers['token'] = token
+=======
+      config.headers['token'] = access_token
+>>>>>>> a21979d0f71eb07164bd7289a0370ad08c6705fc
     }
     //post 提交时，应该params改为data
     if (config.method == "post") {
@@ -27,6 +31,22 @@ axios.interceptors.request.use(config => {
     return Promise.reject(error);
   }
 )
+  //token拦截
+  axios.interceptors.response.use(function(res){
+    if(res.data.tokenFailed=='failed'){
+      Mint.Toast({
+        message:'登录已过期，请重新登录',
+        position:'top'
+      });
+      //清除缓存数据
+      window.utils.storage.remove('token',1);
+      window.utils.storage.remove('userPhone',1);
+      router.push({name:'Login'});
+    }
+    return res;
+  },function(error){
+    return Promise.reject(error);
+  })
 /*设置标题*/
 router.beforeEach((to,from,next)=>{
   document.title=to.meta.title;
