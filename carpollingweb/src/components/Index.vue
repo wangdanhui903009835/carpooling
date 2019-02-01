@@ -52,13 +52,13 @@
               <div class="boxItem">
                 <div class="numberRemarks">
                     <div class="item displayFlex">
-                      <span class="label">乘车人数:</span>
+                      <div class="label">乘车人数:</div>
                       <!--<span class="value"><input type="text" v-model="userNum"/></span>-->
-                      <span class="value valueNumber" @click="selectNumber">&nbsp;&nbsp;{{showSelectNumber.number}}</span>
+                      <div class="value valueNumber" @click="selectNumber">&nbsp;&nbsp;{{showSelectNumber.number}}</div>
                     </div>
                     <div class="item displayFlex">
-                      <span class="label">备注:</span>
-                      <span class="value"><input type="text" v-model="remarks" placeholder="请输入备注信息"/></span>
+                      <div class="label">备注:</div>
+                      <div class="value"><input type="text" v-model="remarks" placeholder="请输入备注信息"/></div>
                     </div>
                 </div>
                 <!--价格发布信息-->

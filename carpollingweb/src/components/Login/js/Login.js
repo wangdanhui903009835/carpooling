@@ -61,8 +61,10 @@ export default{
               }
             }).then(res=>{
               that.time='60s';
-              if(res.status==200 && res.data=='true'){//验证码发送成功
+              if(res.status==200 && res.data!='fail'){//验证码发送成功
                 that.$message.errorMessage('验证码发送成功，请注意查收');
+                let token =res.data;
+                window.utils.storage.setter('token',1);
                 that.cutDownTime();
               }else{//验证码发送失败
                 that.$message.errorMessage('验证码发送失败，请稍后重试');

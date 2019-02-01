@@ -13,9 +13,9 @@ Vue.config.productionTip = false
 axios.defaults.headers.post['Content-Type'] = 'text/plain';
 axios.interceptors.request.use(config => {
     //添加token
-    let access_token = window.utils.storage.getter('token');
-    if(access_token!=null){
-      config.headers['access-token'] = access_token
+    let token = window.utils.storage.getter('token',1);
+    if(token!=null){
+      config.headers['token'] = token
     }
     //post 提交时，应该params改为data
     if (config.method == "post") {

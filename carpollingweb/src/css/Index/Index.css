@@ -181,7 +181,7 @@
   font-size: 0.32rem;
 }
 .Index .carpoorCharter .destination .errorMsg {
-  padding: 0.2rem;
+  padding: 0.2rem 0.46rem;
   font-size: 0.3rem;
 }
 .Index .carpoorCharter .numberRemarks {
@@ -205,11 +205,11 @@
   box-sizing: border-box;
   line-height: 0.7rem;
 }
-.Index .carpoorCharter .numberRemarks .item span {
+.Index .carpoorCharter .numberRemarks .item div {
   display: block;
   font-size: 0.32rem;
 }
-.Index .carpoorCharter .numberRemarks .item span input {
+.Index .carpoorCharter .numberRemarks .item div input {
   border: none;
   outline: none;
   padding-left: 0.26rem;
@@ -218,7 +218,7 @@
   box-sizing: border-box;
   font-size: inherit;
 }
-.Index .carpoorCharter .numberRemarks .item .valueNumber {
+.Index .carpoorCharter .numberRemarks .item .value {
   flex: 1;
 }
 .Index .carpoorCharter .numberRemarks .item:first-child {
