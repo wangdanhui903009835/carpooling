@@ -23,7 +23,6 @@ export default{
           params:{}
         }).then(res=>{
           if(res.status==200 && res.data.phoneNum){//已存在用户信息
-            window.utils.storage.setter('userPhone',res.data.phoneNum,1);
             resolve(true)
           }else{
             resolve(false)
@@ -48,33 +47,35 @@ export default{
         return;
       }
       if(that.checkForm()){
-        that.isLogin().then(res=>{
-          if(res){
-            that.$router.push({name:'Index',query:{phone:res.phoneNum}});
-          }else{
-            //调用验证码接口
-            that.$http({
-              url:window.config.apisServer+'/genCode',
-              method:'POST',
-              data:{
-                nationCode:'86',//固定区号86
-                phoneNum:that.phone //电话号码
-              }
-            }).then(res=>{
-              that.time='60s';
-              if(res.status==200 && res.data!='fail'){//验证码发送成功
-                that.$message.errorMessage('验证码发送成功，请注意查收');
-                let token =res.data;
-                window.utils.storage.setter('token',1);
-                that.cutDownTime();
-              }else{//验证码发送失败
-                that.$message.errorMessage('验证码发送失败，请稍后重试');
-              }
-            }).catch(error=>{
-
-            })
-          }
-        })
+          //调用验证码接口
+          that.$http({
+            url:window.config.apisServer+'/genCode',
+            method:'POST',
+            data:{
+              nationCode:'86',//固定区号86
+              phoneNum:that.phone //电话号码
+            }
+          }).then(res=>{
+            that.time='60s';
+            window.utils.storage.setter('userPhone',that.phone,1);
+            if(res.status==200 && res.data!='fail'){//验证码发送成功
+              let token =res.data;
+              //存储同肯值
+              window.utils.storage.setter('token',token,1);
+              that.cutDownTime();
+              that.isLogin().then(res=>{
+                if(res){//已存在该用户
+                  that.$router.push({name:'Index',query:{phone:res.phoneNum}});
+                }else{//不存在该用户
+                  that.$message.errorMessage('验证码发送成功，请注意查收');
+                }
+              })
+            }else{
+              that.$message.errorMessage('验证码发送失败，请稍后重试');
+            }
+          }).catch(error=>{
+            that.$message.errorMessage('验证码发送失败，请稍后重试');
+          })
       }
     },
     //倒计时显示

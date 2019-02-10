@@ -9,23 +9,21 @@ import Mint from 'mint-ui'
 import 'mint-ui/lib/style.min.css'
 import qs from 'qs'
 Vue.use(Mint);
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 axios.defaults.headers.post['Content-Type'] = 'text/plain';
 axios.interceptors.request.use(config => {
     //添加token
     let token = window.utils.storage.getter('token',1);
-    if(token!=null){
-<<<<<<< HEAD
+    if(token!=null && config.url!='https://bsx.faguikeji.com/genCode'){
       config.headers['token'] = token
-=======
-      config.headers['token'] = access_token
->>>>>>> a21979d0f71eb07164bd7289a0370ad08c6705fc
     }
     //post 提交时，应该params改为data
     if (config.method == "post") {
       config.data = config.data ? config.data : qs.stringify(config.params)
       config.params = null;
     }
+    console.log('config配置文件信息');
+    console.log(config);
     return config
   },(error) => {
     return Promise.reject(error);
@@ -33,7 +31,9 @@ axios.interceptors.request.use(config => {
 )
   //token拦截
   axios.interceptors.response.use(function(res){
-    if(res.data.tokenFailed=='failed'){
+    console.log('config拦截数据');
+    console.log(res);
+    if(res.data=='tokenFailed'){
       Mint.Toast({
         message:'登录已过期，请重新登录',
         position:'top'
