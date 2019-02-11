@@ -22,8 +22,6 @@ axios.interceptors.request.use(config => {
       config.data = config.data ? config.data : qs.stringify(config.params)
       config.params = null;
     }
-    console.log('config配置文件信息');
-    console.log(config);
     return config
   },(error) => {
     return Promise.reject(error);
@@ -31,8 +29,6 @@ axios.interceptors.request.use(config => {
 )
   //token拦截
   axios.interceptors.response.use(function(res){
-    console.log('config拦截数据');
-    console.log(res);
     if(res.data=='tokenFailed'){
       Mint.Toast({
         message:'登录已过期，请重新登录',

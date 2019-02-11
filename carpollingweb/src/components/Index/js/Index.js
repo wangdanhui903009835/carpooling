@@ -129,9 +129,11 @@ export default{
       const that = this;
       let amap = that.amap, mgeocoder;
       amap.plugin(["AMap.Geocoder"], function () {
-        mgeocoder = new AMap.Geocoder({});
+        mgeocoder = new AMap.Geocoder({
+        });
         //获取详细地址信息
         mgeocoder.getAddress(location,function(status,result){
+          console.log(result);
           //获取地址成功
           if (status === 'complete' && result.info === 'OK'){
             let addressInfo = result.regeocode;

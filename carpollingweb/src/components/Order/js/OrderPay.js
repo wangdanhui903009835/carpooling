@@ -1,5 +1,6 @@
 import OrderCancel from './../OrderCancel.vue'
-import OrderComplaints from './../OrderComplaints.vue'
+import OrderComplaints from './../OrderComplaints.vue';
+let pollingTime = null;
 export default{
   components:{OrderCancel,OrderComplaints},
   data(){
@@ -13,9 +14,10 @@ export default{
       orderComplaintsInfo:{
         showFlag:0,//0-隐藏，1-显示
       },//订单投诉信息
-      orderInfo:{
-      },
+      orderInfo:{},
       amap:{},
+      driverRouter:{},//驾车路线
+      driverInfo:{},//司机信息
     }
   },
   mounted(){
@@ -32,9 +34,18 @@ export default{
       });
        //初始化地图信息
       that.getInitAmap();
+      //计算地图的高度
+      that.setAmapHeight();
     }).catch(error=>{
       console.log(error);
     });
+    //轮询获取订单最新状态信息
+    pollingTime = setInterval(function(){
+      that.getOrderInfo().then(res=>{
+        //计算地图的高度
+        that.setAmapHeight();
+      })
+    },30000)
   },
   methods:{
     //获取订单行程信息
@@ -54,6 +65,17 @@ export default{
           if(res.status==200){//订单数据获取成功
             let orderInfo=res.data;
             that.orderInfo = orderInfo;
+            //隐藏遮罩层取消订单
+            that.orderCancelInfo.showFlag = 0;
+            that.orderComplaintsInfo.showFlag = 0;
+            if(orderInfo.status==6){//订单已完成
+              that.$router.push({name:'Index'});
+              clearInterval(pollingTime);
+              pollingTime = null;
+            }
+            //获取司机信息
+            if(orderInfo.status==2||orderInfo.status==3 ||orderInfo.status==4){
+            }
             resolve(orderInfo)
           }else{
             reject(null)
@@ -62,7 +84,31 @@ export default{
           reject(error)
         })
       })
-
+    },
+    //计算地图显示的高度
+    setAmapHeight(){
+      const that = this;
+      that.$nextTick(function(){
+        let clientHeight = document.body.clientHeight,
+          addressBox = document.getElementById('addressBox'),
+          driverInfo = document.getElementById('driverInfo'),
+          payButton = document.getElementById('payButton'),
+          addressBoxHeight = 0,driverInfoHeight=0,payButtonHeight = 0;
+        if(addressBox){
+          addressBoxHeight=addressBox.offsetHeight;
+        }
+        if(driverInfo){
+          driverInfoHeight = driverInfo.offsetHeight;
+        }
+        if(payButton){
+          payButtonHeight = payButton.offsetHeight;
+        }
+        let amapHeight = clientHeight-addressBoxHeight-driverInfoHeight-payButtonHeight;
+        let mapBox =  document.getElementById('mapBox');
+        if(mapBox){
+          mapBox.style.height=amapHeight+'px';
+        }
+      });
     },
     //初始化地图信息
     getInitAmap(){
@@ -82,7 +128,23 @@ export default{
             console.log('获取驾车路线失败');
           }
         });
+        //存储路线图
+        that.driverRouter = driving;
       });
+    },
+
+    //获取司机信息
+    getDriverInfo(orderId){
+      const that = this;
+      that.$http({
+        url:window.config.apisServer+'/queryderverinfo',
+        method:'POST',
+        data:{
+          orderId:orderId
+        }
+      }).then(res=>{
+
+      })
     },
     //格式化日期
     formateDate(val){
