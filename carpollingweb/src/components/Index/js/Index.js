@@ -1,13 +1,13 @@
 import DateTimeComponent from './../DateTimeComponent.vue'
 import SelecNumber from './../SelecNumber'
 import AddressSelect from './../AddressSelect.vue'
-let areaListMap = new Map().set('028','成都市')
-  .set('0827','巴州区')
-  .set('511902', '巴中市巴州区')
-  .set('511903','巴中市恩阳区')
-  .set('511923','巴中市平昌县')
-  .set('511921','巴中市通江县')
-  .set('511922','巴中市南江县');
+let areaListMap = new Map().set('028',  {priceName:'成都市',countyName:'成都市'})
+  .set('0827',{priceName:'巴州区',countyName:'巴州区'})
+  .set('511902',{priceName:'巴中市巴州区',countyName:'巴州区'})
+  .set('511903',{priceName:'巴中市恩阳区',countyName:'恩阳区'})
+  .set('511923',{priceName:'巴中市平昌县',countyName:'平昌县'})
+  .set('511921',{priceName:'巴中市通江县',countyName:'通江县'})
+  .set('511922',{priceName:'巴中市南江县',countyName:'南江县'});
 export default{
   components:{DateTimeComponent,SelecNumber,AddressSelect},
   data(){
@@ -25,12 +25,14 @@ export default{
           location:{},
           getPriceText:'',
           city:'',
+          countyName:'',
         },
         endAddress:{
           text:'你要到哪里去?',
           location:{},
           getPriceText:'',
           city:'',
+          countyName:''
         }
       },
       showDateTimeInfo:{
@@ -62,6 +64,7 @@ export default{
         type:0,
       },
       addressShow:false,
+      numberRemarksFlag:false
     }
 
   },
@@ -191,11 +194,14 @@ export default{
         //获取价格输入地址
         let code = addressComponent.adcode||addressComponent.citycode;
         if(areaListMap.has(code)){
-          addressInfo.getPriceText=areaListMap.get(code)
+          addressInfo.getPriceText=areaListMap.get(code).priceName;
+          addressInfo.countyName =areaListMap.get(code).countyName;
         }else if(addressComponent.citycode=='028'){
-          addressInfo.getPriceText=areaListMap.get('028')
+          addressInfo.getPriceText=areaListMap.get('028').priceName;
+          addressInfo.countyName =areaListMap.get('028').countyName;
         }else{
-          addressInfo.getPriceText='--'
+          addressInfo.getPriceText='--';
+          addressInfo.countyName ='';
         }
         if(type==0){
           that.addressInfo.startAddress = addressInfo
@@ -216,12 +222,14 @@ export default{
           location:{},
           getPriceText:'',
           city:'',
+          countyName:'',
         },
         endAddress:{
           text:'你要到哪里去?',
           location:{},
           getPriceText:'',
           city:'',
+          countyName:''
         }
       },
       //获取定位信息
@@ -298,14 +306,14 @@ export default{
         }
       }else if(type==2){//开始值设置
         imgUrl = require("./../../../images/start_location.png");
-        contents+=addressInfo.startAddress.text+"</div>";
+        contents+=addressInfo.startAddress.text.split('·')[1]+"</div>";
         if(markerInfo.startMaker){
           amap.remove(markerInfo.startMaker);
           amap.remove(markerInfo.startTextMaker);
         }
       }else if(type==3){//结束值设置
         imgUrl = require("./../../../images/end_location.png");
-        contents+=addressInfo.endAddress.text+"</div>";
+        contents+=addressInfo.endAddress.text.split('·')[1]+"</div>";
         if(markerInfo.endMarker){
           amap.remove(markerInfo.endMarker);
           amap.remove(markerInfo.endTextMarker);
@@ -367,6 +375,7 @@ export default{
     //获取价格
     getPrice(){
       const that = this;
+      that.price=0;
       let addressInfo=that.addressInfo,
           url = window.config.apisServer+'/getprice',
           params = {
@@ -450,7 +459,9 @@ export default{
       showSelectAddress.type = type;
       that.showSelectAddress=showSelectAddress;
       that.addressShow=true;
-    },
+      //显示人数信息和备注信息
+      that.numberRemarksFlag=true;
+  },
     //地址选择取消
     cancelShowAddressSelect(){
       const that = this;
@@ -465,9 +476,8 @@ export default{
       }else if(obj.type==1){//结束地址
         that.addressInfo.endAddress=obj
       }
-      console.log(obj);
       //marker标记
-      that.setMarker(obj.location,obj.type==0?1:2);
+      that.setMarker(obj.location,obj.type==0?2:3);
       //获取价格
       that.getPrice();
     },

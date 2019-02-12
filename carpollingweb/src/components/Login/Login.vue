@@ -9,7 +9,9 @@
                 <div class="phoneNumber">
                     <div class="phoneItem phone  displayFlex">
                         <div class="textLable">手机号码</div>
-                        <input type="text" v-model="phone" placeholder="请输入手机号" :maxlength="11"/>
+                        <div>
+                          <input type="text" v-model="phone" placeholder="请输入手机号" :maxlength="11"/>
+                        </div>
                         <div class="code" @click="getCode"><label>{{time}}</label></div>
                     </div>
                     <div class="phoneItem code  displayFlex">

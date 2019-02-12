@@ -6,13 +6,13 @@
     <div class="indexAddressSelect">
         <div class="title displayFlex">
             <div class="city" @click="showCityList">
-                <div class="cityName" v-if="cityName">
-                    {{cityName}}
+                <div class="cityName" v-if="countyName">
+                    {{countyName}}
                     <img src="./../../images/angel.png">
                 </div>
                 <div class="nocity" v-else>选择城市</div>
             </div>
-            <div class="poiSearch"><input type="search" id="searchText" v-model="searchText" placeholder="请输入查询地址"></div>
+            <div class="poiSearch"><input type="text" id="searchText" v-model="searchText" placeholder="请输入查询地址"></div>
             <div class="cancel" @click="cancel">取消</div>
         </div>
         <div class="contents">

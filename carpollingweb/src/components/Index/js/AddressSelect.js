@@ -3,17 +3,18 @@ export default{
   data(){
     return{
       objInfo:{},
-      cityName:'',//城市显示名称
+      countyName:'',//区域名称
       searchText:'',
       cityList:[
-        {code:'0',value:'成都市',name:'成都市',city:'成都'},
-        {code:'1',value:'巴中市巴州区',name:'巴州区',city:'巴中'},
-        {code:'2',value:'巴中市恩阳区',name:'恩阳区',city:'巴中'},
-        {code:'3',value:'巴中市平昌县',name:'平昌县',city:'巴中'},
-        {code:'4',value:'巴中市通江县',name:'通江县',city:'巴中'},
-        {code:'5',value:'巴中市南江县',name:'南江县',city:'巴中'}
+        {code:'0',value:'成都市',name:'成都市',city:'成都',cityAdcode:'028'},
+        {code:'1',value:'巴中市巴州区',name:'巴州区',city:'巴中',cityAdcode:'511902'},
+        {code:'2',value:'巴中市恩阳区',name:'恩阳区',city:'巴中',cityAdcode:'511903'},
+        {code:'3',value:'巴中市平昌县',name:'平昌县',city:'巴中',cityAdcode:'511923'},
+        {code:'4',value:'巴中市通江县',name:'通江县',city:'巴中',cityAdcode:'511921'},
+        {code:'5',value:'巴中市南江县',name:'南江县',city:'巴中',cityAdcode:'511922'}
       ],
       cityListShowFlag:0,
+      cityAdcode:'028',
       poiList:[],
       recommentFlag:false,
     }
@@ -22,11 +23,18 @@ export default{
     const that = this;
     let info = JSON.parse(JSON.stringify(that.objInfoProp));
     that.objInfo = info
-    that.cityName = info.city;
-    if(!that.cityName){
+    that.countyName = info.countyName;
+    if(!that.countyName){
       that.cityListShowFlag=1
     }else{
       that.citySearch('');
+    }
+    //设置code值
+    let cityList=that.cityList;
+    for(var i in cityList){
+      if(that.countyName==cityList[i].name){
+        that.cityAdcode = cityList[i].cityAdcode
+      }
     }
   },
   methods:{
@@ -40,7 +48,8 @@ export default{
       const that = this;
       let item =that.cityList[index];
       that.cityListShowFlag=0;
-      that.cityName=item.name;
+      that.countyName=item.name;
+      that.cityAdcode = item.cityAdcode;
       that.objInfo.getPriceText = item.value;
       that.objInfo.city = item.city;
       //推荐地址信息查询
@@ -62,6 +71,7 @@ export default{
         latitude:item.location.lat,
         longitude:item.location.lng
       }
+      addressInfo.countyName = that.countyName;
       that.$emit('confirmShowAddressSelect',addressInfo)
     },
     //poi地址查询信息
@@ -71,7 +81,7 @@ export default{
       AMap.service(["AMap.PlaceSearch"],function(){
         let placeSearch = new AMap.PlaceSearch({
           pageSize:20,
-          city:that.cityName,
+          city:that.cityAdcode,
           citylimit:true,
           output:"json",
         })

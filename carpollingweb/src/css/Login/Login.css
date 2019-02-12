@@ -45,17 +45,18 @@
 }
 .login .container .detail .phoneNumber .phoneItem input {
   display: block;
-  width: 3.5rem;
+  width: 2.5rem;
   border: none;
   outline: none;
   padding-left: 0.2rem;
   background: transparent;
+  height: 100%;
   font-size: inherit;
 }
 .login .container .detail .phoneNumber .phoneItem .code {
   flex: 1;
   font-size: 0.3rem;
-  text-align: center;
+  text-align: right;
   color: #FF4200;
   height: 1rem;
 }

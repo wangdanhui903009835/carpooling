@@ -43,13 +43,13 @@
                         <div class="labelValue" @click="showAddressSelect(1)">{{addressInfo.endAddress.text}}</div>
                     </div>
                     <!--错误提示信息-->
-                    <div class="errorMsg">提示:{{errorInfoMsg.errorMsg}}</div>
+                    <div class="errorMsg" v-if="numberRemarksFlag">提示:{{errorInfoMsg.errorMsg}}</div>
                 </div>
             </div>
             </div>
             <div>
               <!--拼车人数和备注信息-->
-              <div class="boxItem">
+              <div class="boxItem" v-if="numberRemarksFlag">
                 <div class="numberRemarks">
                     <div class="item displayFlex">
                       <div class="label">乘车人数:</div>

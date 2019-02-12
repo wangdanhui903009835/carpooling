@@ -45,7 +45,7 @@ export default{
         //计算地图的高度
         that.setAmapHeight();
       })
-    },30000)
+    },10000)
   },
   methods:{
     //获取订单行程信息
@@ -75,6 +75,7 @@ export default{
             }
             //获取司机信息
             if(orderInfo.status==2||orderInfo.status==3 ||orderInfo.status==4){
+              that.getDriverInfo(orderInfo.orderId);
             }
             resolve(orderInfo)
           }else{
@@ -137,14 +138,28 @@ export default{
     getDriverInfo(orderId){
       const that = this;
       that.$http({
-        url:window.config.apisServer+'/queryderverinfo',
+        url:window.config.apisServer+'/querydriverinfo',
         method:'POST',
         data:{
           orderId:orderId
         }
       }).then(res=>{
-
+        if(res.status==200){
+          let driverInfo = res.data||{};
+          driverInfo.driverFirstName='';
+          if(driverInfo && driverInfo.driverName){
+            driverInfo.driverFirstName = driverInfo.driverName.substring(0,1);
+          }
+          driverInfo.driverFirstName = driverInfo.driverName?driverInfo.driverName.substring(0,1):'';
+          that.driverInfo=driverInfo;
+        }
       })
+    },
+    //拨打电话号码
+    takePhone(){
+      const that  = this;
+      let driverInfo = that.driverInfo;
+      window.location.href= 'tel://' +driverInfo.phoneNum;
     },
     //格式化日期
     formateDate(val){

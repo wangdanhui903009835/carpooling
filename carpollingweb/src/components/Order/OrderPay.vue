@@ -44,9 +44,9 @@
             <div class="driverInfo displayFlex" v-if="orderInfo.status>=2 && orderInfo.status<=4">
                 <div class="driverLogo"><img src="./../../images/defaultHeadImage.png"></div>
                 <div class="driverContents">
-                    <div class="name">白师傅·川A12345</div>
+                    <div class="name">{{driverInfo.driverFirstName}}师傅·{{driverInfo.carNum}}</div>
                     <div class="contentsBox">
-                        <div class="carInfo">白色·帕萨特</div>
+                        <div class="carInfo">{{driverInfo.carColor}}·{{driverInfo.carType}}</div>
                         <div class="evaluate">
                             <img src="./../../images/star_full.png">
                             <img src="./../../images/star_full.png">
@@ -55,7 +55,7 @@
                             <img src="./../../images/star_null.png">
                         </div>
                         <!--电话号码--->
-                        <div class="telphone"><img src="./../../images/telphone.png"></div>
+                        <div class="telphone" @click="takePhone"><img src="./../../images/telphone.png"></div>
                     </div>
                 </div>
             </div>
