@@ -37,7 +37,6 @@
         mounted(){
             const that = this;
             that.selectNumber=that.objInfo.number;
-            console.log(this.objInfo)
         },
         methods:{
             //选择订单编号

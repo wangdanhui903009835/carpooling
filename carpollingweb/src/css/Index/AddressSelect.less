@@ -1,0 +1,88 @@
+@import "./../Common.less";
+.indexAddressSelect{
+  position: absolute;
+  width:100%;
+  height:100%;
+  z-index:9999;
+  background: #ffffff;
+  top:0rem;
+  left:100%;
+  animation:addressMove .5s ease;
+  animation-fill-mode: forwards;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  .title{
+    height:1rem;
+    line-height:1rem;
+    padding:0rem .2rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    .city{
+      .cityName{
+        position: relative;
+        img{
+          width:.2rem;
+          height:.2rem;
+        }
+      }
+      .nocity{
+        color: #999999;
+      }
+    }
+    .poiSearch{
+      flex:1;
+      input{
+        width:100%;
+        border:none;
+        outline: none;
+        padding-left:.2rem;
+        height:100%;
+      }
+    }
+    .cancel{
+      color: #FF8501;
+    }
+  }
+  .contents{
+    border-top:10px solid #ececec;
+    padding:0rem .2rem;
+    .cityList{
+      .listItem{
+        height:.8rem;
+        line-height:.8rem;
+        border-bottom:1px solid #ececec;
+        color: #999999;
+      }
+    }
+    .recommentList{
+      .recommentItem{
+        height: .8rem;
+        line-height:.8rem;
+        border-bottom:1px solid #ececec;
+        color: #999999;
+        .text{
+          flex:1;
+        }
+        .label{
+          color: #008000;
+          font-size:@min_font_size_18;
+          img{
+            padding-left:.1rem;
+            width:.2rem;
+            height:.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+@keyframes addressMove {
+  0%{
+    left:100%;
+  }
+  100%{
+    left:0rem;
+  }
+}

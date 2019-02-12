@@ -132,8 +132,8 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.Index .carpoorCharter .destination .start input,
-.Index .carpoorCharter .destination .end input {
+.Index .carpoorCharter .destination .start .labelValue,
+.Index .carpoorCharter .destination .end .labelValue {
   height: .69rem;
   line-height: .69rem;
   border: none;

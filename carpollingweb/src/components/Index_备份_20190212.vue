@@ -4,11 +4,11 @@
 <template>
     <div class="Index">
         <!--地图显示信息-->
-        <div class="container"  id="container"></div>
+        <div class="container" :class="inputFoucs?'inputContainer':''" id="container"></div>
         <div class="headImage" @click="showUserInfo(1)"><img src="./../images/defaultHeadImage.png">
         </div>
         <!--拼车、包车、预约-->
-        <div class="carpoorCharter"  v-if="!showDateTimeInfo.showFlag">
+        <div class="carpoorCharter" :class="inputFoucs?'inputCarpoorCharter':''" v-if="!showDateTimeInfo.showFlag">
             <div class="boxItem">
               <div class="contents">
                 <div class="menu displayFlex">
@@ -29,7 +29,7 @@
                         <div class="img">
                             <img src="./../images/start_address.png" class="iconImage">
                         </div>
-                        <div class="labelValue" @click="showAddressSelect(0)">{{addressInfo.startAddress.text}}</div>
+                        <input type="text" v-model="addressInfo.startAddress.text" placeholder="请输入开始地址" @focus="getFocus(1)">
                         <div class="repeatPosition displayFlex">
                           <img class="positionImg" src="./../images/position.png" @click="getReposition">
                           <div class="positionLable" @click="getReposition">定位</div>
@@ -40,14 +40,14 @@
                         <div class="img">
                             <img src="./../images/end_address.png" class="iconImage">
                         </div>
-                        <div class="labelValue" @click="showAddressSelect(1)">{{addressInfo.endAddress.text}}</div>
+                        <input type="text" v-model="addressInfo.endAddress.text" placeholder="你要去哪儿" @focus="getFocus(2)" >
                     </div>
                     <!--错误提示信息-->
-                    <div class="errorMsg">提示:{{errorInfoMsg.errorMsg}}</div>
+                    <div class="errorMsg" v-if="inputFoucs">提示:{{errorInfoMsg.errorMsg}}</div>
                 </div>
             </div>
             </div>
-            <div>
+            <div v-if="inputFoucs">
               <!--拼车人数和备注信息-->
               <div class="boxItem">
                 <div class="numberRemarks">
@@ -89,8 +89,6 @@
         <DateTimeComponent :objInfo="showDateTimeInfo" v-if="showDateTimeInfo.showFlag" @cancelShow="cancelShow" @confirmShow="confirmShow"></DateTimeComponent>
         <!--菜单选择--->
         <SelecNumber :objInfo="showSelectNumber" v-if="showSelectNumber.showFlag" @cancelShowSelect="cancelShowSelect" @confirmShowSelec="confirmShowSelec"></SelecNumber>
-        <!--地址选择信息-->
-        <AddressSelect :objInfoProp="showSelectAddress" v-if="addressShow" @cancelShowAddressSelect="cancelShowAddressSelect" @confirmShowAddressSelect="confirmShowAddressSelect"></AddressSelect>
     </div>
 </template>
 <script>

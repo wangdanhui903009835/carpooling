@@ -1,6 +1,5 @@
 import DateTimeComponent from './../DateTimeComponent.vue'
 import SelecNumber from './../SelecNumber'
-import AddressSelect from './../AddressSelect.vue'
 let areaListMap = new Map().set('028','成都市')
   .set('0827','巴州区')
   .set('511902', '巴中市巴州区')
@@ -9,9 +8,10 @@ let areaListMap = new Map().set('028','成都市')
   .set('511921','巴中市通江县')
   .set('511922','巴中市南江县');
 export default{
-  components:{DateTimeComponent,SelecNumber,AddressSelect},
+  components:{DateTimeComponent,SelecNumber},
   data(){
     return{
+      count:0,
       phone:'',//电话号码
       userInfo:{
         showFlag:0,
@@ -21,16 +21,15 @@ export default{
       amap:{},//高德地图信息
       addressInfo:{
         startAddress:{
-          text:'正在获取地理位置...',
+          text:'',
           location:{},
           getPriceText:'',
-          city:'',
+          formateAddress:'',//结构化地址
         },
         endAddress:{
-          text:'你要到哪里去?',
+          text:'',
           location:{},
           getPriceText:'',
-          city:'',
         }
       },
       showDateTimeInfo:{
@@ -41,6 +40,7 @@ export default{
       },
       showTimeText:'预约时间',
       remarks:'',//备注
+      inputFoucs:false,
       errorInfoMsg:{
         errorMsg:'起点和终点只能在成都,巴州区,恩阳区,平昌县,通江县,南江县这几个区域，其他区域暂未开放'
       },
@@ -55,13 +55,7 @@ export default{
       showSelectNumber:{
         showFlag:false,
         number:1
-      },
-      //地址下拉页面的弹出
-      showSelectAddress:{
-        obj:{},
-        type:0,
-      },
-      addressShow:false,
+      }
     }
 
   },
@@ -79,19 +73,16 @@ export default{
         //初始化数据信息
         that.init();
       }
-    }).catch(error=>{
-
     })
   },
   methods:{
     init(){
       const that = this;
-      //设置默认地址栏信息
       let latng = {
         latitude:30.572269,
         longitude:104.066541
       };
-      //window.utils.storage.remove('initAddress',1);
+      window.utils.storage.remove('initAddress',1);
       let sessionInitAddress = window.utils.storage.getter('initAddress',1);
       if(sessionInitAddress){
         that.addressInfo.startAddress=sessionInitAddress;
@@ -115,115 +106,114 @@ export default{
             zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
             extensions:'all'
           });
-          let amap={};
           geolocation.getCurrentPosition(function(status,result){
-            if(status=='complete'){//定位成功
-              let poi = result.pois[0];
-              //设置开始地址信息
-              //设置开始地址信息
-              that.setAddressInfo(result,0,'geo').then(res=>{
-                window.utils.storage.setter('initAddress',res,1)
-              });
-              latng.longitude = poi.location.lng;
-              latng.latitude = poi.location.lat;
-              //设置地图显示信息
-               amap = new AMap.Map('container',{
-                resizeEnable:true,
-                center:[latng.longitude,latng.latitude],
-                scrollWheel:true,
-              })
-            }else{//定位失败，根据经纬度显示默认地址信息
-              let mgeocoder;
-              //设置地图显示信息
-              amap = new AMap.Map('container',{
-                resizeEnable:true,
-                center:[latng.longitude,latng.latitude],
-                scrollWheel:true,
-              })
-              amap.plugin(["AMap.Geocoder"], function () {
-                mgeocoder = new AMap.Geocoder({
-                  extensions:'all'
-                });
-                //获取详细地址信息
-                mgeocoder.getAddress(latng.longitude+','+latng.latitude,function(status,result){
-                  //获取地址成功
-                  if (status === 'complete' && result.info === 'OK'){
-                    //设置开始地址信息
-                    that.setAddressInfo(result,0,'regeo').then(res=>{
-                      window.utils.storage.setter('initAddress',res,1)
-                    });
-                  }else{//获取地址失败
-                    console.log('根据经纬度获取地址失败');
-                  }
-                });
-              });
+            if(status=='complete'){
+              latng.latitude = result.position.lat;
+              latng.longitude = result.position.lng;
             }
-            //存储map地址信息
-            that.amap = amap;
+            //设置地图显示信息
+            var map = new AMap.Map('container',{
+              resizeEnable:true,
+              center:[latng.longitude,latng.latitude],
+              scrollWheel:true,
+            })
+            that.amap = map;
             //marker标记
             that.setMarker(latng,1);
+            //获取地址信息
+            that.geocoder(latng.longitude+','+latng.latitude);
           });
         });
       }
     },
-    //地址信息的设置 type:0-开始位置信息，1-结束位置;geoType:geo-定位获取，regeo-逆地址编码
-    setAddressInfo(result,type,geoType){
+    //获取地理位置信息
+    geocoder(location){
       const that = this;
-      let addressComponent={},poi={},addressInfo={};
-      return new Promise(function(resolve,reject){
-        if(geoType=='geo'){
-          addressComponent = result.addressComponent;
-          poi = result.pois[0];
-        }else if(geoType=='regeo'){
-          addressComponent = result.regeocode.addressComponent;
-          poi = result.regeocode.pois[0];
-        }
-        //城市信息
-        addressInfo.city=addressComponent.city;
-        //地址显示信息
-        let city = addressComponent.city.replace('市',''),name = poi.name;
-        addressInfo.text=city+'·'+name;
-        //经纬度信息
-        addressInfo.location={
-          longitude:poi.location.lng,
-          latitude:poi.location.lat
-        }
-        //获取价格输入地址
-        let code = addressComponent.adcode||addressComponent.citycode;
-        if(areaListMap.has(code)){
-          addressInfo.getPriceText=areaListMap.get(code)
-        }else if(addressComponent.citycode=='028'){
-          addressInfo.getPriceText=areaListMap.get('028')
-        }else{
-          addressInfo.getPriceText='--'
-        }
-        if(type==0){
-          that.addressInfo.startAddress = addressInfo
-        }else if(type==1){
-          that.addressInfo.endAddress = addressInfo
-        }
-        resolve(addressInfo);
-      })
+      let amap = that.amap, mgeocoder;
+      amap.plugin(["AMap.Geocoder"], function () {
+        mgeocoder = new AMap.Geocoder({
+          extensions:'all'
+        });
+        //获取详细地址信息
+        mgeocoder.getAddress(location,function(status,result){
+          //获取地址成功
+          if (status === 'complete' && result.info === 'OK'){
+            let addressInfo = result.regeocode;
+            let contents = that.getShowText(addressInfo);
+            //初始化赋值
+            that.addressInfo.startAddress.text=contents.text;
+            that.addressInfo.startAddress.getPriceText = contents.getPriceText;
+            that.addressInfo.startAddress.formateAddress= contents.formateAddress;
+            that.addressInfo.startAddress.location.longitude=location.split(',')[0];
+            that.addressInfo.startAddress.location.latitude=location.split(',')[1];
+            //缓存初始化地址定位信息
+            window.utils.storage.setter('initAddress',that.addressInfo.startAddress,1);
+          }else{//获取地址失败
+            console.log('根据经纬度获取地址失败');
+          }
+        });
+      });
+    },
+    //获取页面显示地址信息
+    getShowText(result){
+      let contents={};
+      let formattedAddress=result.formattedAddress,addressComponent=result.addressComponent;
+      let contentText = "";
+      if(addressComponent.streetNumber){
+        contentText=addressComponent.streetNumber;
+      }
+      if(addressComponent.street){
+        contentText = addressComponent.street+contentText;
+      }
+      if(!addressComponent.streetNumber && addressComponent.street && addressComponent.township){
+        contentText = addressComponent.township+addressComponent.street;
+      }
+      if(!addressComponent.streetNumber && !addressComponent.street && addressComponent.township && addressComponent.district){
+        contentText = addressComponent.district+addressComponent.township
+      }
+      if(!addressComponent.streetNumber &&
+         !addressComponent.street &&
+         !addressComponent.township &&
+         addressComponent.district && addressComponent.city){
+        contentText = addressComponent.city+addressComponent.district
+      }
+      if(!addressComponent.streetNumber &&
+        !addressComponent.street &&
+        !addressComponent.township &&
+        !addressComponent.district && addressComponent.city){
+        contentText = addressComponent.city
+      }
+      contents.text = contentText;//页面获取地址
+      contents.formateAddress = formattedAddress;//结构化地址设置
+      //获取价格输入地址
+      let code = result.adcode||addressComponent.citycode;
+      if(areaListMap.has(code)){
+        contents.getPriceText=areaListMap.get(code)
+      }else if(addressComponent.citycode=='028'){//成都区
+        contents.getPriceText=areaListMap.get('028')
+      }else{
+        contents.getPriceText='--';
+      }
 
+      return contents;
     },
     //重新定位
     getReposition(){
       const that = this;
-      window.utils.storage.remove('initAddress',1);
       that.addressInfo={
         startAddress:{
-          text:'正在获取地理位置...',
-          location:{},
+          text:'',
+            location:{},
           getPriceText:'',
-          city:'',
+            formateAddress:'',//结构化地址
         },
         endAddress:{
-          text:'你要到哪里去?',
-          location:{},
-          getPriceText:'',
-          city:'',
-        }
-      },
+          text:'',
+            location:{},
+          getPriceText:''
+        },
+      };
+      that.count=0;
       //获取定位信息
       that.init();
     },
@@ -268,7 +258,6 @@ export default{
       }
       that.showTimeText='预约时间';
     },
-
     //确定日期选择
     confirmShow(obj){
       const that = this;
@@ -280,6 +269,37 @@ export default{
       };
       //设置显示日期
       that.showTimeText=obj.text;
+    },
+    //input 输入框获取焦点事件
+    getFocus(index){
+      const that = this;
+      that.inputFoucs=true;
+      if(that.count==0){
+        that.watchSetterMarker(that.addressInfo.startAddress.formateAddress,2);
+      }
+      that.count++;
+    },
+    //通过地址获取经纬度信息
+    getAddressToLngt(address){
+      const that = this;
+      let amap = that.amap,mgeocoder;
+      return new Promise(function (resolve,reject) {
+        amap.plugin(["AMap.Geocoder"], function () {
+          mgeocoder = new AMap.Geocoder({
+            extensions:'all'
+          });
+          //获取详细地址信息
+          mgeocoder.getLocation(address,function(status,result){
+            console.log(result);
+            //获取地址成功
+            if (status === 'complete' && result.info === 'OK'){
+              resolve(result)
+            }else{//获取地址失败
+              reject([]);
+            }
+          });
+        });
+      })
     },
     //标注信息
     setMarker(latng,type){
@@ -342,6 +362,8 @@ export default{
         markerInfo.endMarker = currentIconMaker;
         markerInfo.endTextMarker=textMarker;
       }
+      //动态获取价格
+      that.getPrice();
     },
     //设置文本标记
     setTextMarker(latng,contents){
@@ -414,6 +436,7 @@ export default{
             resolve(contents);
           }
         }).catch(error=>{
+          console.log(error);
           let contents={
             flag:false,
             orderCode:''
@@ -438,48 +461,15 @@ export default{
       that.showSelectNumber.showFlag=false;
       that.showSelectNumber.number = number;
     },
-    //地址下拉选择 0-开始地址，1-结束地址
-    showAddressSelect(type){
-      const that = this;
-      let showSelectAddress = that.showSelectAddress;
-      if(type==0){
-        showSelectAddress=that.addressInfo.startAddress
-      }else if(type==1){
-        showSelectAddress = that.addressInfo.endAddress;
-      }
-      showSelectAddress.type = type;
-      that.showSelectAddress=showSelectAddress;
-      that.addressShow=true;
-    },
-    //地址选择取消
-    cancelShowAddressSelect(){
-      const that = this;
-      that.addressShow=false;
-    },
-    //地址选择确认
-    confirmShowAddressSelect(obj){
-      const that = this;
-      that.addressShow=false;
-      if(obj.type==0){//开始地址
-        that.addressInfo.startAddress = obj
-      }else if(obj.type==1){//结束地址
-        that.addressInfo.endAddress=obj
-      }
-      console.log(obj);
-      //marker标记
-      that.setMarker(obj.location,obj.type==0?1:2);
-      //获取价格
-      that.getPrice();
-    },
     //确认发布信息
     confirmPublish(){
       const that = this;
       let addressInfo=that.addressInfo,showDateTimeInfo=that.showDateTimeInfo;
       if(!addressInfo.startAddress.text){
-        that.$message.errorMessage('请选择起始位置');
+        that.$message.errorMessage('请输入开始地址');
       }
       if(!addressInfo.endAddress.text){
-        that.$message.errorMessage('请选择目的地址');
+        that.$message.errorMessage('请输入目的地址');
         return;
       }
       //预约信息
@@ -535,5 +525,73 @@ export default{
         that.$message.errorMessage('订单发布失败');
       })
     },
+    //标记信息
+    watchSetterMarker(value,type){
+      const that = this;
+      that.getAddressToLngt(value).then(res=>{
+        let info = res.geocodes[0],contents=that.getShowText(info);
+          if(type==2){
+            that.addressInfo.startAddress.getPriceText=contents.getPriceText;
+            that.addressInfo.startAddress.location={
+              longitude:info.location.lng,
+              latitude:info.location.lat
+            }
+          }else if(type==3){
+            that.addressInfo.endAddress.getPriceText=contents.getPriceText;
+            that.addressInfo.endAddress.location={
+              longitude:info.location.lng,
+              latitude:info.location.lat
+            }
+          }
+          let latng={
+            longitude:info.location.lng,
+            latitude:info.location.lat
+          };
+          that.setMarker(latng,type);
+      }).catch(error=>{
+        console.log(error);
+        that.price='--';
+
+      })
+    },
+  },
+  watch:{
+    "addressInfo.startAddress.text":{
+      handler(newValue,oldValue){
+        const that = this;
+        if(that.count==0){
+          return;
+        }
+        let timer = null;
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+          if(!newValue){
+            that.price=0;
+            return;
+          }
+          that.watchSetterMarker(newValue,2);
+        },500);
+      },
+      deep:true,
+
+    },
+    "addressInfo.endAddress.text":{
+      handler(newValue,oldValue){
+        const that = this;
+        let timer = null;
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+          if(!newValue){
+            that.price=0;
+            return;
+          }
+          that.watchSetterMarker(newValue,3);
+        },500);
+      },
+      deep:true
+    },
+    '$route'(to,from){
+      const that = this;
+    }
   }
 }

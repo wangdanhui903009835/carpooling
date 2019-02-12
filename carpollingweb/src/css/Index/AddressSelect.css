@@ -1,0 +1,93 @@
+.displayFlex {
+  display: flex;
+  -webkit-display: flex;
+}
+.amap-logo,
+.amap-copyright,
+.amap-call {
+  display: none !important;
+}
+.mint-toast-text {
+  font-size: 0.3rem;
+}
+.indexAddressSelect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: #ffffff;
+  top: 0rem;
+  left: 100%;
+  animation: addressMove .5s ease;
+  animation-fill-mode: forwards;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.indexAddressSelect .title {
+  height: 1rem;
+  line-height: 1rem;
+  padding: 0rem .2rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.indexAddressSelect .title .city .cityName {
+  position: relative;
+}
+.indexAddressSelect .title .city .cityName img {
+  width: .2rem;
+  height: .2rem;
+}
+.indexAddressSelect .title .city .nocity {
+  color: #999999;
+}
+.indexAddressSelect .title .poiSearch {
+  flex: 1;
+}
+.indexAddressSelect .title .poiSearch input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding-left: .2rem;
+  height: 100%;
+}
+.indexAddressSelect .title .cancel {
+  color: #FF8501;
+}
+.indexAddressSelect .contents {
+  border-top: 10px solid #ececec;
+  padding: 0rem .2rem;
+}
+.indexAddressSelect .contents .cityList .listItem {
+  height: .8rem;
+  line-height: .8rem;
+  border-bottom: 1px solid #ececec;
+  color: #999999;
+}
+.indexAddressSelect .contents .recommentList .recommentItem {
+  height: .8rem;
+  line-height: .8rem;
+  border-bottom: 1px solid #ececec;
+  color: #999999;
+}
+.indexAddressSelect .contents .recommentList .recommentItem .text {
+  flex: 1;
+}
+.indexAddressSelect .contents .recommentList .recommentItem .label {
+  color: #008000;
+  font-size: 0.24rem;
+}
+.indexAddressSelect .contents .recommentList .recommentItem .label img {
+  padding-left: .1rem;
+  width: .2rem;
+  height: .2rem;
+}
+@keyframes addressMove {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 0rem;
+  }
+}
