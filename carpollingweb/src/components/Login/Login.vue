@@ -12,7 +12,7 @@
                         <div>
                           <input type="text" v-model="phone" placeholder="请输入手机号" :maxlength="11"/>
                         </div>
-                        <div class="code" @click="getCode"><label>{{time}}</label></div>
+                        <div class="code"><label @click="getCode">{{time}}</label></div>
                     </div>
                     <div class="phoneItem code  displayFlex">
                         <div class="textLable">验证码</div>

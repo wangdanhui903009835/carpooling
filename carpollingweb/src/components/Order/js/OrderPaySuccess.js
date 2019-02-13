@@ -1,11 +1,12 @@
 export default{
   data(){
     return{
-
+      type:1
     }
   },
   mounted(){
-
+    const that = this;
+    that.type=that.$route.query.type;
   },
   methods:{
     //查看订单

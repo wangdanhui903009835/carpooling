@@ -10,10 +10,10 @@
                 <div class="addressBox" :class="orderInfo.status>=2&&orderInfo.status<=4?'noPaddingAddressBox':''" id="addressBox">
                     <div class="contents" >
                         <div class="addressName">
-                            <div class="displayFlex" v-if="orderInfo.status<=1||orderInfo.status==5">
+                            <div class="displayFlex" v-if="orderInfo.status<=1||orderInfo.status==5||orderInfo.status==6">
                                 <div class="destination">
-                                    <div class="menu"><img src="./../../images/start_address.png" class="menuItemIcon"><span class="label">{{orderInfo.start}}</span></div>
-                                    <div class="menu"><img src="./../../images/end_address.png" class="menuItemIcon"><span class="label">{{orderInfo.destination}}</span></div>
+                                    <div class="menu"><img src="./../../images/start_address_1.png" class="menuItemIcon"><span class="label">{{orderInfo.start}}</span></div>
+                                    <div class="menu"><img src="./../../images/end_address_1.png" class="menuItemIcon"><span class="label">{{orderInfo.destination}}</span></div>
                                     <div class="menu"><img src="./../../images/time_icon.png" class="menuItemIcon">
                                         <span class="label" v-if="orderInfo.seatTime">{{formateDate(orderInfo.seatTime)}}&nbsp;{{orderInfo.userNum}}人乘车</span>
                                         <span class="label" v-else="orderInfo.date">{{formateDate(orderInfo.date)}} &nbsp;{{orderInfo.userNum}}人拼车</span>
@@ -22,14 +22,17 @@
                                 <div class="price">
                                     <div class="priceTile">费用合计</div>
                                     <div class="priceNumber">￥{{orderInfo.price}}元</div>
-                                    <div class="payStatus">等待支付</div>
+                                    <div class="payStatus">{{orderInfo.status<=5?'等待支付':'支付完成'}}</div>
                                 </div>
                             </div>
-                            <!--orderAction-->
+                            <!--orderAction 取消投诉-->
                             <div class="orderAction displayFlex" v-if="orderInfo.status<=1||orderInfo.status==5">
                                 <div class="actionItem cancel" ><span @click="getOrderCancel" v-if="orderInfo.status<=1">取消订单</span></div>
                                 <div class="actionItem complaint"><span @click="getOrderComplaint" v-if="orderInfo.status==5">投诉</span></div>
                             </div>
+                            <!--再次下单提示-->
+                            <div class="orderAginOrder" v-if="orderInfo.status==6" @click="goToIndex"><span>订单已完成，点击再次发布行程</span></div>
+
                         </div>
                     </div>
                 </div>
@@ -61,8 +64,8 @@
             </div>
             <!--立即支付-->
             <div class="bottomPay displayFlex" id="payButton" v-if="orderInfo.status==5">
-                <div class="pay" @click="goPay">立即支付</div>
-                <div class="pay" @click="goPay">线下支付</div>
+                <div class="pay" @click="goPay(1)">立即支付</div>
+                <div class="pay" @click="goPay(2)">线下支付</div>
             </div>
         </div>
         <!--订单取消信息-->

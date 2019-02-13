@@ -38,12 +38,12 @@
 }
 .Orderpay .boxContents .contents .destination .menu {
   position: relative;
-  height: 0.46rem;
-  line-height: 0.46rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
 }
 .Orderpay .boxContents .contents .destination .menu .menuItemIcon {
-  width: .16rem;
-  height: .16rem;
+  width: .25rem;
+  height: .25rem;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -52,29 +52,20 @@
   color: #000;
   font-size: 0.32rem;
   display: block;
-  line-height: 0.46rem;
-  padding-left: 0.3rem;
-}
-.Orderpay .boxContents .contents .destination .menu:first-child:after {
-  position: absolute;
-  content: '';
-  height: .4rem;
-  border-left: 2px dotted  #C5C5C5;
-  left: 0.06rem;
-  top: .3rem;
+  line-height: 0.6rem;
+  padding-left: 0.5rem;
 }
 .Orderpay .boxContents .contents .price {
   flex: 1;
   text-align: right;
   color: #000;
   font-size: 0.32rem;
-  padding-top: .1rem;
 }
 .Orderpay .boxContents .contents .price .priceTile,
 .Orderpay .boxContents .contents .price .priceNumber,
 .Orderpay .boxContents .contents .price .payStatus {
-  height: 0.46rem;
-  line-height: 0.46rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
 }
 .Orderpay .boxContents .contents .price .payStatus {
   color: #FF5700;
@@ -100,6 +91,11 @@
 }
 .Orderpay .boxContents .contents .orderAction .actionItem:last-child {
   text-align: right;
+}
+.Orderpay .boxContents .contents .orderAginOrder {
+  padding: .1rem 0rem;
+  font-size: 0.24rem;
+  color: #1BAC2E;
 }
 .Orderpay .info {
   padding: .32rem 0rem .34rem 0rem;

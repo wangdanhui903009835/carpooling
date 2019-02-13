@@ -44,8 +44,8 @@
       .addressName{
         .start,.end,.number{
           .startIcon,.endIcon,.timeIcon{
-            width:.16rem;
-            height:.16rem;
+            width:.25rem;
+            height:.25rem;
           }
           span{
             font-size:@min_font_size_32;
@@ -79,16 +79,8 @@
         padding-top:.18rem;
         padding-bottom:.18rem;
         .start{
-          padding-bottom:.05rem;
+          padding-bottom:.1rem;
           position: relative;
-        }
-        .start:after{
-          position: absolute;
-          content: '';
-          height:.3rem;
-          border-left:2px dotted  #C5C5C5;
-          left:0.05rem;
-          top:.3rem;
         }
         .number{
           padding-bottom:.18rem;
@@ -121,10 +113,11 @@
       top:50%;
       left:50%;
       transform: translate(-50%,-50%);
+      color: #999;
       img{
         width:1rem;
         height:1rem;
-        padding-bottom:.2rem;
+        padding-top:.2rem;
       }
     }
   }

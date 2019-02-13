@@ -1,4 +1,5 @@
 @import "./../Common.less";
+@text_line_height:.6rem;
 .Orderpay{
   width:100%;
   height:100%;
@@ -28,11 +29,11 @@
         padding-top:.1rem;
         .menu{
           position: relative;
-          height:0.46rem;
-          line-height:0.46rem;
+          height:@text_line_height;
+          line-height:@text_line_height;
           .menuItemIcon{
-            width:.16rem;
-            height:.16rem;
+            width:.25rem;
+            height:.25rem;
             position: absolute;
             top:50%;
             transform:translateY(-50%);
@@ -41,28 +42,19 @@
             color: #000;
             font-size:@min_font_size_32;
             display: block;
-            line-height:0.46rem;
-            padding-left:0.3rem;
+            line-height:@text_line_height;
+            padding-left:0.5rem;
           }
         }
-        .menu:first-child:after{
-          position: absolute;
-          content: '';
-          height:.4rem;
-          border-left:2px dotted  #C5C5C5;
-          left:0.06rem;
-          top:.3rem;
-         }
       }
       .price{
         flex:1;
         text-align: right;
         color: #000;
         font-size:@min_font_size_32;
-        padding-top:.1rem;
         .priceTile,.priceNumber,.payStatus{
-          height:0.46rem;
-          line-height:0.46rem;
+          height:@text_line_height;
+          line-height:@text_line_height;
         }
         .payStatus{
           color:#FF5700;
@@ -89,6 +81,11 @@
         .actionItem:last-child{
           text-align: right;
         }
+      }
+      .orderAginOrder{
+        padding:.1rem 0rem;
+        font-size:@min_font_size_18;
+        color: #1BAC2E;
       }
     }
   }

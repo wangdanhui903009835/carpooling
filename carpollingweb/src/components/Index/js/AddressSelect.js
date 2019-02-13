@@ -17,6 +17,7 @@ export default{
       cityAdcode:'028',
       poiList:[],
       recommentFlag:false,
+      placeSearch:{}
     }
   },
   mounted(){
@@ -52,6 +53,8 @@ export default{
       that.cityAdcode = item.cityAdcode;
       that.objInfo.getPriceText = item.value;
       that.objInfo.city = item.city;
+      //清空查询数据
+      that.searchText='';
       //推荐地址信息查询
       that.citySearch('');
     },
@@ -84,12 +87,15 @@ export default{
           city:that.cityAdcode,
           citylimit:true,
           output:"json",
+          extensions:'all'
         })
         placeSearch.search(inputValue,function(status,data){
           if(status=='complete' && data.poiList.pois.length>0){//搜索结果完成
             that.poiList=data.poiList.pois;
+            console.log(that.poiList);
           }
         })
+        that.placeSearch = placeSearch;
       })
     },
     //取消地址选择
@@ -102,12 +108,19 @@ export default{
     'searchText':{
       handler(newValue,oldValue){
         const that = this;
+        //未选择区域，查询信息
+        if(!that.countyName){
+          return;
+        }
         if(!newValue){
           that.recommentFlag=true;
+          that.searchAddress(newValue);
         }else{
+          that.poiList=[];
           that.recommentFlag=false;
+          that.searchAddress(newValue);
         }
-        that.searchAddress(newValue);
+
       }
     }
   }

@@ -94,18 +94,18 @@ export default{
         latitude:30.572269,
         longitude:104.066541
       };
-      //window.utils.storage.remove('initAddress',1);
+      var amap = {};
       let sessionInitAddress = window.utils.storage.getter('initAddress',1);
       if(sessionInitAddress){
         that.addressInfo.startAddress=sessionInitAddress;
         let latng=sessionInitAddress.location
         //设置地图显示信息
-        var map = new AMap.Map('container',{
+        amap = new AMap.Map('container',{
           resizeEnable:true,
           center:[latng.longitude,latng.latitude],
           scrollWheel:true,
         })
-        that.amap = map;
+        that.amap = amap;
         //marker标记
         that.setMarker(latng,1);
       }else{
@@ -118,7 +118,6 @@ export default{
             zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
             extensions:'all'
           });
-          let amap={};
           geolocation.getCurrentPosition(function(status,result){
             if(status=='complete'){//定位成功
               let poi = result.pois[0];

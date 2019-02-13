@@ -69,12 +69,9 @@ export default{
             that.orderCancelInfo.showFlag = 0;
             that.orderComplaintsInfo.showFlag = 0;
             if(orderInfo.status==6){//订单已完成
-              that.$router.push({name:'Index'});
               clearInterval(pollingTime);
               pollingTime = null;
-            }
-            //获取司机信息
-            if(orderInfo.status==2||orderInfo.status==3 ||orderInfo.status==4){
+            }else if(orderInfo.status==2||orderInfo.status==3 ||orderInfo.status==4){//获取司机信息
               that.getDriverInfo(orderInfo.orderId);
             }
             resolve(orderInfo)
@@ -204,7 +201,7 @@ export default{
       that.getOrderInfo();
     },
     //立即支付
-    goPay(){
+    goPay(type){
       const that = this;
       that.$http({
         url:window.config.apisServer+'/payrecord',
@@ -215,13 +212,18 @@ export default{
         }
       }).then(res=>{
         if(res.status==200 && res.data=='success'){
-          that.$router.push({name:'OrderPaySuccess'});
+          that.$router.push({name:'OrderPaySuccess',query:{type:type}});
         }else{
           that.$message.errorMessage('支付失败');
         }
       }).catch(error=>{
           that.$message.errorMessage('支付失败');
       })
+    },
+    //再次发布订单行程
+    goToIndex(){
+      const that = this;
+      that.$router.push({name:'Index'})
     }
   }
 }

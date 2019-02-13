@@ -22,9 +22,18 @@
             </div>
             <!--推介地址信息-->
             <div class="recommentList" v-if="cityListShowFlag==2">
-                <div class="recommentItem displayFlex" v-for="(item,index) in poiList" @click="chooseRecommentItem(index)">
-                    <div class="text">{{item.name}}</div>
-                    <div class="label" v-if="recommentFlag">推荐<img src="./../../images/right.png"></div>
+                <div v-for="(item,index) in poiList" @click="chooseRecommentItem(index)">
+                    <div class="recommentItem displayFlex" v-if="recommentFlag">
+                        <div class="text">{{item.name}}</div>
+                        <div class="label">推荐<img src="./../../images/right.png"></div>
+                    </div>
+                    <div class="searchItem displayFlex" v-if="!recommentFlag">
+                        <div class="textBox">
+                            <div class="name">{{item.name}}</div>
+                            <div class="text">{{item.pname}}{{item.cityname}}{{item.adname}}</div>
+                        </div>
+                        <div class="label"><img src="./../../images/right.png"></div>
+                    </div>
                 </div>
             </div>
         </div>
