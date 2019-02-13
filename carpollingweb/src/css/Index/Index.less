@@ -101,15 +101,17 @@
           transform: translate(0%,-50%) rotate(45deg);
         }
       }
+      @start_end_height:0.7rem;
+
       .start,.end{
         position: relative;
         .img{
           position: relative;
-          height:.69rem;
-          width:.16rem;
+          height:@start_end_height;
+          width:.25rem;
           .iconImage{
-            width:.25rem;
-            height:.25rem;
+            width: @icon_img_width;
+            height:@icon_img_height;
             display: block;
             position: absolute;
             top:50%;
@@ -157,6 +159,22 @@
           padding-top:.23rem;
           padding-bottom:0rem;
           font-size: @min_font_size_32;
+        }
+      }
+      .destinationBox{
+        position: relative;
+        .dotDiv{
+          position: absolute;
+          height: 0.45rem;
+          top:50%;
+          transform: translateY(-50%);
+          width:.25rem;
+          img{
+            width:.25rem;
+            position: absolute;
+            top:50%;
+            transform: translateY(-50%);
+          }
         }
       }
       .errorMsg{

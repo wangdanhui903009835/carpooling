@@ -24,23 +24,27 @@
                     <div class="appointTime" v-if="showDateTimeInfo.appointFlag==1">
                         <span class="time" @click="showSelectTime">{{showTimeText}}</span>
                     </div>
-                    <!--开始地址-->
-                    <div class="start displayFlex">
-                        <div class="img">
-                            <img src="./../images/start_address_1.png" class="iconImage">
+                    <div class="destinationBox">
+                        <!--开始地址-->
+                        <div class="start displayFlex">
+                            <div class="img">
+                                <img src="./../images/start_address_1.png" id="startDot" class="iconImage start_address">
+                            </div>
+                            <div class="labelValue" @click="showAddressSelect(0)">{{addressInfo.startAddress.text}}</div>
+                            <div class="repeatPosition displayFlex">
+                              <img class="positionImg" src="./../images/position.png" @click="getReposition">
+                              <div class="positionLable" @click="getReposition">定位</div>
+                            </div>
                         </div>
-                        <div class="labelValue" @click="showAddressSelect(0)">{{addressInfo.startAddress.text}}</div>
-                        <div class="repeatPosition displayFlex">
-                          <img class="positionImg" src="./../images/position.png" @click="getReposition">
-                          <div class="positionLable" @click="getReposition">定位</div>
+                        <!--结束地址-->
+                        <div class="end displayFlex">
+                            <div class="img">
+                                <img src="./../images/end_address_1.png" id="endDot" class="iconImage">
+                            </div>
+                            <div class="labelValue" @click="showAddressSelect(1)">{{addressInfo.endAddress.text}}</div>
                         </div>
-                    </div>
-                    <!--结束地址-->
-                    <div class="end displayFlex">
-                        <div class="img">
-                            <img src="./../images/end_address_1.png" class="iconImage">
-                        </div>
-                        <div class="labelValue" @click="showAddressSelect(1)">{{addressInfo.endAddress.text}}</div>
+                        <!--圈定点-->
+                        <div class="dotDiv" id="dotDiv"><img src="./../images/icon_menu.png"></div>
                     </div>
                     <!--错误提示信息-->
                     <div class="errorMsg" v-if="numberRemarksFlag">提示:{{errorInfoMsg.errorMsg}}</div>

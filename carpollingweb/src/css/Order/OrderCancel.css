@@ -26,11 +26,11 @@
   transform: translateX(-50%);
 }
 .orderPayCancel .contents .closeCancel {
-  height: 0.82rem;
+  height: .82rem;
   background: #ffffff;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
   border-radius: 0.15rem;
-  padding: 0.2rem 0.5rem;
+  padding: .2rem .5rem;
   box-sizing: border-box;
 }
 .orderPayCancel .contents .closeCancel .item {
@@ -38,15 +38,15 @@
   text-align: left;
 }
 .orderPayCancel .contents .closeCancel .item span {
-  height: 0.42rem;
-  padding: 0rem 0.2rem;
+  height: .42rem;
+  padding: 0rem .2rem;
   background: #ffffff;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
   border-radius: 0.21rem;
   display: inline-block;
   color: #878787;
   font-size: 0.32rem;
-  line-height: 0.42rem;
+  line-height: .42rem;
   text-align: center;
 }
 .orderPayCancel .contents .closeCancel .item:last-child {
@@ -54,7 +54,7 @@
 }
 .orderPayCancel .contents .reason {
   width: 100%;
-  margin-top: 0.16rem;
+  margin-top: .16rem;
   background: #ffffff;
   box-shadow: 0px 0px 0.16rem 0px rgba(0, 0, 0, 0.19);
   border-radius: 0.15rem;
@@ -63,22 +63,22 @@
   font-size: 0.32rem;
 }
 .orderPayCancel .contents .reason .title {
-  height: 0.8rem;
-  line-height: 0.8rem;
+  height: .8rem;
+  line-height: .8rem;
   color: #878787;
   border-bottom: 1px solid #dbdbdb;
 }
 .orderPayCancel .contents .reason .reasonItem {
-  height: 0.8rem;
-  line-height: 0.8rem;
+  height: .8rem;
+  line-height: .8rem;
   color: #949494;
   border-bottom: 1px solid #DBDBDB;
   position: relative;
 }
 .orderPayCancel .contents .reason .reasonItem .selectImage {
   position: absolute;
-  width: 0.35rem;
-  height: 0.35rem;
+  width: .35rem;
+  height: .35rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -89,12 +89,12 @@
 .orderPayCancel .contents .reason .reasonItem span {
   display: block;
   height: 100%;
-  line-height: 0.8rem;
-  padding-left: 0.5rem;
+  line-height: .8rem;
+  padding-left: .5rem;
 }
 .orderPayCancel .contents .otherReason {
   width: 100%;
-  margin-top: 0.16rem;
+  margin-top: .16rem;
   background: #ffffff;
   box-shadow: 0px 0px 0.16rem 0px rgba(0, 0, 0, 0.19);
   border-radius: 0.15rem;
@@ -103,8 +103,8 @@
   font-size: 0.32rem;
 }
 .orderPayCancel .contents .otherReason .title {
-  height: 0.8rem;
-  line-height: 0.8rem;
+  height: .8rem;
+  line-height: .8rem;
   color: #949494;
 }
 .orderPayCancel .contents .otherReason textarea {
@@ -117,7 +117,7 @@
 }
 .orderPayCancel .contents .confirmButton {
   width: 100%;
-  margin-top: 0.16rem;
+  margin-top: .16rem;
   background: #ffffff;
   min-height: 1.24rem;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);

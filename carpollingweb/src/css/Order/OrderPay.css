@@ -35,6 +35,7 @@
 }
 .Orderpay .boxContents .contents .destination {
   padding-top: .1rem;
+  position: relative;
 }
 .Orderpay .boxContents .contents .destination .menu {
   position: relative;
@@ -54,6 +55,16 @@
   display: block;
   line-height: 0.6rem;
   padding-left: 0.5rem;
+}
+.Orderpay .boxContents .contents .destination .dotDiv {
+  width: .25rem;
+  height: 0.35rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 0rem;
+}
+.Orderpay .boxContents .contents .destination .dotDiv img {
+  width: .25rem;
 }
 .Orderpay .boxContents .contents .price {
   flex: 1;

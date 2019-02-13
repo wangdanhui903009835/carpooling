@@ -18,6 +18,8 @@
                                         <span class="label" v-if="orderInfo.seatTime">{{formateDate(orderInfo.seatTime)}}&nbsp;{{orderInfo.userNum}}人乘车</span>
                                         <span class="label" v-else="orderInfo.date">{{formateDate(orderInfo.date)}} &nbsp;{{orderInfo.userNum}}人拼车</span>
                                     </div>
+                                    <!--圈定点-->
+                                    <div class="dotDiv" id="dotDiv"><img src="./../../images/icon_menu.png"></div>
                                 </div>
                                 <div class="price">
                                     <div class="priceTile">费用合计</div>

@@ -59,17 +59,10 @@
       }
       .orderItemCancel{
         padding-top:.34rem;
+        position: relative;
         .start{
           padding-bottom:.23rem;
           position: relative;
-        }
-        .start:after{
-          position: absolute;
-          content: '';
-          height:.45rem;
-          border-left:2px dotted  #C5C5C5;
-          left:0.05rem;
-          top:.3rem;
         }
         .end{
           padding-bottom:.29rem;
@@ -78,6 +71,7 @@
       .orderGoing{
         padding-top:.18rem;
         padding-bottom:.18rem;
+        position: relative;
         .start{
           padding-bottom:.1rem;
           position: relative;
@@ -86,6 +80,24 @@
           padding-bottom:.18rem;
         }
       }
+      .addressBox{
+        position: relative;
+        .dotDiv{
+          position: absolute;
+          position: absolute;
+          height: 0.45rem;
+          top:50%;
+          transform: translateY(-50%);
+          width:.25rem;
+          img{
+            width:.25rem;
+            position: absolute;
+            top:50%;
+            transform: translateY(-50%);
+          }
+        }
+      }
+
       .price{
         flex:1;
         text-align: right;

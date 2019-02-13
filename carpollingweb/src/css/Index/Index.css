@@ -120,13 +120,13 @@
 .Index .carpoorCharter .destination .start .img,
 .Index .carpoorCharter .destination .end .img {
   position: relative;
-  height: .69rem;
-  width: .16rem;
+  height: 0.7rem;
+  width: .25rem;
 }
 .Index .carpoorCharter .destination .start .img .iconImage,
 .Index .carpoorCharter .destination .end .img .iconImage {
-  width: .25rem;
-  height: .25rem;
+  width: 0.25rem;
+  height: 0.25rem;
   display: block;
   position: absolute;
   top: 50%;
@@ -175,6 +175,22 @@
   padding-top: .23rem;
   padding-bottom: 0rem;
   font-size: 0.32rem;
+}
+.Index .carpoorCharter .destination .destinationBox {
+  position: relative;
+}
+.Index .carpoorCharter .destination .destinationBox .dotDiv {
+  position: absolute;
+  height: 0.45rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: .25rem;
+}
+.Index .carpoorCharter .destination .destinationBox .dotDiv img {
+  width: .25rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .Index .carpoorCharter .destination .errorMsg {
   padding: .2rem;
