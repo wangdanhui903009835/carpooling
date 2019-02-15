@@ -75,6 +75,8 @@ export default{
         longitude:item.location.lng
       }
       addressInfo.countyName = that.countyName;
+      //结构化地址
+      addressInfo.formateAddress =item.pname+item.cityname+item.adname+item.address;
       that.$emit('confirmShowAddressSelect',addressInfo)
     },
     //poi地址查询信息
@@ -92,7 +94,6 @@ export default{
         placeSearch.search(inputValue,function(status,data){
           if(status=='complete' && data.poiList.pois.length>0){//搜索结果完成
             that.poiList=data.poiList.pois;
-            console.log(that.poiList);
           }
         })
         that.placeSearch = placeSearch;

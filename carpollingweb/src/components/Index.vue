@@ -41,7 +41,7 @@
                             <div class="img">
                                 <img src="./../images/end_address_1.png" id="endDot" class="iconImage">
                             </div>
-                            <div class="labelValue" @click="showAddressSelect(1)">{{addressInfo.endAddress.text}}</div>
+                            <div class="labelValue" :class="!addressInfo.endAddress.text?'grayLabelValue':''" @click="showAddressSelect(1)">{{addressInfo.endAddress.text?addressInfo.endAddress.text:'你要到哪里去?'}}</div>
                         </div>
                         <!--圈定点-->
                         <div class="dotDiv" id="dotDiv"><img src="./../images/icon_menu.png"></div>

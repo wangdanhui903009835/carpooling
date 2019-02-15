@@ -6,6 +6,7 @@ import LoginVerfy from '@/components/Login/LoginVerfy'
 import OrderList from '@/components/Order/OrderList'
 import OrderPay from '@/components/Order/OrderPay'
 import OrderPaySuccess from '@/components/Order/OrderPaySuccess'
+import ChangPhone from '@/components/UserCenter/ChangePhone'
 Vue.use(Router)
 
 export default new Router({
@@ -56,6 +57,14 @@ export default new Router({
       component:OrderPaySuccess,
       meta:{
         title:'支付成功'
+      }
+    },
+    {
+      path:'/UserCenter/ChangePhone',
+      name:'ChangePhone',
+      component:ChangPhone,
+      meta:{
+        title:'修改手机号'
       }
     }
   ]

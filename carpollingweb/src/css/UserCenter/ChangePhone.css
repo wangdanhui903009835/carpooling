@@ -1,0 +1,31 @@
+.displayFlex {
+  display: flex;
+  -webkit-display: flex;
+}
+.amap-logo,
+.amap-copyright,
+.amap-call {
+  display: none !important;
+}
+.mint-toast-text {
+  font-size: 0.3rem;
+}
+.changePhone .contents {
+  padding: .3rem .2rem;
+}
+.changePhone .contents .item {
+  height: .8rem;
+  line-height: .8rem;
+  border-bottom: 1px solid #ececec;
+  color: #999;
+}
+.changePhone .contents .item .label {
+  font-size: 0.32rem;
+  width: 2.5rem;
+}
+.changePhone .contents .item .value input {
+  height: 100%;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+}

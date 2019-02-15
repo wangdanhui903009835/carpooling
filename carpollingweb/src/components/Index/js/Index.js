@@ -21,18 +21,20 @@ export default{
       amap:{},//高德地图信息
       addressInfo:{
         startAddress:{
-          text:'正在获取地理位置...',
+          text:'',
           location:{},
           getPriceText:'',
           city:'',
           countyName:'',
+          formateAddress:'',
         },
         endAddress:{
-          text:'你要到哪里去?',
+          text:'',
           location:{},
           getPriceText:'',
           city:'',
-          countyName:''
+          countyName:'',
+          formateAddress:'',
         }
       },
       showDateTimeInfo:{
@@ -176,9 +178,13 @@ export default{
         if(geoType=='geo'){
           addressComponent = result.addressComponent;
           poi = result.pois[0];
+          //结构化地址信息
+          addressInfo.formateAddress = result.formattedAddress;
         }else if(geoType=='regeo'){
           addressComponent = result.regeocode.addressComponent;
           poi = result.regeocode.pois[0];
+          //结构化地址信息
+          addressInfo.formateAddress = result.regeocode.formattedAddress;
         }
         //城市信息
         addressInfo.city=addressComponent.city;
@@ -222,13 +228,15 @@ export default{
           getPriceText:'',
           city:'',
           countyName:'',
+          formateAddress:'',
         },
         endAddress:{
           text:'你要到哪里去?',
           location:{},
           getPriceText:'',
           city:'',
-          countyName:''
+          countyName:'',
+          formateAddress:'',
         }
       },
       //获取定位信息
@@ -496,14 +504,17 @@ export default{
         that.$message.errorMessage('请选择预约时间');
         return;
       }
+
       let params={
         status:'0',
         userPhonenum:that.phone,
         userNum:that.showSelectNumber.number,
         orderType:that.selectStatus,
         price:that.price,
-        start:addressInfo.startAddress.getPriceText,
-        destination:addressInfo.endAddress.getPriceText,
+        start:addressInfo.startAddress.text.split('·')[1],
+        startFormateAddress:addressInfo.startAddress.formateAddress,
+        destination:addressInfo.endAddress.text.split('·')[1],
+        destinationFormateAddress:addressInfo.endAddress.formateAddress,
         describe:that.remarks,
         startLocation:[addressInfo.startAddress.location.longitude,addressInfo.startAddress.location.latitude],
         endLocation:[addressInfo.endAddress.location.longitude,addressInfo.endAddress.location.latitude],

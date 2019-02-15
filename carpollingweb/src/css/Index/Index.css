@@ -152,6 +152,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.Index .carpoorCharter .destination .start .grayLabelValue,
+.Index .carpoorCharter .destination .end .grayLabelValue {
+  color: #999;
+}
 .Index .carpoorCharter .destination .start .repeatPosition,
 .Index .carpoorCharter .destination .end .repeatPosition {
   padding-right: 0.3rem;

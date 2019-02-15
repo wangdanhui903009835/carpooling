@@ -14,13 +14,20 @@
                 <div class="addressName displayFlex">
                     <div :class="item.status==7?'orderGoing':'orderGoing'">
                         <div class="addressBox">
-                            <div class="start"><img src="./../../images/start_address_1.png" class="startIcon"><span>{{item.start}}</span></div>
-                            <div class="end"><img src="./../../images/end_address_1.png" class="endIcon"><span>{{item.destination}}</span></div>
+                            <div class="menuItem  displayFlex">
+                                <img src="./../../images/start_address_1.png" class="menuIcon">
+                                <div>{{item.start}}</div>
+                            </div>
+                            <div class="menuItem  displayFlex">
+                                <img src="./../../images/end_address_1.png" class="menuIcon">
+                                <div>{{item.destination}}</div>
+                            </div>
                             <!--圈定点-->
                             <div class="dotDiv" id="dotDiv"><img src="./../../images/icon_menu.png"></div>
                         </div>
-                        <div class="number" v-if="item.status==0"><img src="./../../images/time_icon.png" class="timeIcon">
-                            <span v-if="item.seatTime">{{formateDate(item.seatTime)}} &nbsp;{{item.userNum}}人乘车</span>
+                        <div class="menuItem number" v-if="item.status==0">
+                            <img src="./../../images/time_icon.png" class="menuIcon">
+                            <div v-if="item.seatTime">{{formateDate(item.seatTime)}} &nbsp;{{item.userNum}}人乘车</div>
                             <span v-else>{{formateDate(item.date)}} &nbsp;{{item.userNum}}人乘车</span>
                         </div>
                     </div>

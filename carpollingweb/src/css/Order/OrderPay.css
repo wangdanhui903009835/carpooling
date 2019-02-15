@@ -55,6 +55,15 @@
   display: block;
   line-height: 0.6rem;
   padding-left: 0.5rem;
+  width: 4rem;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Orderpay .boxContents .contents .destination .detail_address .label {
+  color: #999;
+  font-size: 0.24rem;
 }
 .Orderpay .boxContents .contents .destination .dotDiv {
   width: .25rem;

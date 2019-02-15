@@ -18,6 +18,7 @@
                                         <span class="label" v-if="orderInfo.seatTime">{{formateDate(orderInfo.seatTime)}}&nbsp;{{orderInfo.userNum}}人乘车</span>
                                         <span class="label" v-else="orderInfo.date">{{formateDate(orderInfo.date)}} &nbsp;{{orderInfo.userNum}}人拼车</span>
                                     </div>
+                                    <div class="menu detail_address"><img src="./../../images/detail_address.png" class="menuItemIcon"><span class="label">地址详情</span></div>
                                     <!--圈定点-->
                                     <div class="dotDiv" id="dotDiv"><img src="./../../images/icon_menu.png"></div>
                                 </div>

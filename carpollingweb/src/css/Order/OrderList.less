@@ -42,43 +42,32 @@
         bottom:0rem;
       }
       .addressName{
-        .start,.end,.number{
-          .startIcon,.endIcon,.timeIcon{
+        .menuItem{
+          position: relative;
+          .menuIcon{
             width:.25rem;
             height:.25rem;
+            position: absolute;
+            top:50%;
+            transform:translateY(-50%);
           }
-          span{
+          div{
             font-size:@min_font_size_32;
             color: #000;
-            padding-left:.1rem;
+            padding-left:0.5rem;
+            overflow: hidden;
+            -ms-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width:4rem;
+            height:.6rem;
+            line-height:.6rem;
           }
-        }
-        .number{
-          padding-bottom:.17rem;
-        }
-      }
-      .orderItemCancel{
-        padding-top:.34rem;
-        position: relative;
-        .start{
-          padding-bottom:.23rem;
-          position: relative;
-        }
-        .end{
-          padding-bottom:.29rem;
         }
       }
       .orderGoing{
-        padding-top:.18rem;
-        padding-bottom:.18rem;
         position: relative;
-        .start{
-          padding-bottom:.1rem;
-          position: relative;
-        }
-        .number{
-          padding-bottom:.18rem;
-        }
+        margin-top:.1rem;
       }
       .addressBox{
         position: relative;
