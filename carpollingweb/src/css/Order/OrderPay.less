@@ -210,6 +210,19 @@
       }
     }
   }
+  .detailAddress{
+    width: 100%;
+    background: #ffffff;
+    position: fixed;
+    z-index: 1000;
+    padding: 0rem .3rem;
+    animation:showAddress .5s ease;
+    animation-fill-mode: forwards;
+    .addreessItem{
+      padding: .3rem 0rem;
+      border-bottom: 1px solid #ececec;
+    }
+  }
   .noData{
     position: fixed;
     width:100%;
@@ -221,5 +234,13 @@
       top:50%;
       transform: translate(-50%,-50%);
     }
+  }
+}
+@keyframes showAddress {
+  0%{
+    bottom:-100%;
+  }
+  100%{
+    bottom:0rem;
   }
 }

@@ -18,7 +18,7 @@
                                         <span class="label" v-if="orderInfo.seatTime">{{formateDate(orderInfo.seatTime)}}&nbsp;{{orderInfo.userNum}}人乘车</span>
                                         <span class="label" v-else="orderInfo.date">{{formateDate(orderInfo.date)}} &nbsp;{{orderInfo.userNum}}人拼车</span>
                                     </div>
-                                    <div class="menu detail_address"><img src="./../../images/detail_address.png" class="menuItemIcon"><span class="label">地址详情</span></div>
+                                    <div class="menu detail_address" @click="showDetailAddress"><img src="./../../images/detail_address.png" class="menuItemIcon"><span class="label">地址详情</span></div>
                                     <!--圈定点-->
                                     <div class="dotDiv" id="dotDiv"><img src="./../../images/icon_menu.png"></div>
                                 </div>
@@ -35,7 +35,6 @@
                             </div>
                             <!--再次下单提示-->
                             <div class="orderAginOrder" v-if="orderInfo.status==6" @click="goToIndex"><span>订单已完成，点击再次发布行程</span></div>
-
                         </div>
                     </div>
                 </div>
@@ -71,10 +70,18 @@
                 <div class="pay" @click="goPay(2)">线下支付</div>
             </div>
         </div>
+        <!--详细地址-->
+        <div class="detailAddress" v-if="showDetailAddressFlag">
+          <div class="contents">
+            <div class="addreessItem">起始地址:{{orderInfo.start}}({{orderInfo.startFormateAddress}})</div>
+            <div class="addreessItem">结束地址:{{orderInfo.destination}}({{orderInfo.destinationFormateAddress}}) </div>
+          </div>
+        </div>
         <!--订单取消信息-->
         <OrderCancel :orderCancelInfo="orderCancelInfo" :orderInfo="orderInfo" @closeCancel="closeCancel" @confirmCancel="confirmCancel" v-if="orderCancelInfo.showFlag==1"></OrderCancel>
         <!--订单投诉信息-->
         <OrderComplaints :orderComplaintsInfo="orderComplaintsInfo" :orderInfo="orderInfo" @cancelComplaint="cancelComplaint" @confirmComplaints="confirmComplaints" v-if="orderComplaintsInfo.showFlag==1"></OrderComplaints>
+
     </div>
 </template>
 <script>

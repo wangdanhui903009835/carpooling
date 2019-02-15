@@ -11,21 +11,55 @@
   font-size: 0.3rem;
 }
 .changePhone .contents {
-  padding: .3rem .2rem;
+  padding: 0.3rem 0.2rem;
 }
 .changePhone .contents .item {
-  height: .8rem;
-  line-height: .8rem;
-  border-bottom: 1px solid #ececec;
+  height: 1rem;
+  border-bottom: 1px solid #efe9e9;
+  line-height: 1rem;
+  font-size: 0.32rem;
   color: #999;
 }
 .changePhone .contents .item .label {
-  font-size: 0.32rem;
-  width: 2.5rem;
+  width: 2rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 1rem;
 }
 .changePhone .contents .item .value input {
-  height: 100%;
-  box-sizing: border-box;
-  outline: none;
+  display: block;
+  flex: 1;
   border: none;
+  outline: none;
+  padding-left: 0.2rem;
+  background: transparent;
+  height: 100%;
+  font-size: inherit;
+}
+.changePhone .contents .button {
+  height: 0.6rem;
+  line-height: 0.6rem;
+  color: #ffffff;
+  text-align: center;
+  background: linear-gradient(128deg, #ff8e01, #ff5700);
+  border-radius: 0.2rem;
+  margin: 0 auto;
+  font-size: 0.36rem;
+  font-weight: 500;
+  margin-top: 0.3rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.changePhone .contents .errorMsg {
+  margin-top: 0.3rem;
+}
+.changePhone .contents .errorMsg img {
+  width: 0.3rem;
+  height: 0.3rem;
+}
+.changePhone .contents .errorMsg div {
+  color: #d81e06;
+  line-height: 0.3rem;
+  font-size: 0.24rem;
+  padding-left: 0.2rem;
 }

@@ -18,6 +18,7 @@ export default{
       amap:{},
       driverRouter:{},//驾车路线
       driverInfo:{},//司机信息
+      showDetailAddressFlag:false
     }
   },
   mounted(){
@@ -224,6 +225,14 @@ export default{
     goToIndex(){
       const that = this;
       that.$router.push({name:'Index'})
+    },
+    //显示详细地址信息
+    showDetailAddress(){
+      const that = this;
+      that.showDetailAddressFlag=true;
+      setTimeout(function () {
+        that.showDetailAddressFlag=false;
+      },5000)
     }
   }
 }
