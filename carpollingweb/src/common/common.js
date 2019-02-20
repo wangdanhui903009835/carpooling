@@ -104,7 +104,38 @@ export function WxSign(){
     })
   })
 }
-
+/**发起微信支付*/
+export function WeChatPay(info){
+  return new Promise(function (resolve, reject){
+    WeixinJSBridge.invoke(
+      'getBrandWCPayRequest', {
+        "appId":info.appId,     //公众号名称，由商户传入
+        "timeStamp":info.timeStamp,         //时间戳，自1970年以来的秒数
+        "nonceStr":info.nonceStr, //随机串
+        "package":info.package,
+        "signType":info.signType,         //微信签名方式：
+        "paySign":info.paySign //微信签名
+      },
+      function(res){
+        // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+        if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+          resolve('支付成功')
+        }
+        else {
+          if(res.err_msg=='get_brand_wcpay_request:cancel'){
+            reject('支付失败:用户取消支付')
+          }
+          else if(res.err_msg=='get_brand_wcpay_request:fail'){
+            reject('支付失败:请稍后重试')
+          }else {
+            reject('支付失败:请联系客服人员')
+          }
+          //Toast('支付失败'+res.err_msg)
+        }
+      }
+    );
+  })
+}
 //获取当前时间前后多少天的时间
 export function getDateByNumber(dateTime, number) {
   let myDate = '';

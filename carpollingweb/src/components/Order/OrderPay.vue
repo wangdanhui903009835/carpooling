@@ -81,7 +81,6 @@
         <OrderCancel :orderCancelInfo="orderCancelInfo" :orderInfo="orderInfo" @closeCancel="closeCancel" @confirmCancel="confirmCancel" v-if="orderCancelInfo.showFlag==1"></OrderCancel>
         <!--订单投诉信息-->
         <OrderComplaints :orderComplaintsInfo="orderComplaintsInfo" :orderInfo="orderInfo" @cancelComplaint="cancelComplaint" @confirmComplaints="confirmComplaints" v-if="orderComplaintsInfo.showFlag==1"></OrderComplaints>
-
     </div>
 </template>
 <script>

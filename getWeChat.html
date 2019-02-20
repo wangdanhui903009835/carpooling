@@ -10,9 +10,9 @@
 <script>
     let appid = 'wxf568d5ec00953f5a',//appid
         httpUrl='https://bsx.faguikeji.com/getWeChat.html',
-        httpIndex="https://bsx.faguikeji.com";
+        httpIndex="https://bsx.faguikeji.com/index.html#/";
     let utils = {
-        apisServer: 'https://47.106.117.215:443',
+        apisServer: 'https://bsx.faguikeji.com',
         /*获取url的值*/
         getUrlName: function (name) {
             //当前地址信息
@@ -63,6 +63,8 @@
             ajax.send();
              //步骤四:注册事件 onreadystatechange 状态改变就会调用
             ajax.onreadystatechange = function () {
+                console.log('ajax数据');
+                console.log(ajax);
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     //步骤五 如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的
                     let res =JSON.parse(ajax.responseText)
@@ -75,7 +77,7 @@
             }
         }
     }
-    let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+appid+'&redirect_uri='+httpUrl+'&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect'
+    let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+appid+'&redirect_uri='+httpUrl+'&response_type=code&scope=snsapi_base&state=1#wechat_redirect'
     let code = utils.getUrlName('code');
     console.log('code数据'+'-----------'+code);
     if (code) {

@@ -17,7 +17,7 @@
   box-sizing: border-box;
 }
 .Orderpay .boxContents .addressBox {
-  padding-top: .23rem;
+  padding-top: 0.23rem;
 }
 .Orderpay .boxContents .noPaddingAddressBox {
   padding-top: 0rem;
@@ -26,15 +26,15 @@
   width: 7.1rem;
   margin: 0 auto;
   background: #ffffff;
-  -webkit-border-radius: .15rem;
-  -moz-border-radius: .15rem;
-  border-radius: .15rem;
+  -webkit-border-radius: 0.15rem;
+  -moz-border-radius: 0.15rem;
+  border-radius: 0.15rem;
   box-sizing: border-box;
-  padding: 0rem .57rem 0rem .33rem;
+  padding: 0rem 0.57rem 0rem 0.33rem;
   box-shadow: -5px 0 3px #F6EFE7, 0px 0px 0px #f5f5f5, 0px 34px 20px #F6EFE7, 5px 0 3px #F6EFE7;
 }
 .Orderpay .boxContents .contents .destination {
-  padding-top: .1rem;
+  padding-top: 0.1rem;
   position: relative;
 }
 .Orderpay .boxContents .contents .destination .menu {
@@ -43,8 +43,8 @@
   line-height: 0.6rem;
 }
 .Orderpay .boxContents .contents .destination .menu .menuItemIcon {
-  width: .25rem;
-  height: .25rem;
+  width: 0.25rem;
+  height: 0.25rem;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -66,14 +66,14 @@
   font-size: 0.24rem;
 }
 .Orderpay .boxContents .contents .destination .dotDiv {
-  width: .25rem;
+  width: 0.25rem;
   height: 0.35rem;
   position: absolute;
   top: 0.5rem;
   left: 0rem;
 }
 .Orderpay .boxContents .contents .destination .dotDiv img {
-  width: .25rem;
+  width: 0.25rem;
 }
 .Orderpay .boxContents .contents .price {
   flex: 1;
@@ -91,16 +91,16 @@
   color: #FF5700;
 }
 .Orderpay .boxContents .contents .orderAction {
-  padding: .32rem 0rem .2rem .23rem;
+  padding: 0.32rem 0rem 0.2rem 0.23rem;
 }
 .Orderpay .boxContents .contents .orderAction .actionItem {
   flex: 1;
 }
 .Orderpay .boxContents .contents .orderAction .actionItem span {
-  height: .54rem;
-  line-height: .54rem;
-  border-radius: .27rem;
-  border: .03rem solid #D0CECE;
+  height: 0.54rem;
+  line-height: 0.54rem;
+  border-radius: 0.27rem;
+  border: 0.03rem solid #D0CECE;
   font-size: 0.32rem;
   width: 1.52rem;
   display: inline-block;
@@ -113,18 +113,18 @@
   text-align: right;
 }
 .Orderpay .boxContents .contents .orderAginOrder {
-  padding: .1rem 0rem;
+  padding: 0.1rem 0rem;
   font-size: 0.24rem;
   color: #1BAC2E;
 }
 .Orderpay .info {
-  padding: .32rem 0rem .34rem 0rem;
+  padding: 0.32rem 0rem 0.34rem 0rem;
 }
 .Orderpay .info .label {
   width: 7.1rem;
   background: #ffffff;
-  height: .7rem;
-  line-height: .7rem;
+  height: 0.7rem;
+  line-height: 0.7rem;
   text-align: center;
   border-radius: 0.15rem;
   font-size: 0.3rem;
@@ -151,22 +151,22 @@
 }
 .Orderpay .bottomPay .pay {
   flex: 1;
-  height: .94rem;
-  line-height: .94rem;
+  height: 0.94rem;
+  line-height: 0.94rem;
   color: #ffffff;
   text-align: center;
   background: linear-gradient(128deg, #ff8e01, #ff5700);
-  border-radius: .47rem;
+  border-radius: 0.47rem;
   margin: 0 auto;
   font-size: 0.48rem;
   font-weight: 500;
 }
 .Orderpay .bottomPay .pay:first-child {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 .Orderpay .driverInfo {
   position: fixed;
-  bottom: .2rem;
+  bottom: 0.2rem;
   width: 7.1rem;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -176,39 +176,39 @@
   transform: translateX(-50%);
   background: #ffffff;
   box-shadow: 0rem 0rem 0.16rem 0rem rgba(0, 0, 0, 0.19);
-  border-radius: .15rem;
-  padding-top: .2rem;
+  border-radius: 0.15rem;
+  padding-top: 0.2rem;
 }
 .Orderpay .driverInfo .driverLogo img {
   width: 1.5rem;
   height: 1.5rem;
-  padding: 0rem .2rem;
+  padding: 0rem 0.2rem;
 }
 .Orderpay .driverInfo .driverContents {
   flex: 1;
 }
 .Orderpay .driverInfo .driverContents .name {
   border-bottom: 1px solid #ececec;
-  padding-bottom: .1rem;
+  padding-bottom: 0.1rem;
 }
 .Orderpay .driverInfo .driverContents .contentsBox {
   position: relative;
 }
 .Orderpay .driverInfo .driverContents .contentsBox .carInfo {
-  padding: .1rem 0rem;
+  padding: 0.1rem 0rem;
 }
 .Orderpay .driverInfo .driverContents .contentsBox .evaluate {
-  padding-bottom: .1rem;
+  padding-bottom: 0.1rem;
   margin-right: 1.2rem;
 }
 .Orderpay .driverInfo .driverContents .contentsBox .evaluate img {
-  width: .4rem;
-  height: .4rem;
+  width: 0.4rem;
+  height: 0.4rem;
 }
 .Orderpay .driverInfo .driverContents .contentsBox .telphone {
   position: absolute;
   top: 0rem;
-  right: .2rem;
+  right: 0.2rem;
 }
 .Orderpay .driverInfo .driverContents .contentsBox .telphone img {
   width: 1rem;
@@ -219,12 +219,13 @@
   background: #ffffff;
   position: fixed;
   z-index: 1000;
-  padding: 0rem .3rem;
-  animation: showAddress .5s ease;
+  padding: 0rem 0.3rem;
+  box-sizing: border-box;
+  animation: showAddress 0.5s ease;
   animation-fill-mode: forwards;
 }
 .Orderpay .detailAddress .addreessItem {
-  padding: .3rem 0rem;
+  padding: 0.3rem 0rem 0rem 0rem;
   border-bottom: 1px solid #ececec;
 }
 .Orderpay .noData {
