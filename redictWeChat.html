@@ -67,9 +67,9 @@
                 console.log(ajax);
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     //步骤五 如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的
-                    let res =JSON.parse(ajax.responseText)
-                    if(res.success){
-                        that.storage.setter('WeChatInfo',res.data,1);
+                    let res =ajax.responseText;
+                    if(res){
+                        that.storage.setter('WeChatInfo',res,1);
                        // window.location.href=that.storage.getter('formUrl',1)
                         window.location.href=httpIndex;
                     }

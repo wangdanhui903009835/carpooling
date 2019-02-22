@@ -122,7 +122,7 @@ export function WeChatPay(info){
           resolve('支付成功')
         }
         else {
-          if(res.err_msg=='get_brand_wcpay_request:cancel'){
+           if(res.err_msg=='get_brand_wcpay_request:cancel'){
             reject('支付失败:用户取消支付')
           }
           else if(res.err_msg=='get_brand_wcpay_request:fail'){
