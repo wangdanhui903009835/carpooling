@@ -5,35 +5,34 @@ export default{
       phone:'',
       agreeSelectStatue:1,//1-同意agree协议；0-不统一agree协议
       code:'',
-      time:'获取验证码'
+      time:'获取验证码',
+      openId:'',
     }
   },
   mounted(){
     const that = this;
-    //let openId = window.utils.storage.getter('openId',1)||'54786104';
+    let openId = window.utils.storage.getter('openid',1);
+    that.openId=openId;
+    that.isLogin();
   },
   methods:{
     //判断用户是否有登录信息
     isLogin(){
       const that = this;
-      //缓存电话号码信息
-      window.utils.storage.setter('userPhone',that.phone,1);
-      return new Promise(function (resolve,reject) {
-        that.$http({
-          url:window.config.apisServer+'/phoneNum/'+that.phone,
-          method:'Get',
-          params:{}
-        }).then(res=>{
-          if(res.status==200 && res.data.phoneNum){//已存在用户信息
-            resolve(true)
-          }else{
-            resolve(false)
-          }
-        }).catch(error=>{
-          resolve(false)
-        })
+      that.$http({
+        url:window.config.apisServer+'/phoneNum/'+that.openId,
+        method:'Get',
+        params:{}
+      }).then(res=>{
+        if(res.status==200 && res.data.phoneNum){//已存在用户信息
+          //缓存电话号码信息
+          window.utils.storage.setter('userPhone',res.data.phoneNum,1);
+          //跳转到首页
+          that.$router.push({name:'Index',query:{phone:res.data.phoneNum}});
+        }else{
+        }
+      }).catch(error=>{
       })
-
     },
     //协议的同意和不同意
     agreeProtocol(){
@@ -48,33 +47,26 @@ export default{
         that.$message.errorMessage('请稍后重试');
         return;
       }
+      //缓存电话号码信息
+      window.utils.storage.setter('userPhone',that.phone,1);
       if(that.checkForm()){
-        that.isLogin().then(res=>{
-          if(res){//已存在该用户
-            that.$router.push({name:'Index',query:{phone:res.phoneNum}});
-          }else{//不存在该用户
-            //调用验证码接口
-            that.$http({
-              url:window.config.apisServer+'/genCode',
-              method:'POST',
-              data:{
-                nationCode:'86',//固定区号86
-                phoneNum:that.phone //电话号码
-              }
-            }).then(res=>{
-              that.time='60s';
-              if(res.status==200 && res.data!='fail'){//验证码发送成功
-                that.cutDownTime();
-                that.$message.errorMessage('验证码发送成功，请注意查收');
-              }else{
-                that.$message.errorMessage('验证码发送失败，请稍后重试');
-              }
-            })
+        //调用验证码接口
+        that.$http({
+          url:window.config.apisServer+'/genCode',
+          method:'POST',
+          data:{
+            nationCode:'86',//固定区号86
+            phoneNum:that.phone //电话号码
           }
-        }).catch(error=>{
-
+        }).then(res=>{
+          that.time='60s';
+          if(res.status==200 && res.data!='false'){//验证码发送成功
+            that.cutDownTime();
+            that.$message.errorMessage('验证码发送成功，请注意查收');
+          }else{
+            that.$message.errorMessage('验证码发送失败，请稍后重试');
+          }
         })
-
       }
     },
     //倒计时显示
@@ -109,34 +101,23 @@ export default{
         that.$message.errorMessage('请输入验证码');
         return;
       }
-      that.isLogin().then(res=>{
-        if(res){
-          that.$router.push({name:'Index',query:{phone:phone}});
-        }else{
-          that.$http({
-            url:window.config.apisServer+'/verify',
-            method:'POST',
-            data:{
-              phoneNum:phone,
-              verifyCode:that.code
-            }
-          }).then(res=>{
-            if(res.status==200 && res.data){//验证成功
-              clearInterval(timeInter);
-              //进入首页信息
-              that.$router.push({name:'Index'})
-            }else{
-              that.$message.errorMessage('验证码或手机号码输入错误');
-            }
-          })
+      that.$http({
+        url:window.config.apisServer+'/verify',
+        method:'POST',
+        data:{
+          phoneNum:phone,
+          verifyCode:that.code,
+          openId:that.openId
         }
-      }).catch(error=>{
-        that.$message.errorMessage('验证码或手机号码输入错误');
+      }).then(res=>{
+        if(res.status==200 && res.data){//验证成功
+          clearInterval(timeInter);
+          //进入首页信息
+          that.$router.push({name:'Index'})
+        }else{
+          that.$message.errorMessage('验证码或手机号码输入错误');
+        }
       })
-
-
-
-
     },
     checkForm(){
       const that = this;

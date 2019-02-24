@@ -82,7 +82,7 @@ export default{
         that.$router.push({name:'OrderPay',query:{orderCode:res.orderCode}});
       }else{
         //初始化数据信息
-        that.init();
+        that.getReposition()
       }
     }).catch(error=>{
 

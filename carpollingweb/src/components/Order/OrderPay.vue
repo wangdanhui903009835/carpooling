@@ -66,7 +66,7 @@
             </div>
             <!--立即支付-->
             <div class="bottomPay displayFlex" id="payButton" v-if="orderInfo.status==5">
-                <div class="pay" @click="goPay(1)">立即支付</div>
+                <div class="pay" @click="wxPay">立即支付</div>
                 <div class="pay" @click="goPay(2)">线下支付</div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import OrderCancel from './../OrderCancel.vue'
 import OrderComplaints from './../OrderComplaints.vue';
+import {WeChatPay} from './../../../common/common.js'
 let pollingTime = null;
 export default{
   components:{OrderCancel,OrderComplaints},
@@ -74,6 +75,8 @@ export default{
               pollingTime = null;
             }else if(orderInfo.status==2||orderInfo.status==3 ||orderInfo.status==4){//获取司机信息
               that.getDriverInfo(orderInfo.orderId);
+            }else if(orderInfo.status==7){
+              that.$router.push({name:'Index'})
             }
             resolve(orderInfo)
           }else{
@@ -202,6 +205,26 @@ export default{
       that.getOrderInfo();
     },
     //立即支付
+    wxPay(){
+      const that = this;
+      that.$http({
+        url:window.config.apisServer+'/getpaysign',
+        method:'POST',
+        data:{
+          orderCode:that.orderInfo.orderCode
+        }
+      }).then(res=>{
+        if(res.status==200){
+          WeChatPay(res.data).then(res=>{
+            that.$message.successMessage('支付成功');
+            that.$router.query({name:'OrderList'})
+          })
+        }else{
+          that.$message.getFailureMessage('调用支付失败');
+        }
+      })
+    },
+    //线下支付
     goPay(type){
       const that = this;
       that.$http({
