@@ -211,7 +211,10 @@ export default{
         url:window.config.apisServer+'/getpaysign',
         method:'POST',
         data:{
-          orderCode:that.orderInfo.orderCode
+          orderCode:that.orderInfo.orderCode,
+          openid: "o4fAL0qkM9HbnRNQ-0S1zfmXaiUk",
+          total_fee: "1",
+          notify_url: "https://bsx.faguikeji.com/index.html#/"
         }
       }).then(res=>{
         if(res.status==200){

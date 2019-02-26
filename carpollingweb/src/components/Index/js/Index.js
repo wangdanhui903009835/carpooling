@@ -68,7 +68,6 @@ export default{
       addressShow:false,
       numberRemarksFlag:false
     }
-
   },
   mounted(){
     const that = this;
@@ -76,7 +75,9 @@ export default{
     //获取电话号码
     that.phone=phone;
     //设置电话号码隐藏
-    that.userInfo.phone = phone.substr(0,3)+'****'+phone.substr(7,4);
+    if(phone){
+      that.userInfo.phone = phone.substr(0,3)+'****'+phone.substr(7,4);
+    }
     that.getOrderStatus0().then(res=>{
       if(res.flag){//存在未完成的订单
         that.$router.push({name:'OrderPay',query:{orderCode:res.orderCode}});
@@ -555,5 +556,60 @@ export default{
         that.$message.errorMessage('订单发布失败');
       })
     },
-  }
+    //清除缓存数据信息
+    clearCache(){
+      const that = this;
+      that.userInfo.showFlag=0;
+      that.selectStatus='0';
+      //清除结束地址信息
+      that.addressInfo.endAddress={
+        text:'',
+        location:{},
+        getPriceText:'',
+        city:'',
+        countyName:'',
+        formateAddress:'',
+      };
+      that.showDateTimeInfo={
+        showFlag:false,
+        appointFlag:0,//0-未预约，1：预约
+        time:'',//预约时间
+        defaultSelect:[0,0,0],//默认选中状态
+      };
+      that.showTimeText='预约时间';
+      that.remarks='';//备注
+      that.price=0;
+      that.showSelectNumber={
+        showFlag:false,
+        number:1,
+      }
+      that.showSelectAddress={
+        obj:{},
+        type:0
+      };
+      that.addressShow=false;
+      that.numberRemarksFlag=false;
+      //清除标记点
+      let amap=that.amap;
+      amap.clearMap();
+      //重新设置标记点
+      //marker标记
+      let sessionInitAddress = window.utils.storage.getter('initAddress',1);
+      if(sessionInitAddress){
+        that.addressInfo.startAddress=sessionInitAddress;
+        let latng=sessionInitAddress.location
+        //marker标记
+        that.setMarker(latng,1);
+      }
+
+    }
+  },
+  watch:{
+    '$route'(to,from){
+      const that = this;
+      if(to.name=='Index'){
+        that.clearCache();//清除缓存数据
+      }
+    }
+  },
 }
