@@ -591,17 +591,17 @@ export default{
       that.numberRemarksFlag=false;
       //清除标记点
       let amap=that.amap;
-      amap.clearMap();
-      //重新设置标记点
-      //marker标记
-      let sessionInitAddress = window.utils.storage.getter('initAddress',1);
-      if(sessionInitAddress){
-        that.addressInfo.startAddress=sessionInitAddress;
-        let latng=sessionInitAddress.location
-        //marker标记
-        that.setMarker(latng,1);
+      if(typeof amap.clearMap=='function'){
+        amap.clearMap();
+        //重新设置标记点
+        let sessionInitAddress = window.utils.storage.getter('initAddress',1);
+        if(sessionInitAddress){
+          that.addressInfo.startAddress=sessionInitAddress;
+          let latng=sessionInitAddress.location
+          //marker标记
+          that.setMarker(latng,1);
+        }
       }
-
     }
   },
   watch:{
