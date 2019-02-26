@@ -1,3 +1,5 @@
+import {WeChatPay} from "../../../common/common";
+
 let timeInter=null;
 export default{
   data(){
