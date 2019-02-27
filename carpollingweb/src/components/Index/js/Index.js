@@ -413,7 +413,8 @@ export default{
           url:window.config.apisServer+'/getorder',
           method:'POST',
           data:{
-            userPhonenum:that.phone,
+            //userPhonenum:that.phone,
+            userPhonenum:'18408229155',
             status:0
           }
         }).then(res=>{

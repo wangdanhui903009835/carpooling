@@ -19,11 +19,14 @@ export default{
       amap:{},
       driverRouter:{},//驾车路线
       driverInfo:{},//司机信息
-      showDetailAddressFlag:false
+      showDetailAddressFlag:false,
+      openid:'',
     }
   },
   mounted(){
     const that = this;
+    //获取openid
+    that.openid = window.utils.storage.getter('openid',1)
     //参数数据的获取
     that.phone = window.utils.storage.getter('userPhone','1');
     that.orderCode = that.$route.query.orderCode;
@@ -48,6 +51,12 @@ export default{
         that.setAmapHeight();
       })
     },10000)
+    let locationHref = window.location.href,
+        locationList = locationHref.split('#');
+    if(!locationList[0].match(/\?/)) {
+      location.replace(locationList[0]+'?#'+locationList[1]);
+      return ;
+    }
   },
   methods:{
     //获取订单行程信息
@@ -207,14 +216,18 @@ export default{
     //立即支付
     wxPay(){
       const that = this;
+      let openid = that.openid.replace(/\"/g, "");
+      //地址信息
+      let url = window.location.href,
+      notify_url=url.split('#')[0]+'#'+url.split('#')[1].split('?')[0];
       that.$http({
         url:window.config.apisServer+'/getpaysign',
         method:'POST',
         data:{
-          orderCode:that.orderInfo.orderCode,
-          openid: "o4fAL0qkM9HbnRNQ-0S1zfmXaiUk",
-          total_fee: "1",
-          notify_url: "https://bsx.faguikeji.com/index.html#/"
+          out_trade_no:that.orderInfo.orderCode,
+          openid: openid,
+          total_fee: 1,
+          notify_url: notify_url
         }
       }).then(res=>{
         if(res.status==200){
