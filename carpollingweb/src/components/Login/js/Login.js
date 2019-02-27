@@ -7,7 +7,7 @@ export default{
       phone:'',
       agreeSelectStatue:1,//1-同意agree协议；0-不统一agree协议
       code:'',
-      time:'获取验证码',
+      time:0,
       openId:'',
     }
   },
@@ -45,7 +45,7 @@ export default{
     //获取验证码
     getCode(){
       const that = this;
-      if(parseInt(that.time.replace('s',''))>0){
+      if(that.time>0){
         that.$message.errorMessage('请稍后重试');
         return;
       }
@@ -61,11 +61,13 @@ export default{
             phoneNum:that.phone //电话号码
           }
         }).then(res=>{
-          that.time='60s';
+          that.time=60;
           if(res.status==200 && res.data!='false'){//验证码发送成功
             that.cutDownTime();
             that.$message.errorMessage('验证码发送成功，请注意查收');
           }else{
+            clearInterval(timeInter);
+            that.time = 0;
             that.$message.errorMessage('验证码发送失败，请稍后重试');
           }
         })
@@ -75,14 +77,12 @@ export default{
     cutDownTime(){
       const that = this;
       let time = that.time;
-      time=time.replace('s','');
       timeInter=setInterval(function(){
         time--;
-        that.time=time+'s';
+        that.time=time;
         if(time==0){
           clearInterval(timeInter);
-          time='重新获取';
-          that.time = time;
+          that.time = 0;
         }
       },1000)
     },

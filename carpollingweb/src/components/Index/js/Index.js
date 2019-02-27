@@ -72,6 +72,7 @@ export default{
   mounted(){
     const that = this;
     let phone = window.utils.storage.getter('userPhone',1);
+    console.log(12324);
     //获取电话号码
     that.phone=phone;
     //设置电话号码隐藏
