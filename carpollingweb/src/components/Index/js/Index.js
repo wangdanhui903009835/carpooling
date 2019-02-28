@@ -507,7 +507,6 @@ export default{
         that.$message.errorMessage('请选择预约时间');
         return;
       }
-
       let params={
         status:'0',
         userPhonenum:that.phone,
@@ -518,6 +517,8 @@ export default{
         startFormateAddress:addressInfo.startAddress.formateAddress,
         destination:addressInfo.endAddress.text.split('·')[1],
         destinationFormateAddress:addressInfo.endAddress.formateAddress,
+        driverStart:addressInfo.startAddress.getPriceText,
+        driverEnd:addressInfo.endAddress.getPriceText,
         describe:that.remarks,
         startLocation:[addressInfo.startAddress.location.longitude,addressInfo.startAddress.location.latitude],
         endLocation:[addressInfo.endAddress.location.longitude,addressInfo.endAddress.location.latitude],

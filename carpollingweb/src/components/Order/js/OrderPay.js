@@ -226,14 +226,25 @@ export default{
         data:{
           out_trade_no:that.orderInfo.orderCode,
           openid: openid,
-          total_fee: 1,
+          total_fee: that.orderInfo.price*100,
           notify_url: notify_url
         }
       }).then(res=>{
+        console.log(res);
         if(res.status==200){
           WeChatPay(res.data).then(res=>{
-            that.$message.successMessage('支付成功');
-            that.$router.query({name:'OrderList'})
+            //支付成功，更新状态
+            that.$http({
+              url:window.config.apisServer+'/payed',
+              method:'POST',
+              data:{
+                orderCode:that.orderInfo.orderCode
+              }
+            }).then(res=>{
+              that.$router.query({name:'OrderList'})
+            }).catch(error=>{
+              that.$router.query({name:'OrderList'})
+            })
           })
         }else{
           that.$message.getFailureMessage('调用支付失败');

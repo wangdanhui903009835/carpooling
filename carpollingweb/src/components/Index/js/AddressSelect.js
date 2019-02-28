@@ -25,11 +25,6 @@ export default{
     let info = JSON.parse(JSON.stringify(that.objInfoProp));
     that.objInfo = info
     that.countyName = info.countyName;
-    if(!that.countyName){
-      that.cityListShowFlag=1
-    }else{
-      that.citySearch('');
-    }
     //设置code值
     let cityList=that.cityList;
     for(var i in cityList){
@@ -37,6 +32,13 @@ export default{
         that.cityAdcode = cityList[i].cityAdcode
       }
     }
+    //查询获取当前城市信息
+    if(!that.countyName){
+      that.cityListShowFlag=1
+    }else{
+      that.citySearch('');
+    }
+
   },
   methods:{
     //展示城市地区选择
