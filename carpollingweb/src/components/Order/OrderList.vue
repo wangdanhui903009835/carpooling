@@ -11,6 +11,7 @@
                     </div>
                     <div class="time">{{formateDate(item.date)}}</div>
                 </div>
+                <div class="orderNo">订单编号:{{item.orderId}}</div>
                 <div class="addressName displayFlex">
                     <div :class="item.status==7?'orderGoing':'orderGoing'">
                         <div class="addressBox">

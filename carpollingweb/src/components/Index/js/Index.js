@@ -414,8 +414,7 @@ export default{
           url:window.config.apisServer+'/getorder',
           method:'POST',
           data:{
-            //userPhonenum:that.phone,
-            userPhonenum:'18408229155',
+            userPhonenum:that.phone,
             status:0
           }
         }).then(res=>{

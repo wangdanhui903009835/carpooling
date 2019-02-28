@@ -30,6 +30,9 @@
   padding-left: 0.64rem;
   padding-right: 0.4rem;
 }
+.OrderList .orderItem .contents .orderNo {
+  padding-top: 0.2rem;
+}
 .OrderList .orderItem .contents .title {
   height: 0.67rem;
   line-height: 0.67rem;

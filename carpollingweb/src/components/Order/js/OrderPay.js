@@ -235,10 +235,11 @@ export default{
           WeChatPay(res.data).then(res=>{
             //支付成功，更新状态
             that.$http({
-              url:window.config.apisServer+'/payed',
+              url:window.config.apisServer+'/finishorder',
               method:'POST',
               data:{
-                orderCode:that.orderInfo.orderCode
+                orderId:that.orderInfo.orderId,
+                payType:1
               }
             }).then(res=>{
               that.$router.query({name:'OrderList'})
@@ -255,17 +256,15 @@ export default{
     goPay(type){
       const that = this;
       that.$http({
-        url:window.config.apisServer+'/payrecord',
+        url:window.config.apisServer+'/finishorder',
         method:'POST',
         data:{
-          orderCode:that.orderInfo.orderCode,
-          payed:'yes'
+          orderId:that.orderInfo.orderId,
+          payType:0
         }
       }).then(res=>{
         if(res.status==200 && res.data=='success'){
           that.$router.push({name:'OrderPaySuccess',query:{type:type}});
-        }else{
-          that.$message.errorMessage('支付失败');
         }
       }).catch(error=>{
           that.$message.errorMessage('支付失败');
