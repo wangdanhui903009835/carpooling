@@ -34,7 +34,7 @@
                                 <div class="actionItem complaint"><span @click="getOrderComplaint" v-if="orderInfo.status==5">投诉</span></div>
                             </div>
                             <!--再次下单提示-->
-                            <div class="orderAginOrder" v-if="orderInfo.status==6" @click="goToIndex"><span>订单已完成，点击再次发布行程</span></div>
+                            <div class="orderAginOrder" v-if="orderInfo.status==6" @click="goToIndex"><span>订单已完成，点击可再次发布行程</span></div>
                         </div>
                     </div>
                 </div>
@@ -81,6 +81,8 @@
         <OrderCancel :orderCancelInfo="orderCancelInfo" :orderInfo="orderInfo" @closeCancel="closeCancel" @confirmCancel="confirmCancel" v-if="orderCancelInfo.showFlag==1"></OrderCancel>
         <!--订单投诉信息-->
         <OrderComplaints :orderComplaintsInfo="orderComplaintsInfo" :orderInfo="orderInfo" @cancelComplaint="cancelComplaint" @confirmComplaints="confirmComplaints" v-if="orderComplaintsInfo.showFlag==1"></OrderComplaints>
+        <!--回到首页-->
+        <img src="./../../images/return_index.png" class="returnBack" @click="goToIndex"/>
     </div>
 </template>
 <script>

@@ -72,23 +72,14 @@ export default{
   mounted(){
     const that = this;
     let phone = window.utils.storage.getter('userPhone',1);
-    console.log(12324);
     //获取电话号码
     that.phone=phone;
     //设置电话号码隐藏
     if(phone){
-      that.userInfo.phone = phone.substr(0,3)+'****'+phone.substr(7,4);
+      that.userInfo.phone = phone;
     }
-    that.getOrderStatus0().then(res=>{
-      if(res.flag){//存在未完成的订单
-        that.$router.push({name:'OrderPay',query:{orderCode:res.orderCode}});
-      }else{
-        //初始化数据信息
-        that.getReposition()
-      }
-    }).catch(error=>{
-
-    })
+    //初始化数据信息
+    that.getReposition();
   },
   methods:{
     init(){
@@ -510,7 +501,7 @@ export default{
         status:'0',
         userPhonenum:that.phone,
         userNum:that.showSelectNumber.number,
-        orderType:that.selectStatus,
+        type:that.selectStatus,
         price:that.price,
         start:addressInfo.startAddress.text.split('·')[1],
         startFormateAddress:addressInfo.startAddress.formateAddress,
@@ -547,7 +538,7 @@ export default{
         }else{
           that.getOrderStatus0().then(res=>{
             if(res.flag){
-              that.$message.errorMessage('你有未完成的订单，请先取消之前的订单');
+              that.$message.errorMessage('你有未完成的订单，不能发布新的订单，请先取消之前的订单');
             }else{
               that.$message.errorMessage('订单发布失败');
             }

@@ -283,5 +283,9 @@ export default{
         that.showDetailAddressFlag=false;
       },5000)
     }
+  },
+  destroyed(){
+    clearInterval(pollingTime);
+    pollingTime=null;
   }
 }
