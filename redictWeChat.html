@@ -10,7 +10,9 @@
 <script>
     let appid = 'wxacdf899d08a60cb6',//appid
         httpUrl='https://bsx.faguikeji.com/redictWeChat.html',
-        httpIndex="https://bsx.faguikeji.com/index.html#/";
+        httpLogin="https://bsx.faguikeji.com/index.html#/";//登陆页面
+        httpIndex="https://bsx.faguikeji.com/index.html#/Index";//首页信息
+        httpOrderDetail = "https://bsx.faguikeji.com/index.html?#/Order/OrderPay?orderCode="
     let utils = {
         apisServer: 'https://bsx.faguikeji.com',
         /*获取url的值*/
@@ -61,17 +63,50 @@
             ajax.open('get', that.apisServer+'/getopenid?code=' + code);
             //步骤三:发送请求
             ajax.send();
+            debugger;
              //步骤四:注册事件 onreadystatechange 状态改变就会调用
             ajax.onreadystatechange = function () {
                 console.log('ajax数据');
                 console.log(ajax);
+                debugger;
                 if (ajax.readyState == 4 && ajax.status == 200) {
                     //步骤五 如果能够进到这个判断 说明 数据 完美的回来了,并且请求的页面是存在的
                     let res =ajax.responseText;
                     if(res){
-                        that.storage.setter('WeChatInfo',res,1);
-                       // window.location.href=that.storage.getter('formUrl',1)
-                        window.location.href=httpIndex;
+                        that.storage.setter('openid',res,1);
+                        //根据openid获取电话号码信息
+                        ajax.open('get', that.apisServer+'/phoneNum/' + res);
+                        ajax.send();
+                        ajax.onreadystatechange=function () {
+                            if (ajax.readyState == 4 && ajax.status == 200){
+                               let result=JSON.parse(ajax.responseText);
+                               if(result.phoneNum){//存在电话号码
+                                   that.storage.setter('userPhone',result.phoneNum,1)
+                                   //直接跳转到首页,判断是否存在未完成的订单
+                                   ajax.open("post",that.apisServer+'/getorder',true);
+                                   ajax.setRequestHeader('content-type', 'application/json');
+                                   let data = {
+                                       userPhonenum:result.phoneNum,
+                                       status:0
+                                   };
+                                   ajax.send(JSON.stringify(data));
+                                   ajax.onreadystatechange=function () {
+                                       if (ajax.readyState == 4 && ajax.status == 200){
+                                           let unfulfilledOrder = JSON.parse(ajax.responseText);
+                                           if(unfulfilledOrder.length>0){//存在未完成的订单
+                                               window.location.href=httpOrderDetail+unfulfilledOrder[0].orderCode
+                                           }else{//没有未完成的订单
+                                               window.location.href=httpIndex;
+                                           }
+                                       }
+                                   }
+                               }else{//不存在电话号码
+                                 window.location.href=httpLogin;
+                               }
+                            }
+                        }
+                    }else{//获取失败，跳转到登陆页面
+                        window.location.href=httpLogin;
                     }
                 }
             }
@@ -81,9 +116,9 @@
     let code = utils.getUrlName('code');
     console.log('code数据'+'-----------'+code);
     if (code) {
-        if(utils.storage.getter('WeChatInfo',1)){
+        if(utils.storage.getter('openid',1)){
             if(history.length<1){
-                window.location.href=httpIndex;
+                window.location.href=httpLogin;
             }
         }else {
             utils.int(code)
