@@ -91,10 +91,11 @@
   color: #FF5700;
 }
 .Orderpay .boxContents .contents .orderAction {
-  padding: 0.32rem 0rem 0.2rem 0.23rem;
+  padding: 0rem 0rem 0rem 0.23rem;
 }
 .Orderpay .boxContents .contents .orderAction .actionItem {
   flex: 1;
+  margin: 0.32rem 0rem 0.2rem 0rem;
 }
 .Orderpay .boxContents .contents .orderAction .actionItem span {
   height: 0.54rem;
@@ -245,8 +246,8 @@
   height: 0.8rem;
   position: fixed;
   z-index: 100001;
-  bottom: 20px;
-  right: 20px;
+  bottom: 2.5rem;
+  right: 10px;
 }
 @keyframes showAddress {
   0% {

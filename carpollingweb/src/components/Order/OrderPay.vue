@@ -10,7 +10,7 @@
                 <div class="addressBox" :class="orderInfo.status>=2&&orderInfo.status<=4?'noPaddingAddressBox':''" id="addressBox">
                     <div class="contents" >
                         <div class="addressName">
-                            <div class="displayFlex" v-if="orderInfo.status<=1||orderInfo.status==5||orderInfo.status==6">
+                            <div class="displayFlex" v-if="orderInfo.status<=2||orderInfo.status==5||orderInfo.status==6">
                                 <div class="destination">
                                     <div class="menu"><img src="./../../images/start_address_1.png" class="menuItemIcon"><span class="label">{{orderInfo.start}}</span></div>
                                     <div class="menu"><img src="./../../images/end_address_1.png" class="menuItemIcon"><span class="label">{{orderInfo.destination}}</span></div>
@@ -29,8 +29,8 @@
                                 </div>
                             </div>
                             <!--orderAction 取消投诉-->
-                            <div class="orderAction displayFlex" v-if="orderInfo.status<=1||orderInfo.status==5">
-                                <div class="actionItem cancel" ><span @click="getOrderCancel" v-if="orderInfo.status<=1">取消订单</span></div>
+                            <div class="orderAction displayFlex" v-if="orderInfo.status<=2||orderInfo.status==5">
+                                <div class="actionItem cancel"><span @click="getOrderCancel" v-if="orderInfo.status<=1||orderInfo.receiptCancel">取消订单</span></div>
                                 <div class="actionItem complaint"><span @click="getOrderComplaint" v-if="orderInfo.status==5">投诉</span></div>
                             </div>
                             <!--再次下单提示-->

@@ -79,13 +79,28 @@ export default{
             //隐藏遮罩层取消订单
             that.orderCancelInfo.showFlag = 0;
             that.orderComplaintsInfo.showFlag = 0;
+            //订单状态
+            orderInfo.status=parseInt(orderInfo.status);
             if(orderInfo.status==6){//订单已完成
               clearInterval(pollingTime);
               pollingTime = null;
-            }else if(orderInfo.status==2||orderInfo.status==3 ||orderInfo.status==4){//获取司机信息
+            }else if(orderInfo.status==2||orderInfo.status==3 ||orderInfo.status==4){
+              //获取司机信息
               that.getDriverInfo(orderInfo.orderId);
             }else if(orderInfo.status==7){
-              that.$router.push({name:'Index'})
+              that.$router.push({name:'Index'});
+              return;
+            }
+            //司机接单15分钟前可以取消订单
+            if(orderInfo.status==2){
+              let updateTime=orderInfo.updateTime||0,//接单时间
+                  currentTime = new Date().getTime();
+              let differTime = (currentTime-updateTime)/1000/60;//相差多少分钟
+              if(differTime<=15){
+                orderInfo.receiptCancel=true;
+              }else{
+                orderInfo.receiptCancel=false;
+              }
             }
             resolve(orderInfo)
           }else{
@@ -131,8 +146,8 @@ export default{
           map: amap,
           panel: 'mapContainer',
         });
-        let startLocation =that.orderInfo.startLocation,
-            endLocation = that.orderInfo.endLocation;
+        let startLocation =[that.orderInfo.startLocation[1],that.orderInfo.startLocation[0],],
+            endLocation = [that.orderInfo.endLocation[1],that.orderInfo.endLocation[0]];
         driving.search(startLocation, endLocation,function(status,result){
           if(status === 'complete' && result.info === 'OK'){
           }else{
@@ -195,11 +210,13 @@ export default{
     confirmCancel(){
       const that = this;
       that.orderCancelInfo.showFlag=0;
-      that.$message.successMessage('订单取消成功');
-      setTimeout(function(){
-        //页面跳转到订单列表页面
-        that.$router.push({name:'Index'});
-      },3000)
+      that.$message.successMessage('发送请求成功');
+      //获取订单最新消息
+      that.$router.push({name:'Index'});
+    // setTimeout(function(){
+      //   //页面跳转到订单列表页面
+      //   that.$router.push({name:'Index'});
+      // },3000)
     },
     //关闭投诉信息
     cancelComplaint(){
@@ -230,7 +247,6 @@ export default{
           notify_url: notify_url
         }
       }).then(res=>{
-        console.log(res);
         if(res.status==200){
           WeChatPay(res.data).then(res=>{
             //支付成功，更新状态

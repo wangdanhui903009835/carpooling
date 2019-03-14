@@ -27,6 +27,10 @@ export default{
       }).then(res=>{
         that.$indicator.close();
         if(res.status==200){//订单数据获取成功
+          let list=res.data;
+          for(var i in list){
+            list[i].status=parseInt(list[i].status);
+          }
           that.orderList = res.data;
         }
       }).catch(error=>{

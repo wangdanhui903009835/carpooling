@@ -406,7 +406,7 @@ export default{
           method:'POST',
           data:{
             userPhonenum:that.phone,
-            status:0
+            status:"0,1,2,3,4,5"
           }
         }).then(res=>{
           if(res.status==200&&res.data.length>0){
@@ -423,6 +423,7 @@ export default{
             resolve(contents);
           }
         }).catch(error=>{
+          console.log(error);
           let contents={
             flag:false,
             orderCode:''
@@ -497,6 +498,12 @@ export default{
         that.$message.errorMessage('请选择预约时间');
         return;
       }
+      //价格信息
+      let price=parseInt(that.price);
+      if(isNaN(price)||price<=0){
+        that.$message.errorMessage('价格不能为0，请选择正确的起点和终点');
+        return;
+      }
       let params={
         status:'0',
         userPhonenum:that.phone,
@@ -510,8 +517,8 @@ export default{
         driverStart:addressInfo.startAddress.getPriceText,
         driverEnd:addressInfo.endAddress.getPriceText,
         describe:that.remarks,
-        startLocation:[addressInfo.startAddress.location.longitude,addressInfo.startAddress.location.latitude],
-        endLocation:[addressInfo.endAddress.location.longitude,addressInfo.endAddress.location.latitude],
+        startLocation:[addressInfo.startAddress.location.latitude,addressInfo.startAddress.location.longitude],
+        endLocation:[addressInfo.endAddress.location.latitude,addressInfo.endAddress.location.longitude],
         payed:'no',
         payType:0,//0-线下支付，1-微信支付,默认设置线下支付，线上支付还未开通
         date:new Date().getTime()
@@ -528,22 +535,23 @@ export default{
         that.$message.errorMessage('请选择的区域不在运输范围之内');
         return;
       }
-      that.$http({
-        url:window.config.apisServer+'/ordering',
-        method:'POST',
-        data:params
-      }).then(res=>{
-        if(res.status==200 && res.data!='failed'){
-          that.$router.push({name:'OrderPay',query:{orderCode:res.data}});
-        }else{
-          that.getOrderStatus0().then(res=>{
-            if(res.flag){
-              that.$message.errorMessage('你有未完成的订单，不能发布新的订单，请先取消之前的订单');
+      //判断是否存在未完成的订单
+      that.getOrderStatus0().then(result=>{
+        if(result.flag){//存在未完成的订单
+          that.$message.errorMessage('你有未完成的订单，不能发布新的订单，请先取消之前的订单');
+          return;
+        }else{//不存在未完成的订单
+          that.$http({
+            url:window.config.apisServer+'/ordering',
+            method:'POST',
+            data:params
+          }).then(res=>{
+            if(res.status==200 && res.data!='failed'){
+              that.$router.push({name:'OrderPay',query:{orderCode:res.data}});
             }else{
               that.$message.errorMessage('订单发布失败');
             }
           })
-
         }
       }).catch(error=>{
         that.$message.errorMessage('订单发布失败');
