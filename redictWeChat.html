@@ -12,7 +12,8 @@
         httpUrl='https://bsx.faguikeji.com/redictWeChat.html',
         httpLogin="https://bsx.faguikeji.com/index.html#/";//登陆页面
         httpIndex="https://bsx.faguikeji.com/index.html#/Index";//首页信息
-        httpOrderDetail = "https://bsx.faguikeji.com/index.html?#/Order/OrderPay?orderCode="
+        httpOrderDetail = "https://bsx.faguikeji.com/index.html?#/Order/OrderPay?orderCode=";//订单详情页面
+        httpOrderList="https://bsx.faguikeji.com/index.html?#/Order/OrderList";
     let utils = {
         apisServer: 'https://bsx.faguikeji.com',
         /*获取url的值*/
@@ -52,7 +53,7 @@
                 }
             }
         },
-        int: function (code) {
+        int: function (code,type) {
             const that=this
             //打印json数据信息
             console.log('微信code信息');
@@ -79,30 +80,38 @@
                         ajax.send();
                         ajax.onreadystatechange=function () {
                             if (ajax.readyState == 4 && ajax.status == 200){
-                               let result=JSON.parse(ajax.responseText);
-                               if(result.phoneNum){//存在电话号码
-                                   that.storage.setter('userPhone',result.phoneNum,1)
-                                   //直接跳转到首页,判断是否存在未完成的订单
-                                   ajax.open("post",that.apisServer+'/getorder',true);
-                                   ajax.setRequestHeader('content-type', 'application/json');
-                                   let data = {
-                                       userPhonenum:result.phoneNum,
-                                       status:0
-                                   };
-                                   ajax.send(JSON.stringify(data));
-                                   ajax.onreadystatechange=function () {
-                                       if (ajax.readyState == 4 && ajax.status == 200){
-                                           let unfulfilledOrder = JSON.parse(ajax.responseText);
-                                           if(unfulfilledOrder.length>0){//存在未完成的订单
-                                               window.location.href=httpOrderDetail+unfulfilledOrder[0].orderCode
-                                           }else{//没有未完成的订单
-                                               window.location.href=httpIndex;
-                                           }
-                                       }
-                                   }
-                               }else{//不存在电话号码
-                                 window.location.href=httpLogin;
-                               }
+                                if(!(ajax.responseText.trim())){//不存在电话号码,跳转到登录页面
+                                    window.location.href=httpLogin;
+                                }else{
+                                    let result=JSON.parse(ajax.responseText);
+                                    if(result.phoneNum){//存在电话号码
+                                        that.storage.setter('userPhone',result.phoneNum,1);
+                                        if(type!='List'){
+                                            //直接跳转到首页,判断是否存在未完成的订单
+                                            ajax.open("post",that.apisServer+'/getorder',true);
+                                            ajax.setRequestHeader('content-type', 'application/json');
+                                            let data = {
+                                                userPhonenum:result.phoneNum,
+                                                status:"0,1,2,3,4,5"
+                                            };
+                                            ajax.send(JSON.stringify(data));
+                                            ajax.onreadystatechange=function () {
+                                                if (ajax.readyState == 4 && ajax.status == 200){
+                                                    let unfulfilledOrder = JSON.parse(ajax.responseText);
+                                                    if(unfulfilledOrder.length>0){//存在未完成的订单
+                                                        window.location.href=httpOrderDetail+unfulfilledOrder[0].orderCode
+                                                    }else{//没有未完成的订单
+                                                        window.location.href=httpIndex;
+                                                    }
+                                                }
+                                            }
+                                        }else{//跳转到订单列表
+                                            window.location.href=httpOrderList;
+                                        }
+                                    }else{//不存在电话号码
+                                        window.location.href=httpLogin;
+                                    }
+                                }
                             }
                         }
                     }else{//获取失败，跳转到登陆页面
@@ -114,14 +123,16 @@
     }
     let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+appid+'&redirect_uri='+httpUrl+'&response_type=code&scope=snsapi_base&state=1#wechat_redirect'
     let code = utils.getUrlName('code');
+    let type = utils.getUrlName('type');
     console.log('code数据'+'-----------'+code);
+    console.log('type数据'+'------------'+type)
     if (code) {
         if(utils.storage.getter('openid',1)){
             if(history.length<1){
                 window.location.href=httpLogin;
             }
         }else {
-            utils.int(code)
+            utils.int(code,type)
         }
     } else {
         window.location.href = url;
